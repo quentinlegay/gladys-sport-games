@@ -5,6 +5,7 @@ import {
   formatShort,
   formatTime,
   isInWindow,
+  parisToDate,
   parseClock,
   seasonOf,
 } from '../src/time.js';
@@ -58,4 +59,15 @@ test('seasonOf switches on July 1st, Paris time', () => {
   assert.equal(seasonOf(new Date('2027-06-15T12:00:00Z')), 2026);
   // 30 June 23:30 UTC = 1 July 01:30 in Paris.
   assert.equal(seasonOf(new Date('2027-06-30T23:30:00Z')), 2027);
+});
+
+test('parisToDate reads a Paris wall-clock time, across the offset changes', () => {
+  const iso = (text) => parisToDate(text)?.toISOString();
+  assert.equal(iso('2026-09-18T20:00:00'), '2026-09-18T18:00:00.000Z');
+  assert.equal(iso('2026-12-05T20:30'), '2026-12-05T19:30:00.000Z');
+  // Day the clocks go back (25 October 2026), and the day they go forward.
+  assert.equal(iso('2026-10-25T20:00:00'), '2026-10-25T19:00:00.000Z');
+  assert.equal(iso('2027-03-28T20:00:00'), '2027-03-28T18:00:00.000Z');
+  assert.equal(parisToDate(null), null);
+  assert.equal(parisToDate('2026-09-18'), null);
 });

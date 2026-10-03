@@ -21,8 +21,9 @@ const label = (text) => ({ en: text, fr: text });
 
 // French clubs read best by city (`shortName`: Bourg, Pau, Roanne), the others
 // by their full name (city first: Boston Celtics, FC Barcelona).
+const FRENCH_COMPETITIONS = ['betclic_elite', 'nationale_1'];
 const sortKey = (competition, team) =>
-  competition === 'betclic_elite' ? team.shortName : team.name;
+  FRENCH_COMPETITIONS.includes(competition) ? team.shortName : team.name;
 
 export function teamOptions(competition) {
   return teamsOf(competition)

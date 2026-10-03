@@ -1,8 +1,8 @@
 # Sport Games
 
 Cette intégration affiche dans Gladys le calendrier et les résultats des
-équipes de basket que vous suivez, en **NBA**, en **EuroLeague** et en
-**Betclic Élite**. Elle prévient vos scènes avant le coup d'envoi.
+équipes de basket que vous suivez, en **NBA**, en **EuroLeague**, en
+**Betclic Élite** et en **Nationale 1** (NM1). Elle prévient vos scènes avant le coup d'envoi.
 
 Pas de compte et pas de clé d'API. Tous les horaires sont donnés à l'heure de
 Paris.
@@ -22,8 +22,8 @@ appareil, qui regroupe tous ses matchs.
 ## Configuration
 
 1. Ouvrez l'onglet **Configuration** de l'intégration.
-2. Cochez les équipes à suivre dans chacune des trois listes : **Betclic
-   Élite**, **EuroLeague** et **NBA**. Chaque liste est triée par ordre
+2. Cochez les équipes à suivre dans chacune des quatre listes : **Betclic
+   Élite**, **Nationale 1**, **EuroLeague** et **NBA**. Chaque liste est triée par ordre
    alphabétique. Une équipe n'est suivie que dans les compétitions où vous
    l'avez cochée : cochez l'ASVEL dans Betclic Élite et dans EuroLeague pour
    avoir tous ses matchs, ou seulement dans une des deux.
@@ -61,8 +61,8 @@ dont l'appareil a été ajouté depuis l'onglet **Découverte**.
 - **Équipes** (vos équipes suivies) et **Compétitions** : laissez vides pour
   garder tous les matchs.
 - Variables disponibles : équipe à domicile, équipe à l'extérieur, heure de
-  début, diffuseur et compétition (clé : `nba`, `euroleague` ou
-  `betclic_elite`).
+  début, diffuseur et compétition (clé : `nba`, `euroleague`,
+  `betclic_elite` ou `nationale_1`).
 
 Exemple : « 15 min avant un match de l'ASVEL, allumer la télé et envoyer
 _{{home_team}} – {{away_team}} à {{start}} sur {{broadcaster}}_ ».
@@ -84,6 +84,9 @@ suivantes de la scène.
 - EuroLeague : API publique de l'EuroLeague.
 - Betclic Élite : données du site officiel de la LNB, avec les diffuseurs
   (DAZN, La Chaîne L'Équipe).
+- Nationale 1 : données de l'application officielle de la FFBB. Pas de
+  diffuseur, et le score apparaît quand le club le saisit, en général le soir
+  même.
 
 Chaque calendrier est téléchargé au plus toutes les 6 heures, et toutes les
 15 minutes quand un match est en cours ou attend son score. Si une source ne

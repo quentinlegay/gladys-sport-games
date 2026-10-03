@@ -2,7 +2,7 @@
 
 This integration shows the schedule and the results of the basketball teams
 you follow, in the **NBA**, the **EuroLeague** and the French **Betclic
-Élite**. It also notifies your scenes before kick-off.
+Élite** and **Nationale 1** (NM1). It also notifies your scenes before kick-off.
 
 No account and no API key are needed. All times are in the Paris time zone.
 
@@ -21,8 +21,8 @@ that covers all its games.
 ## Configuration
 
 1. Open the **Configuration** tab of the integration.
-2. Tick the teams to follow in each of the three lists: **Betclic Élite**,
-   **EuroLeague** and **NBA**. Each list is sorted alphabetically. A team is
+2. Tick the teams to follow in each of the four lists: **Betclic Élite**,
+   **Nationale 1**, **EuroLeague** and **NBA**. Each list is sorted alphabetically. A team is
    only followed in the competitions where it is ticked: tick ASVEL in both
    Betclic Élite and EuroLeague to get all its games, or in only one of them.
 3. Set the **watching window**, 18:00 to 23:30 by default. The widget and the
@@ -56,7 +56,7 @@ has been added from the **Discover** tab.
 - **Teams** (your followed teams) and **Competitions**: leave them empty to
   keep every game.
 - Variables: home team, away team, start time, broadcaster and competition
-  (key: `nba`, `euroleague` or `betclic_elite`).
+  (key: `nba`, `euroleague`, `betclic_elite` or `nationale_1`).
 
 Example: "15 min before an ASVEL game, turn the TV on and send
 _{{home_team}} – {{away_team}} at {{start}} on {{broadcaster}}_".
@@ -77,6 +77,8 @@ broadcaster and the last result, for the following actions of the scene.
 - EuroLeague: public API of the EuroLeague.
 - Betclic Élite: data of the official LNB website, with the broadcasters
   (DAZN, La Chaîne L'Équipe).
+- Nationale 1: data of the official FFBB app. No broadcaster, and the score
+  shows up once the club enters it, usually the same evening.
 
 Each schedule is downloaded at most every 6 hours, and every 15 minutes while
 a game is being played or waits for its score. When a source does not answer,

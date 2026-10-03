@@ -81,6 +81,7 @@ test('poll_frequency is a value Gladys accepts, and is not configurable', () => 
 test('option lists are in sync with the code (run `npm run sync-manifest`)', () => {
   assert.deepEqual(syncManifest(structuredClone(manifest)), manifest);
   assert.equal(field('teams_betclic_elite').options.length, 16);
+  assert.equal(field('teams_nationale_1').options.length, 26);
   assert.equal(field('teams_euroleague').options.length, 20);
   assert.equal(field('teams_nba').options.length, 30);
 });

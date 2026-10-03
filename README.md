@@ -2,7 +2,7 @@
 
 Intégration externe pour [Gladys Assistant](https://gladysassistant.com) :
 calendrier et résultats des équipes suivies. La v1 couvre le basket (NBA,
-EuroLeague, Betclic Élite). Les clés restent génériques pour accueillir
+EuroLeague, Betclic Élite, Nationale 1). Les clés restent génériques pour accueillir
 d'autres sports d'équipe plus tard.
 
 Basée sur le template officiel
@@ -17,6 +17,7 @@ et l'outillage de [`gladys-programmetele`](https://github.com/prohand/gladys-pro
 | `providers/nba.js`        | API ESPN non officielle (`site.api.espn.com/.../teams/{id}/schedule`)       | non | 3 par équipe NBA suivie (présaison, saison, PO) |
 | `providers/euroleague.js` | `api-live.euroleague.net/v2/competitions/E/seasons/E{année}/games`          | non | 1 pour toute la saison                          |
 | `providers/lnb.js`        | API du site lnb.fr (`api-prod.lnb.fr`, jeton anonyme de `lnb.fr/api/token`) | non | 1 par club suivi (+ contexte de saison partagé) |
+| `providers/ffbb.js`       | API de l'app FFBB (`api.ffbb.app`, clé anonyme de `items/configuration`)    | non | 1 pour toute la saison (+ contexte partagé)     |
 
 Choix des sources (validés le 3 octobre 2026) :
 
@@ -32,6 +33,16 @@ Choix des sources (validés le 3 octobre 2026) :
 - Les identifiants d'équipe LNB (`external_id`) changent à chaque saison.
   `src/teams.js` stocke le `club_external_id`, qui est stable, et `lnb.js`
   retrouve l'identifiant de la saison.
+- Nationale 1 (validée le 3 octobre 2026) : la LNB ne la couvre pas (son API
+  ne propose que Betclic Élite, Élite 2 et les Espoirs). C'est la FFBB qui
+  l'organise. Son application lit une clé anonyme sur
+  `api.ffbb.app/items/configuration`, puis interroge le serveur Directus, comme
+  le client Python `ffbb_api_client_v2`. `ffbb.js` retrouve les compétitions
+  `NM1` de la saison (`26-27`) et télécharge leurs ~310 rencontres en une seule
+  requête. Les horaires sont en heure de Paris sans décalage (conversion dans
+  `parisToDate`). Il n'y a ni statut live ni diffuseur. Les équipes sont
+  identifiées par `idOrganisme` (club), qui est stable, et non par
+  `idEngagement`, qui change à chaque saison.
 
 Tous les providers renvoient le modèle `Match` commun (voir `src/schedule.js`).
 
@@ -74,6 +85,7 @@ ne jamais les renommer.
 | Clé                   | Type           | Défaut                  |
 | --------------------- | -------------- | ----------------------- |
 | `teams_betclic_elite` | `multi_select` | asvel, paris_basketball |
+| `teams_nationale_1`   | `multi_select` | (aucune)                |
 | `teams_euroleague`    | `multi_select` | asvel, paris_basketball |
 | `teams_nba`           | `multi_select` | (aucune)                |
 | `watch_start`         | `select`       | 18:00                   |
@@ -109,7 +121,7 @@ npm run sync-manifest
 │  ├─ teams.js                  # équipes et compétitions (ids figés)
 │  ├─ schedule.js               # agrégation, cache, plage horaire, formats
 │  ├─ time.js                   # helpers Europe/Paris
-│  ├─ providers/{nba,euroleague,lnb,http}.js
+│  ├─ providers/{nba,euroleague,lnb,ffbb,http}.js
 │  ├─ widget.js                 # widget "upcoming_matches"
 │  ├─ scenes.js                 # déclencheur + action de scène
 │  └─ devices/{index,team}.js   # 1 appareil par équipe (3 capteurs texte)

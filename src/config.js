@@ -26,7 +26,7 @@ export const CLOCK_OPTIONS = Array.from({ length: 48 }, (_, i) => {
 });
 
 // Key of the config field listing the followed teams of a competition
-// (`teams_betclic_elite`, `teams_euroleague`, `teams_nba`): one checkbox list
+// (`teams_betclic_elite`, `teams_nationale_1`, `teams_euroleague`, `teams_nba`): one checkbox list
 // per competition, so the user never scrolls through every team at once, and
 // ticking a club in a list follows it in THAT competition only.
 export const teamsKey = (competition) => `teams_${competition}`;
@@ -35,6 +35,7 @@ export const teamsKey = (competition) => `teams_${competition}`;
 // `config_schema` of the manifest.
 export const DEFAULT_CONFIG = {
   teams_betclic_elite: ['asvel', 'paris_basketball'],
+  teams_nationale_1: [],
   teams_euroleague: ['asvel', 'paris_basketball'],
   teams_nba: [],
   watch_start: '18:00',

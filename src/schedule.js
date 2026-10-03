@@ -3,7 +3,8 @@
 // questions of the devices, the widget and the scenes (next match, last
 // result, games starting now).
 //
-// Cache, per source (a whole season for EuroLeague, a team for NBA and LNB):
+// Cache, per source (a whole season for EuroLeague and Nationale 1, a team for
+// NBA and LNB):
 //   - kept 6 h, so a 1 min poll_frequency does NOT mean more downloads;
 //   - kept only 15 min while one of its games is being played or waits for
 //     its final score, so `last_result` follows quickly;
@@ -13,6 +14,7 @@
 
 import { createLogger } from '@gladysassistant/integration-sdk';
 import { euroleague } from './providers/euroleague.js';
+import { ffbb } from './providers/ffbb.js';
 import { lnb } from './providers/lnb.js';
 import { nba } from './providers/nba.js';
 import { COMPETITIONS, findCompetition, findTeam } from './teams.js';
@@ -25,7 +27,7 @@ const logger = createLogger({ name: 'schedule' });
  * @typedef {object} Match
  * @property {string} id provider prefix + source id, e.g. `nba:401909088`
  * @property {string} sport
- * @property {string} competition nba | euroleague | betclic_elite
+ * @property {string} competition nba | euroleague | betclic_elite | nationale_1
  * @property {MatchTeam} homeTeam id = id of src/teams.js when known
  * @property {MatchTeam} awayTeam
  * @property {string} start ISO date, UTC
@@ -39,6 +41,7 @@ export const PROVIDERS = {
   nba,
   euroleague,
   betclic_elite: lnb,
+  nationale_1: ffbb,
 };
 
 export const CACHE_MAX_AGE_MS = 6 * 60 * 60 * 1000;

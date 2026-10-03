@@ -3,11 +3,13 @@ import assert from 'node:assert/strict';
 import { euroleague, parseEuroleague, scheduleUrl } from '../src/providers/euroleague.js';
 import { nba, parseNba } from '../src/providers/nba.js';
 import { lnb, parseLnb, resetLnbSession } from '../src/providers/lnb.js';
+import { ffbb, parseFfbb, resetFfbbSession, seasonCode } from '../src/providers/ffbb.js';
 import { fixture, mockFetch, restoreFetch } from './helpers/mockFetch.js';
 
 afterEach(() => {
   restoreFetch();
   resetLnbSession();
+  resetFfbbSession();
 });
 
 const MATCH_KEYS = [
@@ -186,4 +188,100 @@ test('lnb: a club not in Betclic Élite this season has no game', async () => {
   });
   assert.deepEqual(await lnb.fetchSchedule({ season: 2026, team: '39' }), []);
   assert.ok(!calls.some((c) => c.url.includes('getCalendar')));
+});
+
+// --- Nationale 1 (FFBB) ------------------------------------------------------
+
+test('ffbb: games are normalized, Paris times converted to UTC', () => {
+  const matches = parseFfbb(fixture('ffbb-rencontres.json'));
+  assert.equal(matches.length, 7);
+  matches.forEach(assertMatchShape);
+  const [first] = matches;
+  assert.equal(first.id, 'nationale_1:200000014596778');
+  assert.equal(first.competition, 'nationale_1');
+  assert.equal(first.homeTeam.id, 'vitre');
+  assert.equal(first.awayTeam.id, 'tarbes_lourdes');
+  // 20:30 in Paris, summer time.
+  assert.equal(first.start, '2026-09-25T18:30:00.000Z');
+  assert.equal(first.status, 'finished');
+  assert.deepEqual(first.score, { home: 69, away: 66 });
+  assert.equal(first.broadcaster, null);
+
+  const next = matches.find((m) => m.id === 'nationale_1:200000014596818');
+  assert.equal(next.status, 'scheduled');
+  assert.equal(next.homeTeam.shortName, 'Tours');
+  assert.deepEqual(next.score, { home: null, away: null });
+  // 20:30 in Paris, winter time.
+  const winter = matches.find((m) => m.id === 'nationale_1:200000014596863');
+  assert.equal(winter.start, '2026-10-23T18:30:00.000Z');
+});
+
+test('ffbb: a forfeit is finished, a postponed game and unknown clubs', () => {
+  const forfeit = parseFfbb(fixture('ffbb-rencontres.json')).find(
+    (m) => m.homeTeam.id === 'centre_federal',
+  );
+  assert.equal(forfeit.status, 'finished');
+  assert.deepEqual(forfeit.score, { home: 0, away: 20 });
+
+  const json = fixture('ffbb-rencontres.json');
+  json.data[2].remise = true;
+  json.data[3].idOrganismeEquipe1 = '123';
+  json.data[3].nomEquipe1 = 'NEW CLUB - 1';
+  json.data[4].date_rencontre = null;
+  const matches = parseFfbb(json);
+  assert.equal(matches.length, 6);
+  assert.equal(matches[2].status, 'postponed');
+  assert.deepEqual(matches[3].homeTeam, {
+    id: 'nationale_1:123',
+    name: 'NEW CLUB',
+    shortName: 'NEW CLUB',
+  });
+  assert.deepEqual(parseFfbb({}), []);
+});
+
+test('ffbb: fetchSchedule finds the season competitions with the app key', async () => {
+  assert.equal(seasonCode(2026), '26-27');
+  assert.equal(seasonCode(2099), '99-00');
+  const calls = mockFetch({
+    'items/configuration': { data: { key_dh: 'abc' } },
+    'items/ffbbserver_competitions': { data: [{ id: '200000002897178' }] },
+    'items/ffbbserver_rencontres': 'ffbb-rencontres.json',
+  });
+  const matches = await ffbb.fetchSchedule({ season: 2026 });
+  assert.equal(matches.length, 7);
+
+  const competitions = new URL(calls.find((c) => c.url.includes('competitions')).url);
+  assert.equal(competitions.searchParams.get('filter[code][_eq]'), 'NM1');
+  assert.equal(competitions.searchParams.get('filter[saison][code][_eq]'), '26-27');
+  const games = calls.find((c) => c.url.includes('rencontres'));
+  assert.equal(games.init.headers.Authorization, 'Bearer abc');
+  assert.equal(
+    new URL(games.url).searchParams.get('filter[competitionId][_in]'),
+    '200000002897178',
+  );
+
+  // The key and the competition ids are kept.
+  await ffbb.fetchSchedule({ season: 2026 });
+  assert.equal(calls.filter((c) => c.url.includes('configuration')).length, 1);
+});
+
+test('ffbb: a failed download reads the key again', async () => {
+  let fail = true;
+  const calls = mockFetch({
+    'items/configuration': { data: { key_dh: 'abc' } },
+    'items/ffbbserver_competitions': { data: [{ id: '1' }] },
+    'items/ffbbserver_rencontres': () => (fail ? new Error('HTTP 401') : { data: [] }),
+  });
+  await assert.rejects(() => ffbb.fetchSchedule({ season: 2026 }), /401/);
+  fail = false;
+  assert.deepEqual(await ffbb.fetchSchedule({ season: 2026 }), []);
+  assert.equal(calls.filter((c) => c.url.includes('configuration')).length, 2);
+});
+
+test('ffbb: no NM1 competition this season', async () => {
+  mockFetch({
+    'items/configuration': { data: { key_dh: 'abc' } },
+    'items/ffbbserver_competitions': { data: [] },
+  });
+  await assert.rejects(() => ffbb.fetchSchedule({ season: 2030 }), /no NM1 competition for 30-31/);
 });

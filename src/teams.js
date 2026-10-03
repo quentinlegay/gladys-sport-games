@@ -11,6 +11,8 @@
 //   - euroleague:    club code of api-live.euroleague.net
 //   - betclic_elite: `club_external_id` of api-prod.lnb.fr (stable across
 //                    seasons, unlike the season-scoped team `external_id`)
+//   - nationale_1:   `idOrganisme` (club id) of api.ffbb.app (stable across
+//                    seasons, unlike the season-scoped `idEngagement`)
 //
 // After a change, run `npm run sync-manifest` to update the option lists of
 // the manifest.
@@ -20,9 +22,11 @@ export const COMPETITIONS = [
   { id: 'nba', name: 'NBA', sport: 'basketball' },
   { id: 'euroleague', name: 'EuroLeague', sport: 'basketball' },
   { id: 'betclic_elite', name: 'Betclic Élite', sport: 'basketball' },
+  { id: 'nationale_1', name: 'Nationale 1', sport: 'basketball' },
 ];
 
 const nba = (id, ref, name, shortName) => ({ id, name, shortName, refs: { nba: ref } });
+const nm1 = (id, ref, name, shortName) => ({ id, name, shortName, refs: { nationale_1: ref } });
 
 export const TEAMS = [
   // --- Betclic Élite (and EuroLeague for ASVEL and Paris) ---------------------
@@ -152,6 +156,34 @@ export const TEAMS = [
     refs: { euroleague: 'VIR' },
   },
   { id: 'zalgiris', name: 'Zalgiris Kaunas', shortName: 'Zalgiris', refs: { euroleague: 'ZAL' } },
+
+  // --- Nationale 1 (season 2026-27, pools A and B) -----------------------------
+  nm1('angers', '200000002676840', 'Étoile Angers Basket', 'Angers'),
+  nm1('berck', '10463', 'Berck Rang-du-Fliers', 'Berck'),
+  nm1('besancon', '10492', 'Besançon Avenir Comtois', 'Besançon'),
+  nm1('bordeaux', '8309', 'JSA Bordeaux Métropole', 'Bordeaux'),
+  nm1('boulogne_sur_mer', '10475', 'SOM Boulogne', 'Boulogne-sur-Mer'),
+  nm1('centre_federal', '11521', 'Centre Fédéral', 'Centre Fédéral'),
+  nm1('challans', '9092', 'Vendée Challans Basket', 'Challans'),
+  nm1('charleville_mezieres', '10046', 'Étoile de Charleville-Mézières', 'Charleville'),
+  nm1('chartres', '9847', "C'Chartres Métropole Basket", 'Chartres'),
+  nm1('fougeres', '9634', 'Pays de Fougères Basket', 'Fougères'),
+  nm1('laval', '8970', 'US Laval Basket', 'Laval'),
+  nm1('les_sables', '9096', 'Les Sables Vendée Basket', 'Les Sables'),
+  nm1('loon_plage', '10266', 'AS Loon-Plage', 'Loon-Plage'),
+  nm1('lorient', '9747', 'CEP Lorient', 'Lorient'),
+  nm1('lyon_so', '11160', 'Lyon SO', 'Lyon SO'),
+  nm1('mulhouse', '8223', 'Mulhouse Basket Agglomération', 'Mulhouse'),
+  nm1('orchies', '10362', 'BC Orchies', 'Orchies'),
+  nm1('rennes', '200000000056416', 'Union Rennes Basket 35', 'Rennes'),
+  nm1('saint_etienne', '200000002678778', 'SCABB Saint-Étienne', 'Saint-Étienne'),
+  nm1('saint_vallier', '7870', 'Saint-Vallier Basket Drôme', 'Saint-Vallier'),
+  nm1('salon_de_provence', '12184', 'Pays Salonais Basket 13', 'Salon'),
+  nm1('tarbes_lourdes', '200000002673031', 'Union Tarbes-Lourdes Pyrénées', 'Tarbes-Lourdes'),
+  nm1('toulouse', '408001009352', 'Toulouse Basketball Club', 'Toulouse'),
+  nm1('tours', '9889', 'Tours Métropole Basket', 'Tours'),
+  nm1('val_de_seine', '11757', 'Val de Seine Basket', 'Val de Seine'),
+  nm1('vitre', '9687', 'Aurore Vitré Basket Bretagne', 'Vitré'),
 
   // --- NBA --------------------------------------------------------------------
   nba('atlanta_hawks', '1', 'Atlanta Hawks', 'Hawks'),

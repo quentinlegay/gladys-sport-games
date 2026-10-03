@@ -3,8 +3,8 @@
   "type": "device",
   "name": "Sport Games",
   "description": {
-    "en": "Schedule and results of your teams (NBA, EuroLeague, Betclic Élite), alerts and widget.",
-    "fr": "Calendrier et résultats de vos équipes (NBA, EuroLeague, Betclic Élite), alertes et widget."
+    "en": "Schedule and results of your teams (NBA, EuroLeague, Betclic Élite, NM1), alerts and widget.",
+    "fr": "Calendrier et résultats de vos équipes (NBA, EuroLeague, Betclic Élite, NM1), alertes et widget."
   },
   "version": "1.0.0",
   "docker_image": "ghcr.io/quentinlegay/gladys-sport-games:1.0.0",
@@ -20,8 +20,8 @@
         "fr": "Pour commencer"
       },
       "description": {
-        "en": "Tick the teams to follow in each competition: each team becomes a device with 3 sensors (next game, kick-off, last result). Schedules come from the public data of ESPN (NBA), the EuroLeague and the LNB. No account, no API key. Times are in the Paris time zone.",
-        "fr": "Cochez les équipes à suivre dans chaque compétition : chacune devient un appareil avec 3 capteurs (prochain match, coup d'envoi, dernier résultat). Les calendriers viennent des données publiques d'ESPN (NBA), de l'EuroLeague et de la LNB. Pas de compte, pas de clé d'API. Les horaires sont à l'heure de Paris."
+        "en": "Tick the teams to follow in each competition: each team becomes a device with 3 sensors (next game, kick-off, last result). Schedules come from the public data of ESPN (NBA), the EuroLeague, the LNB and the FFBB (Nationale 1). No account, no API key. Times are in the Paris time zone.",
+        "fr": "Cochez les équipes à suivre dans chaque compétition : chacune devient un appareil avec 3 capteurs (prochain match, coup d'envoi, dernier résultat). Les calendriers viennent des données publiques d'ESPN (NBA), de l'EuroLeague, de la LNB et de la FFBB (Nationale 1). Pas de compte, pas de clé d'API. Les horaires sont à l'heure de Paris."
       },
       "links": [
         {
@@ -156,6 +156,203 @@
           "label": {
             "en": "SIG Strasbourg",
             "fr": "SIG Strasbourg"
+          }
+        }
+      ]
+    },
+    {
+      "key": "teams_nationale_1",
+      "type": "multi_select",
+      "label": {
+        "en": "Nationale 1",
+        "fr": "Nationale 1"
+      },
+      "description": {
+        "en": "French third division (FFBB).",
+        "fr": "Troisième division française (FFBB)."
+      },
+      "default": [],
+      "options": [
+        {
+          "value": "angers",
+          "label": {
+            "en": "Étoile Angers Basket",
+            "fr": "Étoile Angers Basket"
+          }
+        },
+        {
+          "value": "berck",
+          "label": {
+            "en": "Berck Rang-du-Fliers",
+            "fr": "Berck Rang-du-Fliers"
+          }
+        },
+        {
+          "value": "besancon",
+          "label": {
+            "en": "Besançon Avenir Comtois",
+            "fr": "Besançon Avenir Comtois"
+          }
+        },
+        {
+          "value": "bordeaux",
+          "label": {
+            "en": "JSA Bordeaux Métropole",
+            "fr": "JSA Bordeaux Métropole"
+          }
+        },
+        {
+          "value": "boulogne_sur_mer",
+          "label": {
+            "en": "SOM Boulogne",
+            "fr": "SOM Boulogne"
+          }
+        },
+        {
+          "value": "centre_federal",
+          "label": {
+            "en": "Centre Fédéral",
+            "fr": "Centre Fédéral"
+          }
+        },
+        {
+          "value": "challans",
+          "label": {
+            "en": "Vendée Challans Basket",
+            "fr": "Vendée Challans Basket"
+          }
+        },
+        {
+          "value": "charleville_mezieres",
+          "label": {
+            "en": "Étoile de Charleville-Mézières",
+            "fr": "Étoile de Charleville-Mézières"
+          }
+        },
+        {
+          "value": "chartres",
+          "label": {
+            "en": "C'Chartres Métropole Basket",
+            "fr": "C'Chartres Métropole Basket"
+          }
+        },
+        {
+          "value": "fougeres",
+          "label": {
+            "en": "Pays de Fougères Basket",
+            "fr": "Pays de Fougères Basket"
+          }
+        },
+        {
+          "value": "laval",
+          "label": {
+            "en": "US Laval Basket",
+            "fr": "US Laval Basket"
+          }
+        },
+        {
+          "value": "les_sables",
+          "label": {
+            "en": "Les Sables Vendée Basket",
+            "fr": "Les Sables Vendée Basket"
+          }
+        },
+        {
+          "value": "loon_plage",
+          "label": {
+            "en": "AS Loon-Plage",
+            "fr": "AS Loon-Plage"
+          }
+        },
+        {
+          "value": "lorient",
+          "label": {
+            "en": "CEP Lorient",
+            "fr": "CEP Lorient"
+          }
+        },
+        {
+          "value": "lyon_so",
+          "label": {
+            "en": "Lyon SO",
+            "fr": "Lyon SO"
+          }
+        },
+        {
+          "value": "mulhouse",
+          "label": {
+            "en": "Mulhouse Basket Agglomération",
+            "fr": "Mulhouse Basket Agglomération"
+          }
+        },
+        {
+          "value": "orchies",
+          "label": {
+            "en": "BC Orchies",
+            "fr": "BC Orchies"
+          }
+        },
+        {
+          "value": "rennes",
+          "label": {
+            "en": "Union Rennes Basket 35",
+            "fr": "Union Rennes Basket 35"
+          }
+        },
+        {
+          "value": "saint_etienne",
+          "label": {
+            "en": "SCABB Saint-Étienne",
+            "fr": "SCABB Saint-Étienne"
+          }
+        },
+        {
+          "value": "saint_vallier",
+          "label": {
+            "en": "Saint-Vallier Basket Drôme",
+            "fr": "Saint-Vallier Basket Drôme"
+          }
+        },
+        {
+          "value": "salon_de_provence",
+          "label": {
+            "en": "Pays Salonais Basket 13",
+            "fr": "Pays Salonais Basket 13"
+          }
+        },
+        {
+          "value": "tarbes_lourdes",
+          "label": {
+            "en": "Union Tarbes-Lourdes Pyrénées",
+            "fr": "Union Tarbes-Lourdes Pyrénées"
+          }
+        },
+        {
+          "value": "toulouse",
+          "label": {
+            "en": "Toulouse Basketball Club",
+            "fr": "Toulouse Basketball Club"
+          }
+        },
+        {
+          "value": "tours",
+          "label": {
+            "en": "Tours Métropole Basket",
+            "fr": "Tours Métropole Basket"
+          }
+        },
+        {
+          "value": "val_de_seine",
+          "label": {
+            "en": "Val de Seine Basket",
+            "fr": "Val de Seine Basket"
+          }
+        },
+        {
+          "value": "vitre",
+          "label": {
+            "en": "Aurore Vitré Basket Bretagne",
+            "fr": "Aurore Vitré Basket Bretagne"
           }
         }
       ]
@@ -1359,6 +1556,13 @@
                 "en": "Betclic Élite",
                 "fr": "Betclic Élite"
               }
+            },
+            {
+              "value": "nationale_1",
+              "label": {
+                "en": "Nationale 1",
+                "fr": "Nationale 1"
+              }
             }
           ]
         },
@@ -1412,8 +1616,8 @@
             "fr": "Compétition (clé)"
           },
           "description": {
-            "en": "nba, euroleague or betclic_elite",
-            "fr": "nba, euroleague ou betclic_elite"
+            "en": "nba, euroleague, betclic_elite or nationale_1",
+            "fr": "nba, euroleague, betclic_elite ou nationale_1"
           }
         },
         {

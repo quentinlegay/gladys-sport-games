@@ -2,6 +2,7 @@ import { test, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { normalizeConfig } from '../src/config.js';
 import { resetLnbSession } from '../src/providers/lnb.js';
+import { resetFfbbSession } from '../src/providers/ffbb.js';
 import {
   CACHE_MAX_AGE_MS,
   followsFor,
@@ -31,14 +32,17 @@ afterEach(() => {
   restoreFetch();
   resetScheduleCache();
   resetLnbSession();
+  resetFfbbSession();
 });
 
-test('sources: one per season for EuroLeague, one per team for NBA and LNB', () => {
+test('sources: one per season for EuroLeague and NM1, one per team for NBA and LNB', () => {
   const keys = sourcesFor(
     {
       asvel: ['euroleague', 'betclic_elite'],
       paris_basketball: ['euroleague', 'betclic_elite'],
       boston_celtics: ['nba'],
+      vitre: ['nationale_1'],
+      rennes: ['nationale_1'],
     },
     2026,
   ).map((s) => s.key);
@@ -47,6 +51,7 @@ test('sources: one per season for EuroLeague, one per team for NBA and LNB', () 
     'euroleague:2026',
     'betclic_elite:2026:91',
     'betclic_elite:2026:58',
+    'nationale_1:2026',
   ]);
   // Only the competitions a team is followed in are downloaded.
   assert.deepEqual(
@@ -230,4 +235,14 @@ test('startingBetween applies the delay and excludes `from`', async () => {
     startingBetween(matches, at('2026-10-07T18:30:00Z'), at('2026-10-07T18:31:00Z'), 15).length,
     0,
   );
+});
+
+test('getMatches: Nationale 1 games of a followed club', async () => {
+  mockSources();
+  const { matches, errors } = await getMatches({ follows: { vitre: ['nationale_1'] }, now: NOW });
+  assert.deepEqual(errors, []);
+  assert.equal(matches.length, 6);
+  assert.equal(nextMatch(matches, 'vitre', NOW).id, 'nationale_1:200000014596818');
+  assert.equal(formatResult(lastResult(matches, 'vitre')), 'Lorient 70 – 63 Vitré');
+  assert.equal(formatMatch(nextMatch(matches, 'vitre', NOW)), 'Tours – Vitré (Nationale 1)');
 });

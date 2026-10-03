@@ -10,10 +10,10 @@ import {
   teamOfField,
 } from '../src/devices/index.js';
 import { FEATURE, NO_MATCH, NO_RESULT, teamDevice } from '../src/devices/team.js';
-import { normalizeConfig } from '../src/config.js';
+import { normalizeConfig, teamsKey } from '../src/config.js';
 import { resetLnbSession } from '../src/providers/lnb.js';
 import { getFollowedMatches, resetScheduleCache } from '../src/schedule.js';
-import { findTeam, TEAMS } from '../src/teams.js';
+import { COMPETITIONS, findTeam, TEAMS } from '../src/teams.js';
 import { createFakeGladys } from './helpers/fakeGladys.js';
 import { restoreFetch } from './helpers/mockFetch.js';
 import { mockSources, NOW } from './helpers/sources.js';
@@ -44,7 +44,7 @@ test('device external_ids are unique across all teams', () => {
   const ids = TEAMS.map((t) => t.id);
   const all = buildDiscoveredDevices(
     gladys,
-    normalizeConfig({ teams_betclic_elite: ids, teams_euroleague: ids, teams_nba: ids }),
+    normalizeConfig(Object.fromEntries(COMPETITIONS.map((c) => [teamsKey(c.id), ids]))),
   );
   assert.equal(all.length, TEAMS.length);
   const externalIds = all.map((d) => d.external_id);

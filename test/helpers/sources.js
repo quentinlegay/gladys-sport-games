@@ -2,7 +2,8 @@
 // Every source answering with the fixtures (real data, trimmed):
 //   - EuroLeague 2026-27: 3 games of round 1 (played), then Paris and ASVEL;
 //   - NBA: 3 games of the Celtics (regular season 2026-27);
-//   - LNB: the first 5 games of ASVEL (round 1 played, Cholet 85 - 97 ASVEL).
+//   - LNB: the first 5 games of ASVEL (round 1 played, Cholet 85 - 97 ASVEL);
+//   - FFBB: the first 6 games of Vitré in Nationale 1, and a forfeit.
 // Pass `overrides` to replace one route (an Error makes it fail).
 // -----------------------------------------------------------------------------
 
@@ -26,6 +27,9 @@ export function mockSources(overrides = {}) {
       ],
     },
     'match/v3/getCalendar': 'lnb-calendar.json',
+    'items/configuration': { data: { key_dh: 'key' } },
+    'items/ffbbserver_competitions': { data: [{ id: '200000002897178' }] },
+    'items/ffbbserver_rencontres': 'ffbb-rencontres.json',
     ...overrides,
   });
 }

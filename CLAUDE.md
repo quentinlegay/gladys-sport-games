@@ -1,7 +1,7 @@
 # gladys-matchs — Intégration externe Gladys Assistant
 
 Calendrier des matchs des équipes suivies dans Gladys Assistant. La v1 couvre
-le basket : NBA, Euroleague et Betclic Elite. Le nom et les clés sont génériques
+le basket : NBA, Euroleague, Betclic Elite et Nationale 1. Le nom et les clés sont génériques
 pour pouvoir ajouter d'autres sports d'équipe plus tard (hand, foot, rugby).
 
 ## Références
@@ -35,7 +35,7 @@ Chaque provider renvoie des objets `Match` normalisés :
 {
   id: "nba:0022600123",        // préfixe provider + id source
   sport: "basketball",
-  competition: "nba",          // nba | euroleague | betclic_elite
+  competition: "nba",          // nba | euroleague | betclic_elite | nationale_1
   homeTeam: { id, name, shortName },
   awayTeam: { id, name, shortName },
   start: "2026-10-21T00:00:00Z", // toujours en UTC, conversion Paris à l'affichage
@@ -54,6 +54,7 @@ Chaque provider expose `async fetchSchedule({ season })` et renvoie `Match[]`.
 | `nba.js`        | JSON statique cdn.nba.com (calendrier saison) ou API ESPN non officielle | non            | à vérifier           |
 | `euroleague.js` | `api-live.euroleague.net` (Swagger public)                               | non            | à vérifier           |
 | `lnb.js`        | TheSportsDB ou API-Basketball (api-sports.io)                            | oui (gratuite) | **source à choisir** |
+| `ffbb.js`       | API de l'app FFBB (`api.ffbb.app`, clé anonyme), NM1                     | non            | fait                 |
 
 Le cache du calendrier dure 6 h. Les jours de match, on peut rafraîchir plus
 souvent pour avoir les scores (option v2).
@@ -74,12 +75,12 @@ lecture seule :
 
 ## Configuration (manifest)
 
-| Clé                   | Type           | Rôle                                                                                                          |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------- |
-| `teams_<competition>` | multi_select   | une liste par compétition (`teams_betclic_elite`, `teams_euroleague`, `teams_nba`), équipes de `src/teams.js` |
-| `watch_start`         | select / heure | début de la plage de visionnage (défaut 18:00)                                                                |
-| `watch_end`           | select / heure | fin de la plage (défaut 23:30)                                                                                |
-| `include_night_games` | booléen        | inclure les matchs hors plage (NBA de nuit)                                                                   |
+| Clé                   | Type           | Rôle                                                                                                                               |
+| --------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `teams_<competition>` | multi_select   | une liste par compétition (`teams_betclic_elite`, `teams_nationale_1`, `teams_euroleague`, `teams_nba`), équipes de `src/teams.js` |
+| `watch_start`         | select / heure | début de la plage de visionnage (défaut 18:00)                                                                                     |
+| `watch_end`           | select / heure | fin de la plage (défaut 23:30)                                                                                                     |
+| `include_night_games` | booléen        | inclure les matchs hors plage (NBA de nuit)                                                                                        |
 
 La plage horaire filtre le widget et le déclencheur, pas les capteurs.
 
@@ -107,7 +108,7 @@ La plage horaire filtre le widget et le déclencheur, pas les capteurs.
 │  ├─ teams.js           # liste statique des équipes par compétition
 │  ├─ schedule.js        # agrégation providers + cache + filtres plage horaire
 │  ├─ time.js            # helpers Europe/Paris
-│  ├─ providers/{nba,euroleague,lnb}.js
+│  ├─ providers/{nba,euroleague,lnb,ffbb}.js
 │  ├─ widget.js
 │  ├─ scenes.js
 │  └─ devices/{index,team}.js
