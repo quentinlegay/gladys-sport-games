@@ -140,4 +140,5 @@ npx github:GladysAssistant/integration-store .   # validation du store
 ## Licence
 
 Apache-2.0
+
 # gladys-sport-games
