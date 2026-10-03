@@ -6,11 +6,14 @@
     "en": "Schedule and results of your teams (NBA, EuroLeague, Betclic Élite, NM1), alerts and widget.",
     "fr": "Calendrier et résultats de vos équipes (NBA, EuroLeague, Betclic Élite, NM1), alertes et widget."
   },
-  "version": "1.0.0",
-  "docker_image": "ghcr.io/quentinlegay/gladys-sport-games:1.0.0",
+  "version": "1.1.0",
+  "docker_image": "ghcr.io/quentinlegay/gladys-sport-games:1.1.0",
   "gladys_version": ">=5.1.0",
   "cover_image": "https://raw.githubusercontent.com/quentinlegay/gladys-sport-games/main/cover.png",
-  "categories": ["multimedia", "services"],
+  "categories": [
+    "multimedia",
+    "services"
+  ],
   "config_schema": [
     {
       "key": "intro",
@@ -44,7 +47,10 @@
         "en": "French league.",
         "fr": "Championnat de France."
       },
-      "default": ["asvel", "paris_basketball"],
+      "default": [
+        "asvel",
+        "paris_basketball"
+      ],
       "options": [
         {
           "value": "asvel",
@@ -368,7 +374,10 @@
         "en": "Tick ASVEL or Paris here too to get their European games.",
         "fr": "Cochez aussi l'ASVEL ou Paris ici pour avoir leurs matchs européens."
       },
-      "default": ["asvel", "paris_basketball"],
+      "default": [
+        "asvel",
+        "paris_basketball"
+      ],
       "options": [
         {
           "value": "anadolu_efes",
