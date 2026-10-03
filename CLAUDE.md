@@ -74,14 +74,12 @@ lecture seule :
 
 ## Configuration (manifest)
 
-| Clé                   | Type           | Rôle                                                                     |
-| --------------------- | -------------- | ------------------------------------------------------------------------ |
-| `competitions`        | multi_select   | nba, euroleague, betclic_elite                                           |
-| `teams`               | multi_select   | équipes suivies, environ 66 au total, liste statique dans `src/teams.js` |
-| `watch_start`         | select / heure | début de la plage de visionnage (défaut 18:00)                           |
-| `watch_end`           | select / heure | fin de la plage (défaut 23:30)                                           |
-| `include_night_games` | booléen        | inclure les matchs hors plage (NBA de nuit)                              |
-| `api_key`             | texte          | uniquement si le provider LNB retenu l'exige                             |
+| Clé                   | Type           | Rôle                                                                                                          |
+| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------- |
+| `teams_<competition>` | multi_select   | une liste par compétition (`teams_betclic_elite`, `teams_euroleague`, `teams_nba`), équipes de `src/teams.js` |
+| `watch_start`         | select / heure | début de la plage de visionnage (défaut 18:00)                                                                |
+| `watch_end`           | select / heure | fin de la plage (défaut 23:30)                                                                                |
+| `include_night_games` | booléen        | inclure les matchs hors plage (NBA de nuit)                                                                   |
 
 La plage horaire filtre le widget et le déclencheur, pas les capteurs.
 

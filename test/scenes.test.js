@@ -50,18 +50,18 @@ test('one event per delay and per followed team, then the kick-off refresh', asy
   assert.deepEqual(
     gladys.sceneEvents.map((e) => `${e.data.minutes_before}:${e.data.team}`),
     [
-      '60:paris_basketball',
-      '60:asvel',
-      '30:paris_basketball',
-      '30:asvel',
-      '15:paris_basketball',
-      '15:asvel',
-      '0:paris_basketball',
-      '0:asvel',
+      '60:team:paris_basketball',
+      '60:team:asvel',
+      '30:team:paris_basketball',
+      '30:team:asvel',
+      '15:team:paris_basketball',
+      '15:team:asvel',
+      '0:team:paris_basketball',
+      '0:team:asvel',
     ],
   );
   assert.deepEqual(gladys.sceneEvents[0].data, {
-    team: 'paris_basketball',
+    team: 'team:paris_basketball',
     competition: 'euroleague',
     minutes_before: '60',
     home_team: 'Paris',
@@ -89,7 +89,7 @@ test('games out of the watching window do not fire, unless included', async () =
   await all.check(at('2026-10-04T14:29:30Z'));
   await all.check(at('2026-10-04T14:30:30Z'));
   assert.deepEqual(night.sceneEvents[0].data, {
-    team: 'asvel',
+    team: 'team:asvel',
     competition: 'betclic_elite',
     minutes_before: '0',
     home_team: 'Gravelines',
@@ -104,7 +104,7 @@ test('unfollowed teams and disabled competitions do not fire', async () => {
   const gladys = createFakeGladys();
   const watcher = watcherFor(
     gladys,
-    normalizeConfig({ teams: ['asvel'], competitions: ['betclic_elite'] }),
+    normalizeConfig({ teams_betclic_elite: ['asvel'], teams_euroleague: [] }),
   );
   await watcher.check(at('2026-10-07T18:44:30Z'));
   await watcher.check(at('2026-10-07T18:45:30Z'));
@@ -144,20 +144,28 @@ test('a refused event does not stop the following ones', async () => {
 
 test('get_next_match returns the declared outputs', async () => {
   mockSources();
-  assert.deepEqual(await getNextMatchAction({ team: 'asvel' }, NOW), {
-    next_match: 'Gravelines – ASVEL (Betclic Élite)',
-    next_start: 'dim. 4 oct. 16:30',
-    opponent: 'Gravelines',
-    is_home: false,
-    competition: 'Betclic Élite',
-    broadcaster: 'DAZN',
-    last_result: 'Cholet 85 – 97 ASVEL',
-  });
+  assert.deepEqual(
+    await getNextMatchAction(createFakeGladys(), { team: 'team:asvel' }, config, NOW),
+    {
+      next_match: 'Gravelines – ASVEL (Betclic Élite)',
+      next_start: 'dim. 4 oct. 16:30',
+      opponent: 'Gravelines',
+      is_home: false,
+      competition: 'Betclic Élite',
+      broadcaster: 'DAZN',
+      last_result: 'Cholet 85 – 97 ASVEL',
+    },
+  );
 });
 
-test('get_next_match works for an unfollowed team', async () => {
+test('get_next_match works for a team not followed any more', async () => {
   mockSources();
-  const outputs = await getNextMatchAction({ team: 'boston_celtics' }, NOW);
+  const outputs = await getNextMatchAction(
+    createFakeGladys(),
+    { team: 'team:boston_celtics' },
+    config,
+    NOW,
+  );
   assert.equal(outputs.next_match, 'Pistons – Celtics (NBA)');
   assert.equal(outputs.next_start, 'mar. 20 oct. 21:00');
   assert.equal(outputs.is_home, false);
@@ -165,7 +173,13 @@ test('get_next_match works for an unfollowed team', async () => {
 });
 
 test('get_next_match fails on an unknown team or when the source is down', async () => {
-  await assert.rejects(() => getNextMatchAction({ team: 'nope' }), /Unknown team/);
+  await assert.rejects(
+    () => getNextMatchAction(createFakeGladys(), { team: 'nope' }, config),
+    /Unknown team/,
+  );
   mockSources({ 'api-live.euroleague.net': new Error('down') });
-  await assert.rejects(() => getNextMatchAction({ team: 'real_madrid' }, NOW), /down/);
+  await assert.rejects(
+    () => getNextMatchAction(createFakeGladys(), { team: 'real_madrid' }, config, NOW),
+    /down/,
+  );
 });

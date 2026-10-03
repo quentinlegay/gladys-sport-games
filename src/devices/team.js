@@ -71,11 +71,17 @@ export const teamDevice = {
    * Build the 3 text states of a team, from the games.
    * @param {object} gladys
    * @param {{ id: string }} team
-   * @param {import('../schedule.js').Match[]} matches
+   * @param {import('../schedule.js').Match[]} allMatches
    * @param {number} [now]
+   * @param {Record<string, string[]>} [follows] when given, only the games of
+   *   the competitions the team is followed in
    */
-  buildStates(gladys, team, matches, now = Date.now()) {
+  buildStates(gladys, team, allMatches, now = Date.now(), follows) {
     const ids = gladys.externalIds(DEVICE_TYPE, team.id);
+    const competitions = follows?.[team.id];
+    const matches = competitions
+      ? allMatches.filter((m) => competitions.includes(m.competition))
+      : allMatches;
     const next = nextMatch(matches, team.id, now);
     const last = lastResult(matches, team.id);
     return [

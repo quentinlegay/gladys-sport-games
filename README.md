@@ -55,11 +55,11 @@ Tous les providers renvoient le modèle `Match` commun (voir `src/schedule.js`).
   `requestWidgetRefresh` est appelé à chaque coup d'envoi d'une équipe suivie.
   Réglage : `teams` (vide = équipes de la configuration).
 - **Déclencheur `match_starting`** : une vérification par minute, rattrapage
-  limité à 5 min. Filtres : `team`, `competition`, `minutes_before` (`0`, `15`,
+  limité à 5 min. Filtres : `team` (appareil), `competition`, `minutes_before` (`0`, `15`,
   `30` ou `60`, obligatoire). Variables : `competition`, `home_team`,
   `away_team`, `start` et `broadcaster`. Un match entre deux équipes suivies
   produit un événement par équipe.
-- **Action `get_next_match`** : champ `team`. Sorties : `next_match`,
+- **Action `get_next_match`** : champ `team` (appareil). Sorties : `next_match`,
   `next_start`, `opponent`, `is_home`, `competition`, `broadcaster` et
   `last_result`.
 - **Action de configuration `test_sources`** : télécharge tout de suite et
@@ -71,16 +71,27 @@ ne jamais les renommer.
 
 ## Configuration (manifest)
 
-| Clé                   | Type           | Défaut                         |
-| --------------------- | -------------- | ------------------------------ |
-| `competitions`        | `multi_select` | nba, euroleague, betclic_elite |
-| `teams`               | `multi_select` | asvel, paris_basketball        |
-| `watch_start`         | `select`       | 18:00                          |
-| `watch_end`           | `select`       | 23:30                          |
-| `include_night_games` | `boolean`      | false                          |
+| Clé                   | Type           | Défaut                  |
+| --------------------- | -------------- | ----------------------- |
+| `teams_betclic_elite` | `multi_select` | asvel, paris_basketball |
+| `teams_euroleague`    | `multi_select` | asvel, paris_basketball |
+| `teams_nba`           | `multi_select` | (aucune)                |
+| `watch_start`         | `select`       | 18:00                   |
+| `watch_end`           | `select`       | 23:30                   |
+| `include_night_games` | `boolean`      | false                   |
 
-Les listes d'options (64 équipes, 3 compétitions, 48 horaires) sont générées
-depuis le code :
+Une liste de cases à cocher par compétition (Gladys n'a pas de sélecteur avec
+recherche) : une équipe n'est suivie que dans les compétitions où elle est
+cochée. `normalizeConfig` en déduit `follows` (équipe → compétitions), `teams`
+et `competitions`. Une configuration de la première version (`teams` +
+`competitions`) est migrée automatiquement.
+
+Les sélecteurs d'équipe du widget (`teams`), du déclencheur et de l'action
+(`team`) utilisent `source: "devices"` : ils ne listent que les appareils créés,
+et leur valeur est l'`external_id` de l'appareil de l'équipe.
+
+Les listes d'options (équipes par compétition, compétitions, horaires) sont
+générées depuis le code :
 
 ```bash
 npm run sync-manifest

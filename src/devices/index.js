@@ -1,11 +1,11 @@
 // -----------------------------------------------------------------------------
 // Device registry.
 //
-// The devices are the teams followed in the configuration (`teams` field):
-// one `team` device per team.
+// The devices are the teams followed in the configuration (one checkbox list
+// per competition): one `team` device per team, whatever its competitions.
 // -----------------------------------------------------------------------------
 
-import { getMatches, competitionName, formatMatch, nextMatch } from '../schedule.js';
+import { competitionName, followsFor, formatMatch, getMatches, nextMatch } from '../schedule.js';
 import { findTeam, TEAMS } from '../teams.js';
 import { teamDevice } from './team.js';
 
@@ -30,6 +30,14 @@ export function buildDiscoveredDevices(gladys, config) {
  */
 export function findTeamByDevice(gladys, device) {
   return TEAMS.find((team) => teamDevice.deviceExternalId(gladys, team) === device.external_id);
+}
+
+/**
+ * Team of a field listing the integration's devices (`source: "devices"`):
+ * the value is a device external_id. A plain team id is accepted too.
+ */
+export function teamOfField(gladys, value) {
+  return findTeamByDevice(gladys, { external_id: value }) ?? findTeam(value);
 }
 
 /**
@@ -66,11 +74,12 @@ export const ACTIONS = {
   async test_sources(_gladys, { config }) {
     const lines = { en: [], fr: [] };
     for (const competition of config.competitions) {
-      const { matches, errors } = await getMatches({
-        teams: config.teams,
-        competitions: [competition],
-        force: true,
-      });
+      const follows = Object.fromEntries(
+        Object.entries(config.follows)
+          .filter(([, competitions]) => competitions.includes(competition))
+          .map(([id]) => [id, [competition]]),
+      );
+      const { matches, errors } = await getMatches({ follows, force: true });
       const name = competitionName(competition);
       if (errors.length > 0) {
         const reason = errors[0].error?.message ?? String(errors[0].error);
@@ -83,7 +92,7 @@ export const ACTIONS = {
     }
     const [team] = selectedTeams(config);
     if (team) {
-      const { matches } = await getMatches({ teams: [team.id], competitions: config.competitions });
+      const { matches } = await getMatches({ follows: followsFor([team.id], config) });
       const next = formatMatch(nextMatch(matches, team.id)) || '-';
       lines.en.push(`Next game of ${team.name}: ${next}`);
       lines.fr.push(`Prochain match de ${team.name} : ${next}`);

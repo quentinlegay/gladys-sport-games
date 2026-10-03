@@ -7,6 +7,7 @@ import {
   createStatePublisher,
   findTeamByDevice,
   selectedTeams,
+  teamOfField,
 } from '../src/devices/index.js';
 import { FEATURE, NO_MATCH, NO_RESULT, teamDevice } from '../src/devices/team.js';
 import { normalizeConfig } from '../src/config.js';
@@ -40,10 +41,14 @@ test('one device per followed team, polled every minute', () => {
 
 test('device external_ids are unique across all teams', () => {
   const gladys = createFakeGladys();
-  const all = buildDiscoveredDevices(gladys, normalizeConfig({ teams: TEAMS.map((t) => t.id) }));
+  const ids = TEAMS.map((t) => t.id);
+  const all = buildDiscoveredDevices(
+    gladys,
+    normalizeConfig({ teams_betclic_elite: ids, teams_euroleague: ids, teams_nba: ids }),
+  );
   assert.equal(all.length, TEAMS.length);
-  const ids = all.map((d) => d.external_id);
-  assert.equal(new Set(ids).size, ids.length);
+  const externalIds = all.map((d) => d.external_id);
+  assert.equal(new Set(externalIds).size, externalIds.length);
 });
 
 test('features are read-only text sensors with frozen keys', () => {
@@ -76,7 +81,13 @@ test('findTeamByDevice routes any team device, even an unfollowed one', () => {
 });
 
 test('selectedTeams keeps the configuration order', () => {
-  const list = selectedTeams(normalizeConfig({ teams: ['boston_celtics', 'asvel'] }));
+  const list = selectedTeams(
+    normalizeConfig({
+      teams_nba: ['boston_celtics'],
+      teams_euroleague: [],
+      teams_betclic_elite: ['asvel'],
+    }),
+  );
   assert.deepEqual(
     list.map((t) => t.id),
     ['boston_celtics', 'asvel'],
@@ -97,6 +108,26 @@ test('buildStates publishes the 3 texts of a team, ignoring the watching window'
     { device_feature_external_id: 'team:asvel:next_match_start', text: 'dim. 4 oct. 16:30' },
     { device_feature_external_id: 'team:asvel:last_result', text: 'Cholet 85 – 97 ASVEL' },
   ]);
+});
+
+test('buildStates keeps the competitions the team is followed in', async () => {
+  mockSources();
+  const gladys = createFakeGladys();
+  const followed = normalizeConfig({
+    teams_betclic_elite: [],
+    teams_euroleague: ['asvel', 'paris_basketball'],
+  });
+  const { matches } = await getFollowedMatches(followed, { now: NOW });
+  const [next] = teamDevice.buildStates(gladys, findTeam('asvel'), matches, NOW, followed.follows);
+  // Not Gravelines - ASVEL: ASVEL is not followed in Betclic Élite.
+  assert.equal(next.text, 'Paris – ASVEL (EuroLeague)');
+});
+
+test('teamOfField reads a device external_id or a team id', () => {
+  const gladys = createFakeGladys();
+  assert.equal(teamOfField(gladys, 'team:asvel').id, 'asvel');
+  assert.equal(teamOfField(gladys, 'boston_celtics').id, 'boston_celtics');
+  assert.equal(teamOfField(gladys, 'nope'), undefined);
 });
 
 test('buildStates without games', () => {
@@ -126,7 +157,8 @@ test('the state publisher only sends what changed, until reset', async () => {
 test('the test_sources action reports every competition', async () => {
   mockSources({ 'api-live.euroleague.net': new Error('down') });
   const message = await ACTIONS.test_sources(createFakeGladys(), { fields: {}, config });
-  assert.match(message.fr, /NBA : 0 matchs/);
+  // No NBA team ticked: NBA is not downloaded.
+  assert.doesNotMatch(message.fr, /NBA/);
   assert.match(message.fr, /EuroLeague : erreur \(down\)/);
   assert.match(message.fr, /Betclic Élite : 5 matchs/);
   assert.match(message.en, /Next game of LDLC ASVEL: /);

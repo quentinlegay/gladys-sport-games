@@ -21,15 +21,16 @@ that covers all its games.
 ## Configuration
 
 1. Open the **Configuration** tab of the integration.
-2. Tick the **competitions** to show.
-3. Tick the **teams** to follow. The list holds the 64 clubs of the NBA, the
-   EuroLeague and the Betclic Élite.
-4. Set the **watching window**, 18:00 to 23:30 by default. The widget and the
+2. Tick the teams to follow in each of the three lists: **Betclic Élite**,
+   **EuroLeague** and **NBA**. Each list is sorted alphabetically. A team is
+   only followed in the competitions where it is ticked: tick ASVEL in both
+   Betclic Élite and EuroLeague to get all its games, or in only one of them.
+3. Set the **watching window**, 18:00 to 23:30 by default. The widget and the
    scene trigger only keep the games starting in this window. When the end is
    before the start, the window crosses midnight (for example 20:00 to 02:00).
-5. Tick **Include games outside the window** to also get the NBA night games
+4. Tick **Include games outside the window** to also get the NBA night games
    or the weekend afternoon games.
-6. Save. The devices appear in the **Discover** tab, ready to be added.
+5. Save. The devices appear in the **Discover** tab, ready to be added.
 
 The watching window does not affect the sensors: they always show the real
 next game.
@@ -41,15 +42,19 @@ how many games each competition returned.
 
 Add the **Upcoming games** widget to a dashboard (Gladys 5.1 or later). It
 shows up to 8 games, with their date or a "Live" badge. Tap a row to see the
-details: full team names, date and broadcaster. The **Teams** setting lets
-you pick teams other than the ones of the configuration.
+details: full team names, date and broadcaster. The **Teams** setting shows only
+some of your teams; leave it empty to show them all.
+
+The team lists of the widget and the scenes only show the teams whose device
+has been added from the **Discover** tab.
 
 ## Scenes
 
 **Trigger "A game is about to start"**
 
 - **When**: at kick-off, or 15 min, 30 min or 1 hour before.
-- **Teams** and **Competitions**: leave them empty to keep every game.
+- **Teams** (your followed teams) and **Competitions**: leave them empty to
+  keep every game.
 - Variables: home team, away team, start time, broadcaster and competition
   (key: `nba`, `euroleague` or `betclic_elite`).
 
@@ -62,7 +67,7 @@ single team to avoid it.
 
 **Action "Get the next game of a team"**
 
-Pick a team, followed or not. The action returns the next game, its start,
+Pick one of your teams. The action returns the next game, its start,
 the opponent, whether the team plays at home, the competition, the
 broadcaster and the last result, for the following actions of the scene.
 

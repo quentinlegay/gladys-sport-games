@@ -4,6 +4,7 @@ import { normalizeConfig } from '../src/config.js';
 import { resetLnbSession } from '../src/providers/lnb.js';
 import {
   CACHE_MAX_AGE_MS,
+  followsFor,
   formatMatch,
   formatResult,
   formatStart,
@@ -34,8 +35,11 @@ afterEach(() => {
 
 test('sources: one per season for EuroLeague, one per team for NBA and LNB', () => {
   const keys = sourcesFor(
-    ['asvel', 'paris_basketball', 'boston_celtics'],
-    ['nba', 'euroleague', 'betclic_elite'],
+    {
+      asvel: ['euroleague', 'betclic_elite'],
+      paris_basketball: ['euroleague', 'betclic_elite'],
+      boston_celtics: ['nba'],
+    },
     2026,
   ).map((s) => s.key);
   assert.deepEqual(keys, [
@@ -44,11 +48,34 @@ test('sources: one per season for EuroLeague, one per team for NBA and LNB', () 
     'betclic_elite:2026:91',
     'betclic_elite:2026:58',
   ]);
-  // A competition without any followed team is not downloaded.
+  // Only the competitions a team is followed in are downloaded.
   assert.deepEqual(
-    sourcesFor(['boston_celtics'], ['euroleague', 'betclic_elite'], 2026).map((s) => s.key),
-    [],
+    sourcesFor({ asvel: ['betclic_elite'], boston_celtics: [] }, 2026).map((s) => s.key),
+    ['betclic_elite:2026:91'],
   );
+});
+
+test('followsFor: the followed competitions, or all of them for an unfollowed team', () => {
+  const follows = followsFor(['asvel', 'boston_celtics', 'nope'], {
+    follows: { asvel: ['betclic_elite'] },
+  });
+  assert.deepEqual(follows, { asvel: ['betclic_elite'], boston_celtics: ['nba'] });
+});
+
+test('a game is kept when one of its teams is followed in its competition', async () => {
+  mockSources();
+  // ASVEL in Betclic Élite only, Paris in EuroLeague only.
+  const { matches } = await getMatches({
+    follows: { asvel: ['betclic_elite'], paris_basketball: ['euroleague'] },
+    now: NOW,
+  });
+  const el = matches.filter((m) => m.competition === 'euroleague');
+  // Paris - ASVEL and Paris - Virtus, not ASVEL - Etoile Rouge or Real - ASVEL.
+  assert.deepEqual(
+    el.map((m) => m.id),
+    ['euroleague:E2026_31', 'euroleague:E2026_50'],
+  );
+  assert.equal(matches.filter((m) => m.competition === 'betclic_elite').length, 5);
 });
 
 test('getMatches aggregates the sources, keeps only the wanted teams, sorted', async () => {
@@ -146,8 +173,8 @@ test('while a game waits for its score, its calendar is refreshed every 15 min',
 
 test('force downloads again', async () => {
   const calls = mockSources();
-  await getMatches({ teams: ['asvel'], competitions: ['euroleague'], now: NOW });
-  await getMatches({ teams: ['asvel'], competitions: ['euroleague'], now: NOW, force: true });
+  await getMatches({ follows: { asvel: ['euroleague'] }, now: NOW });
+  await getMatches({ follows: { asvel: ['euroleague'] }, now: NOW, force: true });
   assert.equal(calls.length, 2);
 });
 

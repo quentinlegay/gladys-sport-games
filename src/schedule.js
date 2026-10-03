@@ -15,7 +15,7 @@ import { createLogger } from '@gladysassistant/integration-sdk';
 import { euroleague } from './providers/euroleague.js';
 import { lnb } from './providers/lnb.js';
 import { nba } from './providers/nba.js';
-import { findCompetition, findTeam } from './teams.js';
+import { COMPETITIONS, findCompetition, findTeam } from './teams.js';
 import { formatDateTime, isInWindow, seasonOf } from './time.js';
 
 const logger = createLogger({ name: 'schedule' });
@@ -128,20 +128,39 @@ function loadEntry(key, fetcher, { now, force }) {
 }
 
 /**
- * Sources needed for some teams and competitions.
+ * Competitions to show for some teams: the ones followed in the configuration,
+ * or every competition of the team when it is not followed (widget, action).
+ * @param {string[]} teamIds
+ * @param {{ follows?: Record<string, string[]> }} [config]
+ * @returns {Record<string, string[]>} team id -> competitions
+ */
+export function followsFor(teamIds, config = {}) {
+  const follows = {};
+  for (const id of teamIds) {
+    const team = findTeam(id);
+    if (team) {
+      follows[id] =
+        config.follows?.[id] ?? COMPETITIONS.map((c) => c.id).filter((c) => c in team.refs);
+    }
+  }
+  return follows;
+}
+
+/**
+ * Sources needed for some followed teams.
+ * @param {Record<string, string[]>} follows team id -> competitions
+ * @param {number} season
  * @returns {Array<{ key: string, competition: string, fetcher: () => Promise<Match[]> }>}
  */
-export function sourcesFor(teamIds, competitions, season) {
+export function sourcesFor(follows, season) {
   const sources = [];
-  for (const competition of competitions) {
+  for (const { id: competition } of COMPETITIONS) {
     const provider = PROVIDERS[competition];
-    if (!provider) {
-      continue;
-    }
-    const refs = teamIds
-      .map((id) => findTeam(id)?.refs[competition])
+    const refs = Object.entries(follows)
+      .filter(([, competitions]) => competitions.includes(competition))
+      .map(([id]) => findTeam(id)?.refs[competition])
       .filter((ref) => ref !== undefined);
-    if (refs.length === 0) {
+    if (!provider || refs.length === 0) {
       continue;
     }
     if (provider.perTeam) {
@@ -163,15 +182,19 @@ export function sourcesFor(teamIds, competitions, season) {
   return sources;
 }
 
+/** Whether a game is followed: one of its teams is followed in its competition. */
+export const isFollowed = (match, follows) =>
+  [match.homeTeam.id, match.awayTeam.id].some((id) => follows[id]?.includes(match.competition));
+
 /**
- * Games of some teams, in some competitions, from every needed source.
+ * Games of some followed teams, from every needed source.
  * Never rejects: a failing source is reported in `errors`.
- * @param {{ teams: string[], competitions: string[], now?: number, force?: boolean }} options
+ * @param {{ follows: Record<string, string[]>, now?: number, force?: boolean }} options
  * @returns {Promise<{ matches: Match[], errors: Array<{ competition: string, error: Error }> }>}
  */
-export async function getMatches({ teams, competitions, now = Date.now(), force = false }) {
+export async function getMatches({ follows, now = Date.now(), force = false }) {
   const season = seasonOf(new Date(now));
-  const sources = sourcesFor(teams, competitions, season);
+  const sources = sourcesFor(follows, season);
   const results = await Promise.allSettled(
     sources.map((s) => loadEntry(s.key, s.fetcher, { now, force })),
   );
@@ -186,16 +209,15 @@ export async function getMatches({ teams, competitions, now = Date.now(), force 
       byId.set(match.id, match);
     }
   });
-  const wanted = new Set(teams);
   const matches = [...byId.values()]
-    .filter((m) => wanted.has(m.homeTeam.id) || wanted.has(m.awayTeam.id))
+    .filter((m) => isFollowed(m, follows))
     .sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
   return { matches, errors };
 }
 
 /** Games of the teams followed in the configuration. */
 export function getFollowedMatches(config, options = {}) {
-  return getMatches({ teams: config.teams, competitions: config.competitions, ...options });
+  return getMatches({ follows: config.follows, ...options });
 }
 
 // --- Questions ---------------------------------------------------------------

@@ -3,18 +3,65 @@ import assert from 'node:assert/strict';
 import { CLOCK_OPTIONS, DEFAULT_CONFIG, normalizeConfig, POLL_FREQUENCY } from '../src/config.js';
 
 test('defaults when nothing is configured', () => {
-  assert.deepEqual(normalizeConfig(), DEFAULT_CONFIG);
-  assert.deepEqual(normalizeConfig({}), DEFAULT_CONFIG);
+  const config = normalizeConfig();
+  for (const [key, value] of Object.entries(DEFAULT_CONFIG)) {
+    assert.deepEqual(config[key], value, key);
+  }
+  assert.deepEqual(normalizeConfig({}), config);
+  assert.deepEqual(config.follows, {
+    asvel: ['euroleague', 'betclic_elite'],
+    paris_basketball: ['euroleague', 'betclic_elite'],
+  });
+  assert.deepEqual(config.teams, ['asvel', 'paris_basketball']);
+  assert.deepEqual(config.competitions, ['euroleague', 'betclic_elite']);
 });
 
-test('lists drop unknown ids and duplicates, accept a comma string', () => {
+test('one list per competition: a club is followed where it is ticked', () => {
   const config = normalizeConfig({
-    teams: ['asvel', 'nope', 'asvel', 'boston_celtics'],
-    competitions: 'nba, euroleague,foot',
+    teams_betclic_elite: ['asvel', 'cholet'],
+    teams_euroleague: ['paris_basketball'],
+    teams_nba: ['boston_celtics'],
   });
-  assert.deepEqual(config.teams, ['asvel', 'boston_celtics']);
-  assert.deepEqual(config.competitions, ['nba', 'euroleague']);
-  assert.deepEqual(normalizeConfig({ teams: [] }).teams, []);
+  assert.deepEqual(config.follows, {
+    boston_celtics: ['nba'],
+    paris_basketball: ['euroleague'],
+    asvel: ['betclic_elite'],
+    cholet: ['betclic_elite'],
+  });
+  assert.deepEqual(config.competitions, ['nba', 'euroleague', 'betclic_elite']);
+});
+
+test('lists drop unknown ids, duplicates and teams of another competition', () => {
+  const config = normalizeConfig({
+    teams_betclic_elite: ['asvel', 'nope', 'asvel', 'real_madrid'],
+    teams_euroleague: 'real_madrid, asvel,boston_celtics',
+    teams_nba: [],
+  });
+  assert.deepEqual(config.teams_betclic_elite, ['asvel']);
+  assert.deepEqual(config.teams_euroleague, ['real_madrid', 'asvel']);
+  assert.deepEqual(config.teams_nba, []);
+  assert.deepEqual(config.competitions, ['euroleague', 'betclic_elite']);
+});
+
+test('nothing ticked: no team, no competition', () => {
+  const config = normalizeConfig({ teams_betclic_elite: [], teams_euroleague: [], teams_nba: [] });
+  assert.deepEqual(config.follows, {});
+  assert.deepEqual(config.teams, []);
+  assert.deepEqual(config.competitions, []);
+});
+
+test('a configuration of the first version is migrated', () => {
+  const config = normalizeConfig({
+    teams: ['asvel', 'boston_celtics'],
+    competitions: ['nba', 'betclic_elite'],
+  });
+  assert.deepEqual(config.teams_betclic_elite, ['asvel']);
+  assert.deepEqual(config.teams_euroleague, []);
+  assert.deepEqual(config.teams_nba, ['boston_celtics']);
+  // Without `competitions`, every competition was checked.
+  assert.deepEqual(normalizeConfig({ teams: ['asvel'] }).follows, {
+    asvel: ['euroleague', 'betclic_elite'],
+  });
 });
 
 test('window bounds fall back to the defaults when invalid', () => {

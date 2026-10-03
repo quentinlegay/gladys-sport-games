@@ -4,6 +4,8 @@
 // - Trigger `match_starting`: fired 0, 15, 30 or 60 minutes before the start of
 //   a game of a followed team, in the watching window. The scene author
 //   filters by team, competition and delay (`minutes_before`, required).
+//   The `team` field lists the integration's devices (`source: "devices"`),
+//   so the event `team` value is the device external_id of the team.
 //   A game between two followed teams fires one event per team, so that a
 //   scene filtered on either team sees it.
 // - Action `get_next_match`: returns the next game and the last result of a
@@ -18,6 +20,7 @@ import {
   competitionName,
   formatMatch,
   formatResult,
+  followsFor,
   formatStart,
   getFollowedMatches,
   getMatches,
@@ -27,7 +30,9 @@ import {
   opponentOf,
   startingBetween,
 } from './schedule.js';
-import { COMPETITIONS, findTeam } from './teams.js';
+import { teamOfField } from './devices/index.js';
+import { teamDevice } from './devices/team.js';
+import { findTeam } from './teams.js';
 import { formatTime } from './time.js';
 
 const logger = createLogger({ name: 'scenes' });
@@ -52,12 +57,12 @@ const cap = (text) => String(text ?? '').slice(0, MAX_EVENT_STRING);
  * Flat data of a `match_starting` event. Keys match the manifest trigger
  * `fields` (filters) and `variables` (exposed to the scene).
  * @param {import('./schedule.js').Match} match
- * @param {string} teamId followed team the event is about
+ * @param {string} team device external_id of the followed team
  * @param {string} minutesBefore one of MINUTES_BEFORE
  */
-export function buildStartingEvent(match, teamId, minutesBefore) {
+export function buildStartingEvent(match, team, minutesBefore) {
   return {
-    team: teamId,
+    team,
     competition: match.competition,
     minutes_before: minutesBefore,
     home_team: cap(match.homeTeam.shortName),
@@ -70,22 +75,26 @@ export function buildStartingEvent(match, teamId, minutesBefore) {
 /**
  * Events due in ]from, to] for some games.
  * @param {import('./schedule.js').Match[]} matches already filtered (window)
- * @param {string[]} followed followed team ids
+ * @param {Record<string, string[]>} follows team id -> followed competitions
+ * @param {(teamId: string) => string} teamValue event `team` value of a team
  */
-export function findStartingEvents(matches, followed, from, to) {
-  const wanted = new Set(followed);
+export function findStartingEvents(matches, follows, from, to, teamValue) {
   const events = [];
   for (const minutesBefore of MINUTES_BEFORE) {
     for (const match of startingBetween(matches, from, to, Number(minutesBefore))) {
       for (const team of [match.homeTeam, match.awayTeam]) {
-        if (wanted.has(team.id)) {
-          events.push(buildStartingEvent(match, team.id, minutesBefore));
+        if (follows[team.id]?.includes(match.competition)) {
+          events.push(buildStartingEvent(match, teamValue(team.id), minutesBefore));
         }
       }
     }
   }
   return events;
 }
+
+/** Device external_id of a team: the value of the `team` scene fields. */
+export const teamDeviceId = (gladys, teamId) =>
+  teamDevice.deviceExternalId(gladys, findTeam(teamId));
 
 /**
  * Watch the schedule and fire `match_starting`, once per game, team and delay.
@@ -109,7 +118,13 @@ export function createMatchWatcher(gladys, { getConfig, onKickoff }) {
     const { matches } = await getFollowedMatches(config, { now: now.getTime() });
     lastCheck = now;
 
-    const events = findStartingEvents(inWatchWindow(matches, config), config.teams, from, now);
+    const events = findStartingEvents(
+      inWatchWindow(matches, config),
+      config.follows,
+      from,
+      now,
+      (id) => teamDeviceId(gladys, id),
+    );
     for (const event of events) {
       logger.debug(
         `match_starting (${event.minutes_before} min) -> ${event.home_team} – ${event.away_team}`,
@@ -148,21 +163,20 @@ export function createMatchWatcher(gladys, { getConfig, onKickoff }) {
 }
 
 /**
- * Handler of the `get_next_match` scene action. Works for any team of the
- * list, followed or not, in every competition it plays.
+ * Handler of the `get_next_match` scene action. The `team` field lists the
+ * integration's devices: the team of the chosen device, in the competitions
+ * it is followed in (all of them when it is not followed any more).
+ * @param {object} gladys SDK instance
  * @param {{ team: string }} fields resolved by the core
+ * @param {object} config normalized configuration
  * @returns {Promise<object>} the outputs declared in the manifest
  */
-export async function getNextMatchAction(fields, now = Date.now()) {
-  const team = findTeam(fields?.team);
+export async function getNextMatchAction(gladys, fields, config, now = Date.now()) {
+  const team = teamOfField(gladys, fields?.team);
   if (!team) {
     throw new Error(`Unknown team "${fields?.team}"`);
   }
-  const { matches, errors } = await getMatches({
-    teams: [team.id],
-    competitions: COMPETITIONS.map((c) => c.id).filter((c) => c in team.refs),
-    now,
-  });
+  const { matches, errors } = await getMatches({ follows: followsFor([team.id], config), now });
   if (matches.length === 0 && errors.length > 0) {
     throw errors[0].error;
   }

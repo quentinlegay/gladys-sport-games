@@ -21,6 +21,7 @@ import {
 } from '../src/scenes.js';
 import { WIDGET_UPCOMING_MATCHES } from '../src/widget.js';
 import { syncManifest } from '../scripts/sync-manifest.js';
+import { createFakeGladys } from './helpers/fakeGladys.js';
 import { fixture, restoreFetch } from './helpers/mockFetch.js';
 import { mockSources, NOW } from './helpers/sources.js';
 
@@ -79,7 +80,21 @@ test('poll_frequency is a value Gladys accepts, and is not configurable', () => 
 
 test('option lists are in sync with the code (run `npm run sync-manifest`)', () => {
   assert.deepEqual(syncManifest(structuredClone(manifest)), manifest);
-  assert.equal(field('teams').options.length, 64);
+  assert.equal(field('teams_betclic_elite').options.length, 16);
+  assert.equal(field('teams_euroleague').options.length, 20);
+  assert.equal(field('teams_nba').options.length, 30);
+});
+
+test('team pickers of the widget and the scenes list the created devices', () => {
+  const pickers = [
+    manifest.widgets[0].settings.find((s) => s.key === 'teams'),
+    manifest.scene_triggers[0].fields.find((f) => f.key === 'team'),
+    manifest.scene_actions[0].fields.find((f) => f.key === 'team'),
+  ];
+  for (const picker of pickers) {
+    assert.equal(picker.source, 'devices');
+    assert.equal(picker.options, undefined);
+  }
 });
 
 test('frozen keys stay generic', () => {
@@ -97,7 +112,7 @@ test('frozen keys stay generic', () => {
       ...a.fields.map((f) => f.key),
       ...a.outputs.map((o) => o.key),
     ]),
-    ...field('teams').options.map((o) => o.value),
+    ...manifest.config_schema.flatMap((f) => (f.options ?? []).map((o) => o.value)),
   ];
   for (const key of keys) {
     assert.doesNotMatch(key, /basket_|nba_/, key);
@@ -137,7 +152,12 @@ test('get_next_match: the handler returns exactly the declared outputs', async (
   const action = manifest.scene_actions.find((a) => a.key === ACTION_GET_NEXT_MATCH);
   assert.ok(action);
   mockSources();
-  const outputs = await getNextMatchAction({ team: 'asvel' }, NOW);
+  const outputs = await getNextMatchAction(
+    createFakeGladys(),
+    { team: 'team:asvel' },
+    normalizeConfig(),
+    NOW,
+  );
   assert.deepEqual(Object.keys(outputs).sort(), action.outputs.map((o) => o.key).sort());
   for (const output of action.outputs) {
     assert.equal(typeof outputs[output.key], output.type, output.key);

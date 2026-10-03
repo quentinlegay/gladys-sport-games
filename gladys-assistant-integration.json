@@ -20,8 +20,8 @@
         "fr": "Pour commencer"
       },
       "description": {
-        "en": "Pick the teams to follow: each one becomes a device with 3 sensors (next game, kick-off, last result). Schedules come from the public data of ESPN (NBA), the EuroLeague and the LNB. No account, no API key. Times are in the Paris time zone.",
-        "fr": "Choisissez les équipes à suivre : chacune devient un appareil avec 3 capteurs (prochain match, coup d'envoi, dernier résultat). Les calendriers viennent des données publiques d'ESPN (NBA), de l'EuroLeague et de la LNB. Pas de compte, pas de clé d'API. Les horaires sont à l'heure de Paris."
+        "en": "Tick the teams to follow in each competition: each team becomes a device with 3 sensors (next game, kick-off, last result). Schedules come from the public data of ESPN (NBA), the EuroLeague and the LNB. No account, no API key. Times are in the Paris time zone.",
+        "fr": "Cochez les équipes à suivre dans chaque compétition : chacune devient un appareil avec 3 capteurs (prochain match, coup d'envoi, dernier résultat). Les calendriers viennent des données publiques d'ESPN (NBA), de l'EuroLeague et de la LNB. Pas de compte, pas de clé d'API. Les horaires sont à l'heure de Paris."
       },
       "links": [
         {
@@ -34,502 +34,507 @@
       ]
     },
     {
-      "key": "competitions",
+      "key": "teams_betclic_elite",
       "type": "multi_select",
       "label": {
-        "en": "Competitions",
-        "fr": "Compétitions"
+        "en": "Betclic Élite",
+        "fr": "Betclic Élite"
       },
       "description": {
-        "en": "Only the games of these competitions are shown.",
-        "fr": "Seuls les matchs de ces compétitions sont affichés."
+        "en": "French league.",
+        "fr": "Championnat de France."
       },
-      "required": true,
-      "default": ["nba", "euroleague", "betclic_elite"],
-      "options": [
-        {
-          "value": "nba",
-          "label": {
-            "en": "NBA",
-            "fr": "NBA"
-          }
-        },
-        {
-          "value": "euroleague",
-          "label": {
-            "en": "EuroLeague",
-            "fr": "EuroLeague"
-          }
-        },
-        {
-          "value": "betclic_elite",
-          "label": {
-            "en": "Betclic Élite",
-            "fr": "Betclic Élite"
-          }
-        }
-      ]
-    },
-    {
-      "key": "teams",
-      "type": "multi_select",
-      "label": {
-        "en": "Teams",
-        "fr": "Équipes"
-      },
-      "description": {
-        "en": "One Gladys device is created per selected team.",
-        "fr": "Un appareil Gladys est créé par équipe cochée."
-      },
-      "required": true,
       "default": ["asvel", "paris_basketball"],
       "options": [
         {
           "value": "asvel",
           "label": {
-            "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
-            "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
-          }
-        },
-        {
-          "value": "paris_basketball",
-          "label": {
-            "en": "Paris Basketball (EuroLeague, Betclic Élite)",
-            "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
+            "en": "LDLC ASVEL",
+            "fr": "LDLC ASVEL"
           }
         },
         {
           "value": "boulazac",
           "label": {
-            "en": "Boulazac Basket Dordogne (Betclic Élite)",
-            "fr": "Boulazac Basket Dordogne (Betclic Élite)"
+            "en": "Boulazac Basket Dordogne",
+            "fr": "Boulazac Basket Dordogne"
           }
         },
         {
           "value": "bourg_en_bresse",
           "label": {
-            "en": "JL Bourg (Betclic Élite)",
-            "fr": "JL Bourg (Betclic Élite)"
+            "en": "JL Bourg",
+            "fr": "JL Bourg"
           }
         },
         {
           "value": "chalon",
           "label": {
-            "en": "Élan Chalon (Betclic Élite)",
-            "fr": "Élan Chalon (Betclic Élite)"
+            "en": "Élan Chalon",
+            "fr": "Élan Chalon"
           }
         },
         {
           "value": "cholet",
           "label": {
-            "en": "Cholet Basket (Betclic Élite)",
-            "fr": "Cholet Basket (Betclic Élite)"
+            "en": "Cholet Basket",
+            "fr": "Cholet Basket"
           }
         },
         {
           "value": "dijon",
           "label": {
-            "en": "JDA Dijon (Betclic Élite)",
-            "fr": "JDA Dijon (Betclic Élite)"
+            "en": "JDA Dijon",
+            "fr": "JDA Dijon"
           }
         },
         {
           "value": "gravelines_dunkerque",
           "label": {
-            "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
-            "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
+            "en": "BCM Gravelines-Dunkerque",
+            "fr": "BCM Gravelines-Dunkerque"
           }
         },
         {
           "value": "le_mans",
           "label": {
-            "en": "Le Mans Sarthe Basket (Betclic Élite)",
-            "fr": "Le Mans Sarthe Basket (Betclic Élite)"
+            "en": "Le Mans Sarthe Basket",
+            "fr": "Le Mans Sarthe Basket"
           }
         },
         {
           "value": "limoges",
           "label": {
-            "en": "Limoges CSP (Betclic Élite)",
-            "fr": "Limoges CSP (Betclic Élite)"
+            "en": "Limoges CSP",
+            "fr": "Limoges CSP"
           }
         },
         {
           "value": "nancy",
           "label": {
-            "en": "SLUC Nancy (Betclic Élite)",
-            "fr": "SLUC Nancy (Betclic Élite)"
+            "en": "SLUC Nancy",
+            "fr": "SLUC Nancy"
           }
         },
         {
           "value": "nanterre",
           "label": {
-            "en": "Nanterre 92 (Betclic Élite)",
-            "fr": "Nanterre 92 (Betclic Élite)"
+            "en": "Nanterre 92",
+            "fr": "Nanterre 92"
+          }
+        },
+        {
+          "value": "paris_basketball",
+          "label": {
+            "en": "Paris Basketball",
+            "fr": "Paris Basketball"
           }
         },
         {
           "value": "pau",
           "label": {
-            "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
-            "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
+            "en": "Élan Béarnais Pau-Lacq-Orthez",
+            "fr": "Élan Béarnais Pau-Lacq-Orthez"
           }
         },
         {
           "value": "roanne",
           "label": {
-            "en": "Chorale Roanne (Betclic Élite)",
-            "fr": "Chorale Roanne (Betclic Élite)"
+            "en": "Chorale Roanne",
+            "fr": "Chorale Roanne"
           }
         },
         {
           "value": "saint_quentin",
           "label": {
-            "en": "Saint-Quentin Basket (Betclic Élite)",
-            "fr": "Saint-Quentin Basket (Betclic Élite)"
+            "en": "Saint-Quentin Basket",
+            "fr": "Saint-Quentin Basket"
           }
         },
         {
           "value": "strasbourg",
           "label": {
-            "en": "SIG Strasbourg (Betclic Élite)",
-            "fr": "SIG Strasbourg (Betclic Élite)"
+            "en": "SIG Strasbourg",
+            "fr": "SIG Strasbourg"
           }
-        },
+        }
+      ]
+    },
+    {
+      "key": "teams_euroleague",
+      "type": "multi_select",
+      "label": {
+        "en": "EuroLeague",
+        "fr": "EuroLeague"
+      },
+      "description": {
+        "en": "Tick ASVEL or Paris here too to get their European games.",
+        "fr": "Cochez aussi l'ASVEL ou Paris ici pour avoir leurs matchs européens."
+      },
+      "default": ["asvel", "paris_basketball"],
+      "options": [
         {
-          "value": "fc_barcelona",
+          "value": "anadolu_efes",
           "label": {
-            "en": "FC Barcelona (EuroLeague)",
-            "fr": "FC Barcelona (EuroLeague)"
+            "en": "Anadolu Efes Istanbul",
+            "fr": "Anadolu Efes Istanbul"
           }
         },
         {
           "value": "baskonia",
           "label": {
-            "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
-            "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
+            "en": "Baskonia Vitoria-Gasteiz",
+            "fr": "Baskonia Vitoria-Gasteiz"
           }
         },
         {
           "value": "besiktas",
           "label": {
-            "en": "Besiktas Istanbul (EuroLeague)",
-            "fr": "Besiktas Istanbul (EuroLeague)"
-          }
-        },
-        {
-          "value": "dubai",
-          "label": {
-            "en": "Dubai Basketball (EuroLeague)",
-            "fr": "Dubai Basketball (EuroLeague)"
-          }
-        },
-        {
-          "value": "hapoel_tel_aviv",
-          "label": {
-            "en": "Hapoel Tel Aviv (EuroLeague)",
-            "fr": "Hapoel Tel Aviv (EuroLeague)"
-          }
-        },
-        {
-          "value": "anadolu_efes",
-          "label": {
-            "en": "Anadolu Efes Istanbul (EuroLeague)",
-            "fr": "Anadolu Efes Istanbul (EuroLeague)"
-          }
-        },
-        {
-          "value": "real_madrid",
-          "label": {
-            "en": "Real Madrid (EuroLeague)",
-            "fr": "Real Madrid (EuroLeague)"
-          }
-        },
-        {
-          "value": "olimpia_milano",
-          "label": {
-            "en": "Olimpia Milano (EuroLeague)",
-            "fr": "Olimpia Milano (EuroLeague)"
-          }
-        },
-        {
-          "value": "bayern_munich",
-          "label": {
-            "en": "FC Bayern Munich (EuroLeague)",
-            "fr": "FC Bayern Munich (EuroLeague)"
-          }
-        },
-        {
-          "value": "olympiacos",
-          "label": {
-            "en": "Olympiacos Piraeus (EuroLeague)",
-            "fr": "Olympiacos Piraeus (EuroLeague)"
-          }
-        },
-        {
-          "value": "valencia",
-          "label": {
-            "en": "Valencia Basket (EuroLeague)",
-            "fr": "Valencia Basket (EuroLeague)"
-          }
-        },
-        {
-          "value": "panathinaikos",
-          "label": {
-            "en": "Panathinaikos Athens (EuroLeague)",
-            "fr": "Panathinaikos Athens (EuroLeague)"
-          }
-        },
-        {
-          "value": "partizan",
-          "label": {
-            "en": "Partizan Belgrade (EuroLeague)",
-            "fr": "Partizan Belgrade (EuroLeague)"
+            "en": "Besiktas Istanbul",
+            "fr": "Besiktas Istanbul"
           }
         },
         {
           "value": "crvena_zvezda",
           "label": {
-            "en": "Crvena Zvezda Belgrade (EuroLeague)",
-            "fr": "Crvena Zvezda Belgrade (EuroLeague)"
+            "en": "Crvena Zvezda Belgrade",
+            "fr": "Crvena Zvezda Belgrade"
           }
         },
         {
-          "value": "maccabi_tel_aviv",
+          "value": "dubai",
           "label": {
-            "en": "Maccabi Tel Aviv (EuroLeague)",
-            "fr": "Maccabi Tel Aviv (EuroLeague)"
+            "en": "Dubai Basketball",
+            "fr": "Dubai Basketball"
+          }
+        },
+        {
+          "value": "fc_barcelona",
+          "label": {
+            "en": "FC Barcelona",
+            "fr": "FC Barcelona"
+          }
+        },
+        {
+          "value": "bayern_munich",
+          "label": {
+            "en": "FC Bayern Munich",
+            "fr": "FC Bayern Munich"
           }
         },
         {
           "value": "fenerbahce",
           "label": {
-            "en": "Fenerbahçe Istanbul (EuroLeague)",
-            "fr": "Fenerbahçe Istanbul (EuroLeague)"
+            "en": "Fenerbahçe Istanbul",
+            "fr": "Fenerbahçe Istanbul"
+          }
+        },
+        {
+          "value": "hapoel_tel_aviv",
+          "label": {
+            "en": "Hapoel Tel Aviv",
+            "fr": "Hapoel Tel Aviv"
+          }
+        },
+        {
+          "value": "asvel",
+          "label": {
+            "en": "LDLC ASVEL",
+            "fr": "LDLC ASVEL"
+          }
+        },
+        {
+          "value": "maccabi_tel_aviv",
+          "label": {
+            "en": "Maccabi Tel Aviv",
+            "fr": "Maccabi Tel Aviv"
+          }
+        },
+        {
+          "value": "olimpia_milano",
+          "label": {
+            "en": "Olimpia Milano",
+            "fr": "Olimpia Milano"
+          }
+        },
+        {
+          "value": "olympiacos",
+          "label": {
+            "en": "Olympiacos Piraeus",
+            "fr": "Olympiacos Piraeus"
+          }
+        },
+        {
+          "value": "panathinaikos",
+          "label": {
+            "en": "Panathinaikos Athens",
+            "fr": "Panathinaikos Athens"
+          }
+        },
+        {
+          "value": "paris_basketball",
+          "label": {
+            "en": "Paris Basketball",
+            "fr": "Paris Basketball"
+          }
+        },
+        {
+          "value": "partizan",
+          "label": {
+            "en": "Partizan Belgrade",
+            "fr": "Partizan Belgrade"
+          }
+        },
+        {
+          "value": "real_madrid",
+          "label": {
+            "en": "Real Madrid",
+            "fr": "Real Madrid"
+          }
+        },
+        {
+          "value": "valencia",
+          "label": {
+            "en": "Valencia Basket",
+            "fr": "Valencia Basket"
           }
         },
         {
           "value": "virtus_bologna",
           "label": {
-            "en": "Virtus Bologna (EuroLeague)",
-            "fr": "Virtus Bologna (EuroLeague)"
+            "en": "Virtus Bologna",
+            "fr": "Virtus Bologna"
           }
         },
         {
           "value": "zalgiris",
           "label": {
-            "en": "Zalgiris Kaunas (EuroLeague)",
-            "fr": "Zalgiris Kaunas (EuroLeague)"
+            "en": "Zalgiris Kaunas",
+            "fr": "Zalgiris Kaunas"
           }
-        },
+        }
+      ]
+    },
+    {
+      "key": "teams_nba",
+      "type": "multi_select",
+      "label": {
+        "en": "NBA",
+        "fr": "NBA"
+      },
+      "description": {
+        "en": "Most games are played at night, Paris time: see the watching window below.",
+        "fr": "La plupart des matchs ont lieu la nuit, heure de Paris : voir la plage de visionnage plus bas."
+      },
+      "options": [
         {
           "value": "atlanta_hawks",
           "label": {
-            "en": "Atlanta Hawks (NBA)",
-            "fr": "Atlanta Hawks (NBA)"
+            "en": "Atlanta Hawks",
+            "fr": "Atlanta Hawks"
           }
         },
         {
           "value": "boston_celtics",
           "label": {
-            "en": "Boston Celtics (NBA)",
-            "fr": "Boston Celtics (NBA)"
+            "en": "Boston Celtics",
+            "fr": "Boston Celtics"
           }
         },
         {
           "value": "brooklyn_nets",
           "label": {
-            "en": "Brooklyn Nets (NBA)",
-            "fr": "Brooklyn Nets (NBA)"
+            "en": "Brooklyn Nets",
+            "fr": "Brooklyn Nets"
           }
         },
         {
           "value": "charlotte_hornets",
           "label": {
-            "en": "Charlotte Hornets (NBA)",
-            "fr": "Charlotte Hornets (NBA)"
+            "en": "Charlotte Hornets",
+            "fr": "Charlotte Hornets"
           }
         },
         {
           "value": "chicago_bulls",
           "label": {
-            "en": "Chicago Bulls (NBA)",
-            "fr": "Chicago Bulls (NBA)"
+            "en": "Chicago Bulls",
+            "fr": "Chicago Bulls"
           }
         },
         {
           "value": "cleveland_cavaliers",
           "label": {
-            "en": "Cleveland Cavaliers (NBA)",
-            "fr": "Cleveland Cavaliers (NBA)"
+            "en": "Cleveland Cavaliers",
+            "fr": "Cleveland Cavaliers"
           }
         },
         {
           "value": "dallas_mavericks",
           "label": {
-            "en": "Dallas Mavericks (NBA)",
-            "fr": "Dallas Mavericks (NBA)"
+            "en": "Dallas Mavericks",
+            "fr": "Dallas Mavericks"
           }
         },
         {
           "value": "denver_nuggets",
           "label": {
-            "en": "Denver Nuggets (NBA)",
-            "fr": "Denver Nuggets (NBA)"
+            "en": "Denver Nuggets",
+            "fr": "Denver Nuggets"
           }
         },
         {
           "value": "detroit_pistons",
           "label": {
-            "en": "Detroit Pistons (NBA)",
-            "fr": "Detroit Pistons (NBA)"
+            "en": "Detroit Pistons",
+            "fr": "Detroit Pistons"
           }
         },
         {
           "value": "golden_state_warriors",
           "label": {
-            "en": "Golden State Warriors (NBA)",
-            "fr": "Golden State Warriors (NBA)"
+            "en": "Golden State Warriors",
+            "fr": "Golden State Warriors"
           }
         },
         {
           "value": "houston_rockets",
           "label": {
-            "en": "Houston Rockets (NBA)",
-            "fr": "Houston Rockets (NBA)"
+            "en": "Houston Rockets",
+            "fr": "Houston Rockets"
           }
         },
         {
           "value": "indiana_pacers",
           "label": {
-            "en": "Indiana Pacers (NBA)",
-            "fr": "Indiana Pacers (NBA)"
+            "en": "Indiana Pacers",
+            "fr": "Indiana Pacers"
           }
         },
         {
           "value": "la_clippers",
           "label": {
-            "en": "LA Clippers (NBA)",
-            "fr": "LA Clippers (NBA)"
+            "en": "LA Clippers",
+            "fr": "LA Clippers"
           }
         },
         {
           "value": "los_angeles_lakers",
           "label": {
-            "en": "Los Angeles Lakers (NBA)",
-            "fr": "Los Angeles Lakers (NBA)"
+            "en": "Los Angeles Lakers",
+            "fr": "Los Angeles Lakers"
           }
         },
         {
           "value": "memphis_grizzlies",
           "label": {
-            "en": "Memphis Grizzlies (NBA)",
-            "fr": "Memphis Grizzlies (NBA)"
+            "en": "Memphis Grizzlies",
+            "fr": "Memphis Grizzlies"
           }
         },
         {
           "value": "miami_heat",
           "label": {
-            "en": "Miami Heat (NBA)",
-            "fr": "Miami Heat (NBA)"
+            "en": "Miami Heat",
+            "fr": "Miami Heat"
           }
         },
         {
           "value": "milwaukee_bucks",
           "label": {
-            "en": "Milwaukee Bucks (NBA)",
-            "fr": "Milwaukee Bucks (NBA)"
+            "en": "Milwaukee Bucks",
+            "fr": "Milwaukee Bucks"
           }
         },
         {
           "value": "minnesota_timberwolves",
           "label": {
-            "en": "Minnesota Timberwolves (NBA)",
-            "fr": "Minnesota Timberwolves (NBA)"
+            "en": "Minnesota Timberwolves",
+            "fr": "Minnesota Timberwolves"
           }
         },
         {
           "value": "new_orleans_pelicans",
           "label": {
-            "en": "New Orleans Pelicans (NBA)",
-            "fr": "New Orleans Pelicans (NBA)"
+            "en": "New Orleans Pelicans",
+            "fr": "New Orleans Pelicans"
           }
         },
         {
           "value": "new_york_knicks",
           "label": {
-            "en": "New York Knicks (NBA)",
-            "fr": "New York Knicks (NBA)"
+            "en": "New York Knicks",
+            "fr": "New York Knicks"
           }
         },
         {
           "value": "oklahoma_city_thunder",
           "label": {
-            "en": "Oklahoma City Thunder (NBA)",
-            "fr": "Oklahoma City Thunder (NBA)"
+            "en": "Oklahoma City Thunder",
+            "fr": "Oklahoma City Thunder"
           }
         },
         {
           "value": "orlando_magic",
           "label": {
-            "en": "Orlando Magic (NBA)",
-            "fr": "Orlando Magic (NBA)"
+            "en": "Orlando Magic",
+            "fr": "Orlando Magic"
           }
         },
         {
           "value": "philadelphia_76ers",
           "label": {
-            "en": "Philadelphia 76ers (NBA)",
-            "fr": "Philadelphia 76ers (NBA)"
+            "en": "Philadelphia 76ers",
+            "fr": "Philadelphia 76ers"
           }
         },
         {
           "value": "phoenix_suns",
           "label": {
-            "en": "Phoenix Suns (NBA)",
-            "fr": "Phoenix Suns (NBA)"
+            "en": "Phoenix Suns",
+            "fr": "Phoenix Suns"
           }
         },
         {
           "value": "portland_trail_blazers",
           "label": {
-            "en": "Portland Trail Blazers (NBA)",
-            "fr": "Portland Trail Blazers (NBA)"
+            "en": "Portland Trail Blazers",
+            "fr": "Portland Trail Blazers"
           }
         },
         {
           "value": "sacramento_kings",
           "label": {
-            "en": "Sacramento Kings (NBA)",
-            "fr": "Sacramento Kings (NBA)"
+            "en": "Sacramento Kings",
+            "fr": "Sacramento Kings"
           }
         },
         {
           "value": "san_antonio_spurs",
           "label": {
-            "en": "San Antonio Spurs (NBA)",
-            "fr": "San Antonio Spurs (NBA)"
+            "en": "San Antonio Spurs",
+            "fr": "San Antonio Spurs"
           }
         },
         {
           "value": "toronto_raptors",
           "label": {
-            "en": "Toronto Raptors (NBA)",
-            "fr": "Toronto Raptors (NBA)"
+            "en": "Toronto Raptors",
+            "fr": "Toronto Raptors"
           }
         },
         {
           "value": "utah_jazz",
           "label": {
-            "en": "Utah Jazz (NBA)",
-            "fr": "Utah Jazz (NBA)"
+            "en": "Utah Jazz",
+            "fr": "Utah Jazz"
           }
         },
         {
           "value": "washington_wizards",
           "label": {
-            "en": "Washington Wizards (NBA)",
-            "fr": "Washington Wizards (NBA)"
+            "en": "Washington Wizards",
+            "fr": "Washington Wizards"
           }
         }
       ]
@@ -1289,459 +1294,10 @@
             "fr": "Équipes"
           },
           "description": {
-            "en": "Empty: the teams of the integration configuration.",
-            "fr": "Vide : les équipes de la configuration de l'intégration."
+            "en": "Empty: every followed team.",
+            "fr": "Vide : toutes les équipes suivies."
           },
-          "options": [
-            {
-              "value": "asvel",
-              "label": {
-                "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
-                "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
-              }
-            },
-            {
-              "value": "paris_basketball",
-              "label": {
-                "en": "Paris Basketball (EuroLeague, Betclic Élite)",
-                "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
-              }
-            },
-            {
-              "value": "boulazac",
-              "label": {
-                "en": "Boulazac Basket Dordogne (Betclic Élite)",
-                "fr": "Boulazac Basket Dordogne (Betclic Élite)"
-              }
-            },
-            {
-              "value": "bourg_en_bresse",
-              "label": {
-                "en": "JL Bourg (Betclic Élite)",
-                "fr": "JL Bourg (Betclic Élite)"
-              }
-            },
-            {
-              "value": "chalon",
-              "label": {
-                "en": "Élan Chalon (Betclic Élite)",
-                "fr": "Élan Chalon (Betclic Élite)"
-              }
-            },
-            {
-              "value": "cholet",
-              "label": {
-                "en": "Cholet Basket (Betclic Élite)",
-                "fr": "Cholet Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "dijon",
-              "label": {
-                "en": "JDA Dijon (Betclic Élite)",
-                "fr": "JDA Dijon (Betclic Élite)"
-              }
-            },
-            {
-              "value": "gravelines_dunkerque",
-              "label": {
-                "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
-                "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
-              }
-            },
-            {
-              "value": "le_mans",
-              "label": {
-                "en": "Le Mans Sarthe Basket (Betclic Élite)",
-                "fr": "Le Mans Sarthe Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "limoges",
-              "label": {
-                "en": "Limoges CSP (Betclic Élite)",
-                "fr": "Limoges CSP (Betclic Élite)"
-              }
-            },
-            {
-              "value": "nancy",
-              "label": {
-                "en": "SLUC Nancy (Betclic Élite)",
-                "fr": "SLUC Nancy (Betclic Élite)"
-              }
-            },
-            {
-              "value": "nanterre",
-              "label": {
-                "en": "Nanterre 92 (Betclic Élite)",
-                "fr": "Nanterre 92 (Betclic Élite)"
-              }
-            },
-            {
-              "value": "pau",
-              "label": {
-                "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
-                "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
-              }
-            },
-            {
-              "value": "roanne",
-              "label": {
-                "en": "Chorale Roanne (Betclic Élite)",
-                "fr": "Chorale Roanne (Betclic Élite)"
-              }
-            },
-            {
-              "value": "saint_quentin",
-              "label": {
-                "en": "Saint-Quentin Basket (Betclic Élite)",
-                "fr": "Saint-Quentin Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "strasbourg",
-              "label": {
-                "en": "SIG Strasbourg (Betclic Élite)",
-                "fr": "SIG Strasbourg (Betclic Élite)"
-              }
-            },
-            {
-              "value": "fc_barcelona",
-              "label": {
-                "en": "FC Barcelona (EuroLeague)",
-                "fr": "FC Barcelona (EuroLeague)"
-              }
-            },
-            {
-              "value": "baskonia",
-              "label": {
-                "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
-                "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
-              }
-            },
-            {
-              "value": "besiktas",
-              "label": {
-                "en": "Besiktas Istanbul (EuroLeague)",
-                "fr": "Besiktas Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "dubai",
-              "label": {
-                "en": "Dubai Basketball (EuroLeague)",
-                "fr": "Dubai Basketball (EuroLeague)"
-              }
-            },
-            {
-              "value": "hapoel_tel_aviv",
-              "label": {
-                "en": "Hapoel Tel Aviv (EuroLeague)",
-                "fr": "Hapoel Tel Aviv (EuroLeague)"
-              }
-            },
-            {
-              "value": "anadolu_efes",
-              "label": {
-                "en": "Anadolu Efes Istanbul (EuroLeague)",
-                "fr": "Anadolu Efes Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "real_madrid",
-              "label": {
-                "en": "Real Madrid (EuroLeague)",
-                "fr": "Real Madrid (EuroLeague)"
-              }
-            },
-            {
-              "value": "olimpia_milano",
-              "label": {
-                "en": "Olimpia Milano (EuroLeague)",
-                "fr": "Olimpia Milano (EuroLeague)"
-              }
-            },
-            {
-              "value": "bayern_munich",
-              "label": {
-                "en": "FC Bayern Munich (EuroLeague)",
-                "fr": "FC Bayern Munich (EuroLeague)"
-              }
-            },
-            {
-              "value": "olympiacos",
-              "label": {
-                "en": "Olympiacos Piraeus (EuroLeague)",
-                "fr": "Olympiacos Piraeus (EuroLeague)"
-              }
-            },
-            {
-              "value": "valencia",
-              "label": {
-                "en": "Valencia Basket (EuroLeague)",
-                "fr": "Valencia Basket (EuroLeague)"
-              }
-            },
-            {
-              "value": "panathinaikos",
-              "label": {
-                "en": "Panathinaikos Athens (EuroLeague)",
-                "fr": "Panathinaikos Athens (EuroLeague)"
-              }
-            },
-            {
-              "value": "partizan",
-              "label": {
-                "en": "Partizan Belgrade (EuroLeague)",
-                "fr": "Partizan Belgrade (EuroLeague)"
-              }
-            },
-            {
-              "value": "crvena_zvezda",
-              "label": {
-                "en": "Crvena Zvezda Belgrade (EuroLeague)",
-                "fr": "Crvena Zvezda Belgrade (EuroLeague)"
-              }
-            },
-            {
-              "value": "maccabi_tel_aviv",
-              "label": {
-                "en": "Maccabi Tel Aviv (EuroLeague)",
-                "fr": "Maccabi Tel Aviv (EuroLeague)"
-              }
-            },
-            {
-              "value": "fenerbahce",
-              "label": {
-                "en": "Fenerbahçe Istanbul (EuroLeague)",
-                "fr": "Fenerbahçe Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "virtus_bologna",
-              "label": {
-                "en": "Virtus Bologna (EuroLeague)",
-                "fr": "Virtus Bologna (EuroLeague)"
-              }
-            },
-            {
-              "value": "zalgiris",
-              "label": {
-                "en": "Zalgiris Kaunas (EuroLeague)",
-                "fr": "Zalgiris Kaunas (EuroLeague)"
-              }
-            },
-            {
-              "value": "atlanta_hawks",
-              "label": {
-                "en": "Atlanta Hawks (NBA)",
-                "fr": "Atlanta Hawks (NBA)"
-              }
-            },
-            {
-              "value": "boston_celtics",
-              "label": {
-                "en": "Boston Celtics (NBA)",
-                "fr": "Boston Celtics (NBA)"
-              }
-            },
-            {
-              "value": "brooklyn_nets",
-              "label": {
-                "en": "Brooklyn Nets (NBA)",
-                "fr": "Brooklyn Nets (NBA)"
-              }
-            },
-            {
-              "value": "charlotte_hornets",
-              "label": {
-                "en": "Charlotte Hornets (NBA)",
-                "fr": "Charlotte Hornets (NBA)"
-              }
-            },
-            {
-              "value": "chicago_bulls",
-              "label": {
-                "en": "Chicago Bulls (NBA)",
-                "fr": "Chicago Bulls (NBA)"
-              }
-            },
-            {
-              "value": "cleveland_cavaliers",
-              "label": {
-                "en": "Cleveland Cavaliers (NBA)",
-                "fr": "Cleveland Cavaliers (NBA)"
-              }
-            },
-            {
-              "value": "dallas_mavericks",
-              "label": {
-                "en": "Dallas Mavericks (NBA)",
-                "fr": "Dallas Mavericks (NBA)"
-              }
-            },
-            {
-              "value": "denver_nuggets",
-              "label": {
-                "en": "Denver Nuggets (NBA)",
-                "fr": "Denver Nuggets (NBA)"
-              }
-            },
-            {
-              "value": "detroit_pistons",
-              "label": {
-                "en": "Detroit Pistons (NBA)",
-                "fr": "Detroit Pistons (NBA)"
-              }
-            },
-            {
-              "value": "golden_state_warriors",
-              "label": {
-                "en": "Golden State Warriors (NBA)",
-                "fr": "Golden State Warriors (NBA)"
-              }
-            },
-            {
-              "value": "houston_rockets",
-              "label": {
-                "en": "Houston Rockets (NBA)",
-                "fr": "Houston Rockets (NBA)"
-              }
-            },
-            {
-              "value": "indiana_pacers",
-              "label": {
-                "en": "Indiana Pacers (NBA)",
-                "fr": "Indiana Pacers (NBA)"
-              }
-            },
-            {
-              "value": "la_clippers",
-              "label": {
-                "en": "LA Clippers (NBA)",
-                "fr": "LA Clippers (NBA)"
-              }
-            },
-            {
-              "value": "los_angeles_lakers",
-              "label": {
-                "en": "Los Angeles Lakers (NBA)",
-                "fr": "Los Angeles Lakers (NBA)"
-              }
-            },
-            {
-              "value": "memphis_grizzlies",
-              "label": {
-                "en": "Memphis Grizzlies (NBA)",
-                "fr": "Memphis Grizzlies (NBA)"
-              }
-            },
-            {
-              "value": "miami_heat",
-              "label": {
-                "en": "Miami Heat (NBA)",
-                "fr": "Miami Heat (NBA)"
-              }
-            },
-            {
-              "value": "milwaukee_bucks",
-              "label": {
-                "en": "Milwaukee Bucks (NBA)",
-                "fr": "Milwaukee Bucks (NBA)"
-              }
-            },
-            {
-              "value": "minnesota_timberwolves",
-              "label": {
-                "en": "Minnesota Timberwolves (NBA)",
-                "fr": "Minnesota Timberwolves (NBA)"
-              }
-            },
-            {
-              "value": "new_orleans_pelicans",
-              "label": {
-                "en": "New Orleans Pelicans (NBA)",
-                "fr": "New Orleans Pelicans (NBA)"
-              }
-            },
-            {
-              "value": "new_york_knicks",
-              "label": {
-                "en": "New York Knicks (NBA)",
-                "fr": "New York Knicks (NBA)"
-              }
-            },
-            {
-              "value": "oklahoma_city_thunder",
-              "label": {
-                "en": "Oklahoma City Thunder (NBA)",
-                "fr": "Oklahoma City Thunder (NBA)"
-              }
-            },
-            {
-              "value": "orlando_magic",
-              "label": {
-                "en": "Orlando Magic (NBA)",
-                "fr": "Orlando Magic (NBA)"
-              }
-            },
-            {
-              "value": "philadelphia_76ers",
-              "label": {
-                "en": "Philadelphia 76ers (NBA)",
-                "fr": "Philadelphia 76ers (NBA)"
-              }
-            },
-            {
-              "value": "phoenix_suns",
-              "label": {
-                "en": "Phoenix Suns (NBA)",
-                "fr": "Phoenix Suns (NBA)"
-              }
-            },
-            {
-              "value": "portland_trail_blazers",
-              "label": {
-                "en": "Portland Trail Blazers (NBA)",
-                "fr": "Portland Trail Blazers (NBA)"
-              }
-            },
-            {
-              "value": "sacramento_kings",
-              "label": {
-                "en": "Sacramento Kings (NBA)",
-                "fr": "Sacramento Kings (NBA)"
-              }
-            },
-            {
-              "value": "san_antonio_spurs",
-              "label": {
-                "en": "San Antonio Spurs (NBA)",
-                "fr": "San Antonio Spurs (NBA)"
-              }
-            },
-            {
-              "value": "toronto_raptors",
-              "label": {
-                "en": "Toronto Raptors (NBA)",
-                "fr": "Toronto Raptors (NBA)"
-              }
-            },
-            {
-              "value": "utah_jazz",
-              "label": {
-                "en": "Utah Jazz (NBA)",
-                "fr": "Utah Jazz (NBA)"
-              }
-            },
-            {
-              "value": "washington_wizards",
-              "label": {
-                "en": "Washington Wizards (NBA)",
-                "fr": "Washington Wizards (NBA)"
-              }
-            }
-          ]
+          "source": "devices"
         }
       ]
     }
@@ -1766,459 +1322,10 @@
             "fr": "Équipes"
           },
           "description": {
-            "en": "Followed teams only. Empty: any followed team.",
-            "fr": "Équipes suivies uniquement. Vide : n'importe quelle équipe suivie."
+            "en": "Empty: any followed team.",
+            "fr": "Vide : n'importe quelle équipe suivie."
           },
-          "options": [
-            {
-              "value": "asvel",
-              "label": {
-                "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
-                "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
-              }
-            },
-            {
-              "value": "paris_basketball",
-              "label": {
-                "en": "Paris Basketball (EuroLeague, Betclic Élite)",
-                "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
-              }
-            },
-            {
-              "value": "boulazac",
-              "label": {
-                "en": "Boulazac Basket Dordogne (Betclic Élite)",
-                "fr": "Boulazac Basket Dordogne (Betclic Élite)"
-              }
-            },
-            {
-              "value": "bourg_en_bresse",
-              "label": {
-                "en": "JL Bourg (Betclic Élite)",
-                "fr": "JL Bourg (Betclic Élite)"
-              }
-            },
-            {
-              "value": "chalon",
-              "label": {
-                "en": "Élan Chalon (Betclic Élite)",
-                "fr": "Élan Chalon (Betclic Élite)"
-              }
-            },
-            {
-              "value": "cholet",
-              "label": {
-                "en": "Cholet Basket (Betclic Élite)",
-                "fr": "Cholet Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "dijon",
-              "label": {
-                "en": "JDA Dijon (Betclic Élite)",
-                "fr": "JDA Dijon (Betclic Élite)"
-              }
-            },
-            {
-              "value": "gravelines_dunkerque",
-              "label": {
-                "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
-                "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
-              }
-            },
-            {
-              "value": "le_mans",
-              "label": {
-                "en": "Le Mans Sarthe Basket (Betclic Élite)",
-                "fr": "Le Mans Sarthe Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "limoges",
-              "label": {
-                "en": "Limoges CSP (Betclic Élite)",
-                "fr": "Limoges CSP (Betclic Élite)"
-              }
-            },
-            {
-              "value": "nancy",
-              "label": {
-                "en": "SLUC Nancy (Betclic Élite)",
-                "fr": "SLUC Nancy (Betclic Élite)"
-              }
-            },
-            {
-              "value": "nanterre",
-              "label": {
-                "en": "Nanterre 92 (Betclic Élite)",
-                "fr": "Nanterre 92 (Betclic Élite)"
-              }
-            },
-            {
-              "value": "pau",
-              "label": {
-                "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
-                "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
-              }
-            },
-            {
-              "value": "roanne",
-              "label": {
-                "en": "Chorale Roanne (Betclic Élite)",
-                "fr": "Chorale Roanne (Betclic Élite)"
-              }
-            },
-            {
-              "value": "saint_quentin",
-              "label": {
-                "en": "Saint-Quentin Basket (Betclic Élite)",
-                "fr": "Saint-Quentin Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "strasbourg",
-              "label": {
-                "en": "SIG Strasbourg (Betclic Élite)",
-                "fr": "SIG Strasbourg (Betclic Élite)"
-              }
-            },
-            {
-              "value": "fc_barcelona",
-              "label": {
-                "en": "FC Barcelona (EuroLeague)",
-                "fr": "FC Barcelona (EuroLeague)"
-              }
-            },
-            {
-              "value": "baskonia",
-              "label": {
-                "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
-                "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
-              }
-            },
-            {
-              "value": "besiktas",
-              "label": {
-                "en": "Besiktas Istanbul (EuroLeague)",
-                "fr": "Besiktas Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "dubai",
-              "label": {
-                "en": "Dubai Basketball (EuroLeague)",
-                "fr": "Dubai Basketball (EuroLeague)"
-              }
-            },
-            {
-              "value": "hapoel_tel_aviv",
-              "label": {
-                "en": "Hapoel Tel Aviv (EuroLeague)",
-                "fr": "Hapoel Tel Aviv (EuroLeague)"
-              }
-            },
-            {
-              "value": "anadolu_efes",
-              "label": {
-                "en": "Anadolu Efes Istanbul (EuroLeague)",
-                "fr": "Anadolu Efes Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "real_madrid",
-              "label": {
-                "en": "Real Madrid (EuroLeague)",
-                "fr": "Real Madrid (EuroLeague)"
-              }
-            },
-            {
-              "value": "olimpia_milano",
-              "label": {
-                "en": "Olimpia Milano (EuroLeague)",
-                "fr": "Olimpia Milano (EuroLeague)"
-              }
-            },
-            {
-              "value": "bayern_munich",
-              "label": {
-                "en": "FC Bayern Munich (EuroLeague)",
-                "fr": "FC Bayern Munich (EuroLeague)"
-              }
-            },
-            {
-              "value": "olympiacos",
-              "label": {
-                "en": "Olympiacos Piraeus (EuroLeague)",
-                "fr": "Olympiacos Piraeus (EuroLeague)"
-              }
-            },
-            {
-              "value": "valencia",
-              "label": {
-                "en": "Valencia Basket (EuroLeague)",
-                "fr": "Valencia Basket (EuroLeague)"
-              }
-            },
-            {
-              "value": "panathinaikos",
-              "label": {
-                "en": "Panathinaikos Athens (EuroLeague)",
-                "fr": "Panathinaikos Athens (EuroLeague)"
-              }
-            },
-            {
-              "value": "partizan",
-              "label": {
-                "en": "Partizan Belgrade (EuroLeague)",
-                "fr": "Partizan Belgrade (EuroLeague)"
-              }
-            },
-            {
-              "value": "crvena_zvezda",
-              "label": {
-                "en": "Crvena Zvezda Belgrade (EuroLeague)",
-                "fr": "Crvena Zvezda Belgrade (EuroLeague)"
-              }
-            },
-            {
-              "value": "maccabi_tel_aviv",
-              "label": {
-                "en": "Maccabi Tel Aviv (EuroLeague)",
-                "fr": "Maccabi Tel Aviv (EuroLeague)"
-              }
-            },
-            {
-              "value": "fenerbahce",
-              "label": {
-                "en": "Fenerbahçe Istanbul (EuroLeague)",
-                "fr": "Fenerbahçe Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "virtus_bologna",
-              "label": {
-                "en": "Virtus Bologna (EuroLeague)",
-                "fr": "Virtus Bologna (EuroLeague)"
-              }
-            },
-            {
-              "value": "zalgiris",
-              "label": {
-                "en": "Zalgiris Kaunas (EuroLeague)",
-                "fr": "Zalgiris Kaunas (EuroLeague)"
-              }
-            },
-            {
-              "value": "atlanta_hawks",
-              "label": {
-                "en": "Atlanta Hawks (NBA)",
-                "fr": "Atlanta Hawks (NBA)"
-              }
-            },
-            {
-              "value": "boston_celtics",
-              "label": {
-                "en": "Boston Celtics (NBA)",
-                "fr": "Boston Celtics (NBA)"
-              }
-            },
-            {
-              "value": "brooklyn_nets",
-              "label": {
-                "en": "Brooklyn Nets (NBA)",
-                "fr": "Brooklyn Nets (NBA)"
-              }
-            },
-            {
-              "value": "charlotte_hornets",
-              "label": {
-                "en": "Charlotte Hornets (NBA)",
-                "fr": "Charlotte Hornets (NBA)"
-              }
-            },
-            {
-              "value": "chicago_bulls",
-              "label": {
-                "en": "Chicago Bulls (NBA)",
-                "fr": "Chicago Bulls (NBA)"
-              }
-            },
-            {
-              "value": "cleveland_cavaliers",
-              "label": {
-                "en": "Cleveland Cavaliers (NBA)",
-                "fr": "Cleveland Cavaliers (NBA)"
-              }
-            },
-            {
-              "value": "dallas_mavericks",
-              "label": {
-                "en": "Dallas Mavericks (NBA)",
-                "fr": "Dallas Mavericks (NBA)"
-              }
-            },
-            {
-              "value": "denver_nuggets",
-              "label": {
-                "en": "Denver Nuggets (NBA)",
-                "fr": "Denver Nuggets (NBA)"
-              }
-            },
-            {
-              "value": "detroit_pistons",
-              "label": {
-                "en": "Detroit Pistons (NBA)",
-                "fr": "Detroit Pistons (NBA)"
-              }
-            },
-            {
-              "value": "golden_state_warriors",
-              "label": {
-                "en": "Golden State Warriors (NBA)",
-                "fr": "Golden State Warriors (NBA)"
-              }
-            },
-            {
-              "value": "houston_rockets",
-              "label": {
-                "en": "Houston Rockets (NBA)",
-                "fr": "Houston Rockets (NBA)"
-              }
-            },
-            {
-              "value": "indiana_pacers",
-              "label": {
-                "en": "Indiana Pacers (NBA)",
-                "fr": "Indiana Pacers (NBA)"
-              }
-            },
-            {
-              "value": "la_clippers",
-              "label": {
-                "en": "LA Clippers (NBA)",
-                "fr": "LA Clippers (NBA)"
-              }
-            },
-            {
-              "value": "los_angeles_lakers",
-              "label": {
-                "en": "Los Angeles Lakers (NBA)",
-                "fr": "Los Angeles Lakers (NBA)"
-              }
-            },
-            {
-              "value": "memphis_grizzlies",
-              "label": {
-                "en": "Memphis Grizzlies (NBA)",
-                "fr": "Memphis Grizzlies (NBA)"
-              }
-            },
-            {
-              "value": "miami_heat",
-              "label": {
-                "en": "Miami Heat (NBA)",
-                "fr": "Miami Heat (NBA)"
-              }
-            },
-            {
-              "value": "milwaukee_bucks",
-              "label": {
-                "en": "Milwaukee Bucks (NBA)",
-                "fr": "Milwaukee Bucks (NBA)"
-              }
-            },
-            {
-              "value": "minnesota_timberwolves",
-              "label": {
-                "en": "Minnesota Timberwolves (NBA)",
-                "fr": "Minnesota Timberwolves (NBA)"
-              }
-            },
-            {
-              "value": "new_orleans_pelicans",
-              "label": {
-                "en": "New Orleans Pelicans (NBA)",
-                "fr": "New Orleans Pelicans (NBA)"
-              }
-            },
-            {
-              "value": "new_york_knicks",
-              "label": {
-                "en": "New York Knicks (NBA)",
-                "fr": "New York Knicks (NBA)"
-              }
-            },
-            {
-              "value": "oklahoma_city_thunder",
-              "label": {
-                "en": "Oklahoma City Thunder (NBA)",
-                "fr": "Oklahoma City Thunder (NBA)"
-              }
-            },
-            {
-              "value": "orlando_magic",
-              "label": {
-                "en": "Orlando Magic (NBA)",
-                "fr": "Orlando Magic (NBA)"
-              }
-            },
-            {
-              "value": "philadelphia_76ers",
-              "label": {
-                "en": "Philadelphia 76ers (NBA)",
-                "fr": "Philadelphia 76ers (NBA)"
-              }
-            },
-            {
-              "value": "phoenix_suns",
-              "label": {
-                "en": "Phoenix Suns (NBA)",
-                "fr": "Phoenix Suns (NBA)"
-              }
-            },
-            {
-              "value": "portland_trail_blazers",
-              "label": {
-                "en": "Portland Trail Blazers (NBA)",
-                "fr": "Portland Trail Blazers (NBA)"
-              }
-            },
-            {
-              "value": "sacramento_kings",
-              "label": {
-                "en": "Sacramento Kings (NBA)",
-                "fr": "Sacramento Kings (NBA)"
-              }
-            },
-            {
-              "value": "san_antonio_spurs",
-              "label": {
-                "en": "San Antonio Spurs (NBA)",
-                "fr": "San Antonio Spurs (NBA)"
-              }
-            },
-            {
-              "value": "toronto_raptors",
-              "label": {
-                "en": "Toronto Raptors (NBA)",
-                "fr": "Toronto Raptors (NBA)"
-              }
-            },
-            {
-              "value": "utah_jazz",
-              "label": {
-                "en": "Utah Jazz (NBA)",
-                "fr": "Utah Jazz (NBA)"
-              }
-            },
-            {
-              "value": "washington_wizards",
-              "label": {
-                "en": "Washington Wizards (NBA)",
-                "fr": "Washington Wizards (NBA)"
-              }
-            }
-          ]
+          "source": "devices"
         },
         {
           "key": "competition",
@@ -2365,456 +1472,7 @@
             "fr": "Équipe"
           },
           "required": true,
-          "options": [
-            {
-              "value": "asvel",
-              "label": {
-                "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
-                "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
-              }
-            },
-            {
-              "value": "paris_basketball",
-              "label": {
-                "en": "Paris Basketball (EuroLeague, Betclic Élite)",
-                "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
-              }
-            },
-            {
-              "value": "boulazac",
-              "label": {
-                "en": "Boulazac Basket Dordogne (Betclic Élite)",
-                "fr": "Boulazac Basket Dordogne (Betclic Élite)"
-              }
-            },
-            {
-              "value": "bourg_en_bresse",
-              "label": {
-                "en": "JL Bourg (Betclic Élite)",
-                "fr": "JL Bourg (Betclic Élite)"
-              }
-            },
-            {
-              "value": "chalon",
-              "label": {
-                "en": "Élan Chalon (Betclic Élite)",
-                "fr": "Élan Chalon (Betclic Élite)"
-              }
-            },
-            {
-              "value": "cholet",
-              "label": {
-                "en": "Cholet Basket (Betclic Élite)",
-                "fr": "Cholet Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "dijon",
-              "label": {
-                "en": "JDA Dijon (Betclic Élite)",
-                "fr": "JDA Dijon (Betclic Élite)"
-              }
-            },
-            {
-              "value": "gravelines_dunkerque",
-              "label": {
-                "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
-                "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
-              }
-            },
-            {
-              "value": "le_mans",
-              "label": {
-                "en": "Le Mans Sarthe Basket (Betclic Élite)",
-                "fr": "Le Mans Sarthe Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "limoges",
-              "label": {
-                "en": "Limoges CSP (Betclic Élite)",
-                "fr": "Limoges CSP (Betclic Élite)"
-              }
-            },
-            {
-              "value": "nancy",
-              "label": {
-                "en": "SLUC Nancy (Betclic Élite)",
-                "fr": "SLUC Nancy (Betclic Élite)"
-              }
-            },
-            {
-              "value": "nanterre",
-              "label": {
-                "en": "Nanterre 92 (Betclic Élite)",
-                "fr": "Nanterre 92 (Betclic Élite)"
-              }
-            },
-            {
-              "value": "pau",
-              "label": {
-                "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
-                "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
-              }
-            },
-            {
-              "value": "roanne",
-              "label": {
-                "en": "Chorale Roanne (Betclic Élite)",
-                "fr": "Chorale Roanne (Betclic Élite)"
-              }
-            },
-            {
-              "value": "saint_quentin",
-              "label": {
-                "en": "Saint-Quentin Basket (Betclic Élite)",
-                "fr": "Saint-Quentin Basket (Betclic Élite)"
-              }
-            },
-            {
-              "value": "strasbourg",
-              "label": {
-                "en": "SIG Strasbourg (Betclic Élite)",
-                "fr": "SIG Strasbourg (Betclic Élite)"
-              }
-            },
-            {
-              "value": "fc_barcelona",
-              "label": {
-                "en": "FC Barcelona (EuroLeague)",
-                "fr": "FC Barcelona (EuroLeague)"
-              }
-            },
-            {
-              "value": "baskonia",
-              "label": {
-                "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
-                "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
-              }
-            },
-            {
-              "value": "besiktas",
-              "label": {
-                "en": "Besiktas Istanbul (EuroLeague)",
-                "fr": "Besiktas Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "dubai",
-              "label": {
-                "en": "Dubai Basketball (EuroLeague)",
-                "fr": "Dubai Basketball (EuroLeague)"
-              }
-            },
-            {
-              "value": "hapoel_tel_aviv",
-              "label": {
-                "en": "Hapoel Tel Aviv (EuroLeague)",
-                "fr": "Hapoel Tel Aviv (EuroLeague)"
-              }
-            },
-            {
-              "value": "anadolu_efes",
-              "label": {
-                "en": "Anadolu Efes Istanbul (EuroLeague)",
-                "fr": "Anadolu Efes Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "real_madrid",
-              "label": {
-                "en": "Real Madrid (EuroLeague)",
-                "fr": "Real Madrid (EuroLeague)"
-              }
-            },
-            {
-              "value": "olimpia_milano",
-              "label": {
-                "en": "Olimpia Milano (EuroLeague)",
-                "fr": "Olimpia Milano (EuroLeague)"
-              }
-            },
-            {
-              "value": "bayern_munich",
-              "label": {
-                "en": "FC Bayern Munich (EuroLeague)",
-                "fr": "FC Bayern Munich (EuroLeague)"
-              }
-            },
-            {
-              "value": "olympiacos",
-              "label": {
-                "en": "Olympiacos Piraeus (EuroLeague)",
-                "fr": "Olympiacos Piraeus (EuroLeague)"
-              }
-            },
-            {
-              "value": "valencia",
-              "label": {
-                "en": "Valencia Basket (EuroLeague)",
-                "fr": "Valencia Basket (EuroLeague)"
-              }
-            },
-            {
-              "value": "panathinaikos",
-              "label": {
-                "en": "Panathinaikos Athens (EuroLeague)",
-                "fr": "Panathinaikos Athens (EuroLeague)"
-              }
-            },
-            {
-              "value": "partizan",
-              "label": {
-                "en": "Partizan Belgrade (EuroLeague)",
-                "fr": "Partizan Belgrade (EuroLeague)"
-              }
-            },
-            {
-              "value": "crvena_zvezda",
-              "label": {
-                "en": "Crvena Zvezda Belgrade (EuroLeague)",
-                "fr": "Crvena Zvezda Belgrade (EuroLeague)"
-              }
-            },
-            {
-              "value": "maccabi_tel_aviv",
-              "label": {
-                "en": "Maccabi Tel Aviv (EuroLeague)",
-                "fr": "Maccabi Tel Aviv (EuroLeague)"
-              }
-            },
-            {
-              "value": "fenerbahce",
-              "label": {
-                "en": "Fenerbahçe Istanbul (EuroLeague)",
-                "fr": "Fenerbahçe Istanbul (EuroLeague)"
-              }
-            },
-            {
-              "value": "virtus_bologna",
-              "label": {
-                "en": "Virtus Bologna (EuroLeague)",
-                "fr": "Virtus Bologna (EuroLeague)"
-              }
-            },
-            {
-              "value": "zalgiris",
-              "label": {
-                "en": "Zalgiris Kaunas (EuroLeague)",
-                "fr": "Zalgiris Kaunas (EuroLeague)"
-              }
-            },
-            {
-              "value": "atlanta_hawks",
-              "label": {
-                "en": "Atlanta Hawks (NBA)",
-                "fr": "Atlanta Hawks (NBA)"
-              }
-            },
-            {
-              "value": "boston_celtics",
-              "label": {
-                "en": "Boston Celtics (NBA)",
-                "fr": "Boston Celtics (NBA)"
-              }
-            },
-            {
-              "value": "brooklyn_nets",
-              "label": {
-                "en": "Brooklyn Nets (NBA)",
-                "fr": "Brooklyn Nets (NBA)"
-              }
-            },
-            {
-              "value": "charlotte_hornets",
-              "label": {
-                "en": "Charlotte Hornets (NBA)",
-                "fr": "Charlotte Hornets (NBA)"
-              }
-            },
-            {
-              "value": "chicago_bulls",
-              "label": {
-                "en": "Chicago Bulls (NBA)",
-                "fr": "Chicago Bulls (NBA)"
-              }
-            },
-            {
-              "value": "cleveland_cavaliers",
-              "label": {
-                "en": "Cleveland Cavaliers (NBA)",
-                "fr": "Cleveland Cavaliers (NBA)"
-              }
-            },
-            {
-              "value": "dallas_mavericks",
-              "label": {
-                "en": "Dallas Mavericks (NBA)",
-                "fr": "Dallas Mavericks (NBA)"
-              }
-            },
-            {
-              "value": "denver_nuggets",
-              "label": {
-                "en": "Denver Nuggets (NBA)",
-                "fr": "Denver Nuggets (NBA)"
-              }
-            },
-            {
-              "value": "detroit_pistons",
-              "label": {
-                "en": "Detroit Pistons (NBA)",
-                "fr": "Detroit Pistons (NBA)"
-              }
-            },
-            {
-              "value": "golden_state_warriors",
-              "label": {
-                "en": "Golden State Warriors (NBA)",
-                "fr": "Golden State Warriors (NBA)"
-              }
-            },
-            {
-              "value": "houston_rockets",
-              "label": {
-                "en": "Houston Rockets (NBA)",
-                "fr": "Houston Rockets (NBA)"
-              }
-            },
-            {
-              "value": "indiana_pacers",
-              "label": {
-                "en": "Indiana Pacers (NBA)",
-                "fr": "Indiana Pacers (NBA)"
-              }
-            },
-            {
-              "value": "la_clippers",
-              "label": {
-                "en": "LA Clippers (NBA)",
-                "fr": "LA Clippers (NBA)"
-              }
-            },
-            {
-              "value": "los_angeles_lakers",
-              "label": {
-                "en": "Los Angeles Lakers (NBA)",
-                "fr": "Los Angeles Lakers (NBA)"
-              }
-            },
-            {
-              "value": "memphis_grizzlies",
-              "label": {
-                "en": "Memphis Grizzlies (NBA)",
-                "fr": "Memphis Grizzlies (NBA)"
-              }
-            },
-            {
-              "value": "miami_heat",
-              "label": {
-                "en": "Miami Heat (NBA)",
-                "fr": "Miami Heat (NBA)"
-              }
-            },
-            {
-              "value": "milwaukee_bucks",
-              "label": {
-                "en": "Milwaukee Bucks (NBA)",
-                "fr": "Milwaukee Bucks (NBA)"
-              }
-            },
-            {
-              "value": "minnesota_timberwolves",
-              "label": {
-                "en": "Minnesota Timberwolves (NBA)",
-                "fr": "Minnesota Timberwolves (NBA)"
-              }
-            },
-            {
-              "value": "new_orleans_pelicans",
-              "label": {
-                "en": "New Orleans Pelicans (NBA)",
-                "fr": "New Orleans Pelicans (NBA)"
-              }
-            },
-            {
-              "value": "new_york_knicks",
-              "label": {
-                "en": "New York Knicks (NBA)",
-                "fr": "New York Knicks (NBA)"
-              }
-            },
-            {
-              "value": "oklahoma_city_thunder",
-              "label": {
-                "en": "Oklahoma City Thunder (NBA)",
-                "fr": "Oklahoma City Thunder (NBA)"
-              }
-            },
-            {
-              "value": "orlando_magic",
-              "label": {
-                "en": "Orlando Magic (NBA)",
-                "fr": "Orlando Magic (NBA)"
-              }
-            },
-            {
-              "value": "philadelphia_76ers",
-              "label": {
-                "en": "Philadelphia 76ers (NBA)",
-                "fr": "Philadelphia 76ers (NBA)"
-              }
-            },
-            {
-              "value": "phoenix_suns",
-              "label": {
-                "en": "Phoenix Suns (NBA)",
-                "fr": "Phoenix Suns (NBA)"
-              }
-            },
-            {
-              "value": "portland_trail_blazers",
-              "label": {
-                "en": "Portland Trail Blazers (NBA)",
-                "fr": "Portland Trail Blazers (NBA)"
-              }
-            },
-            {
-              "value": "sacramento_kings",
-              "label": {
-                "en": "Sacramento Kings (NBA)",
-                "fr": "Sacramento Kings (NBA)"
-              }
-            },
-            {
-              "value": "san_antonio_spurs",
-              "label": {
-                "en": "San Antonio Spurs (NBA)",
-                "fr": "San Antonio Spurs (NBA)"
-              }
-            },
-            {
-              "value": "toronto_raptors",
-              "label": {
-                "en": "Toronto Raptors (NBA)",
-                "fr": "Toronto Raptors (NBA)"
-              }
-            },
-            {
-              "value": "utah_jazz",
-              "label": {
-                "en": "Utah Jazz (NBA)",
-                "fr": "Utah Jazz (NBA)"
-              }
-            },
-            {
-              "value": "washington_wizards",
-              "label": {
-                "en": "Washington Wizards (NBA)",
-                "fr": "Washington Wizards (NBA)"
-              }
-            }
-          ]
+          "source": "devices"
         }
       ],
       "outputs": [

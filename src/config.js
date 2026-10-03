@@ -10,7 +10,7 @@
 // rest of the code never has to deal with `undefined`.
 // -----------------------------------------------------------------------------
 
-import { findCompetition, findTeam } from './teams.js';
+import { COMPETITIONS, findTeam } from './teams.js';
 import { parseClock } from './time.js';
 
 // Refresh interval of the sensors, in MILLISECONDS. Gladys only accepts a few
@@ -25,11 +25,18 @@ export const CLOCK_OPTIONS = Array.from({ length: 48 }, (_, i) => {
   return `${hours}:${i % 2 === 0 ? '00' : '30'}`;
 });
 
+// Key of the config field listing the followed teams of a competition
+// (`teams_betclic_elite`, `teams_euroleague`, `teams_nba`): one checkbox list
+// per competition, so the user never scrolls through every team at once, and
+// ticking a club in a list follows it in THAT competition only.
+export const teamsKey = (competition) => `teams_${competition}`;
+
 // Defaults: they MUST stay consistent with the `default` values declared in the
 // `config_schema` of the manifest.
 export const DEFAULT_CONFIG = {
-  competitions: ['nba', 'euroleague', 'betclic_elite'],
-  teams: ['asvel', 'paris_basketball'],
+  teams_betclic_elite: ['asvel', 'paris_basketball'],
+  teams_euroleague: ['asvel', 'paris_basketball'],
+  teams_nba: [],
   watch_start: '18:00',
   watch_end: '23:30',
   include_night_games: false,
@@ -38,14 +45,30 @@ export const DEFAULT_CONFIG = {
 
 /**
  * Merge the user config with the defaults.
+ *
+ * Besides the raw fields, the result holds what the rest of the code uses:
+ *   - `follows`: team id -> competitions followed for that team;
+ *   - `teams`: the followed team ids (one device each);
+ *   - `competitions`: the competitions with at least one followed team.
  * @param {Record<string, unknown>} raw config returned by the SDK
  */
 export function normalizeConfig(raw = {}) {
+  const lists = teamLists(raw);
+  const follows = {};
+  for (const { id: competition } of COMPETITIONS) {
+    for (const team of lists[teamsKey(competition)]) {
+      (follows[team] ??= []).push(competition);
+    }
+  }
   return {
     ...DEFAULT_CONFIG,
     ...raw,
-    competitions: normalizeList(raw.competitions, DEFAULT_CONFIG.competitions, findCompetition),
-    teams: normalizeList(raw.teams, DEFAULT_CONFIG.teams, findTeam),
+    ...lists,
+    follows,
+    teams: Object.keys(follows),
+    competitions: COMPETITIONS.map((c) => c.id).filter((c) =>
+      Object.values(follows).some((list) => list.includes(c)),
+    ),
     watch_start: normalizeClock(raw.watch_start, DEFAULT_CONFIG.watch_start),
     watch_end: normalizeClock(raw.watch_end, DEFAULT_CONFIG.watch_end),
     include_night_games: normalizeBoolean(raw.include_night_games),
@@ -54,15 +77,36 @@ export function normalizeConfig(raw = {}) {
   };
 }
 
-// `multi_select` stores an array of option values. Also accept a
-// comma-separated string, drop unknown ids and duplicates.
-function normalizeList(value, fallback, find) {
-  if (value === undefined || value === null) {
-    return [...fallback];
+// One list of team ids per competition, keeping only the teams of that
+// competition. A configuration saved by the first version (one `teams` list
+// and a `competitions` list) is migrated: each team is followed in every
+// checked competition it plays.
+function teamLists(raw) {
+  const perCompetition = COMPETITIONS.some((c) => raw[teamsKey(c.id)] !== undefined);
+  const legacy = !perCompetition && raw.teams !== undefined && raw.teams !== null;
+  const legacyCompetitions = legacy
+    ? toList(raw.competitions ?? COMPETITIONS.map((c) => c.id))
+    : [];
+  const lists = {};
+  for (const { id: competition } of COMPETITIONS) {
+    const key = teamsKey(competition);
+    let ids;
+    if (legacy) {
+      ids = legacyCompetitions.includes(competition) ? toList(raw.teams) : [];
+    } else {
+      const value = raw[key];
+      ids = value === undefined || value === null ? DEFAULT_CONFIG[key] : toList(value);
+    }
+    lists[key] = [...new Set(ids)].filter((id) => findTeam(id)?.refs[competition] !== undefined);
   }
+  return lists;
+}
+
+// `multi_select` stores an array of option values. Also accept a
+// comma-separated string.
+function toList(value) {
   const list = Array.isArray(value) ? value : String(value).split(',');
-  const ids = list.map((id) => String(id).trim()).filter((id) => find(id));
-  return [...new Set(ids)];
+  return list.map((id) => String(id).trim()).filter(Boolean);
 }
 
 function normalizeClock(value, fallback) {

@@ -1,27 +1,35 @@
 // -----------------------------------------------------------------------------
-// Fill the option lists of the manifest from the code, so the 64 teams are
-// never copied by hand:
-//   - `teams` / `team`               <- src/teams.js (TEAMS)
-//   - `competitions` / `competition` <- src/teams.js (COMPETITIONS)
+// Fill the option lists of the manifest from the code, so the teams are never
+// copied by hand:
+//   - `teams_<competition>`          <- src/teams.js (teams of a competition)
+//   - `competition`                  <- src/teams.js (COMPETITIONS)
 //   - `watch_start` / `watch_end`    <- src/config.js (CLOCK_OPTIONS)
 // in the config_schema, the widget settings, the trigger and action fields.
+// Fields with a dynamic `source` (the team pickers of the widget and the
+// scenes list the created devices) are left alone.
 //
 // Usage: npm run sync-manifest (test/manifest.test.js fails when it is due).
 // -----------------------------------------------------------------------------
 
 import { readFile, writeFile } from 'node:fs/promises';
-import { CLOCK_OPTIONS } from '../src/config.js';
-import { COMPETITIONS, TEAMS } from '../src/teams.js';
+import { CLOCK_OPTIONS, teamsKey } from '../src/config.js';
+import { COMPETITIONS, teamsOf } from '../src/teams.js';
 
 const MANIFEST = new URL('../gladys-assistant-integration.json', import.meta.url);
 
 const label = (text) => ({ en: text, fr: text });
 
-export function teamOptions() {
-  return TEAMS.map((team) => {
-    const competitions = COMPETITIONS.filter((c) => c.id in team.refs).map((c) => c.name);
-    return { value: team.id, label: label(`${team.name} (${competitions.join(', ')})`) };
-  });
+// French clubs read best by city (`shortName`: Bourg, Pau, Roanne), the others
+// by their full name (city first: Boston Celtics, FC Barcelona).
+const sortKey = (competition, team) =>
+  competition === 'betclic_elite' ? team.shortName : team.name;
+
+export function teamOptions(competition) {
+  return teamsOf(competition)
+    .sort((a, b) =>
+      sortKey(competition, a).localeCompare(sortKey(competition, b), 'fr', { sensitivity: 'base' }),
+    )
+    .map((team) => ({ value: team.id, label: label(team.name) }));
 }
 
 export function competitionOptions() {
@@ -33,9 +41,7 @@ export function clockOptions() {
 }
 
 const OPTIONS_BY_KEY = {
-  teams: teamOptions,
-  team: teamOptions,
-  competitions: competitionOptions,
+  ...Object.fromEntries(COMPETITIONS.map((c) => [teamsKey(c.id), () => teamOptions(c.id)])),
   competition: competitionOptions,
   watch_start: clockOptions,
   watch_end: clockOptions,
@@ -54,7 +60,7 @@ export function fieldLists(manifest) {
 export function syncManifest(manifest) {
   for (const field of fieldLists(manifest).flat()) {
     const build = OPTIONS_BY_KEY[field.key];
-    if (build && (field.type === 'select' || field.type === 'multi_select')) {
+    if (build && !field.source && (field.type === 'select' || field.type === 'multi_select')) {
       field.options = build();
     }
   }

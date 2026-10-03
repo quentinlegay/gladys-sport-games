@@ -9,6 +9,7 @@ import {
   MAX_ITEMS,
   widgetTeams,
 } from '../src/widget.js';
+import { createFakeGladys } from './helpers/fakeGladys.js';
 import { restoreFetch } from './helpers/mockFetch.js';
 import { mockSources, NOW } from './helpers/sources.js';
 
@@ -105,15 +106,19 @@ test('empty states', async () => {
   assert.match(empty.components[0].text, /No upcoming game/);
 });
 
-test('widgetTeams: own setting, else the configuration', () => {
-  assert.deepEqual(widgetTeams({}, config), ['asvel', 'paris_basketball']);
-  assert.deepEqual(widgetTeams({ teams: ['boston_celtics', 'nope'] }, config), ['boston_celtics']);
+test('widgetTeams: own setting (devices), else the followed teams', () => {
+  const gladys = createFakeGladys();
+  assert.deepEqual(widgetTeams(gladys, {}, config), ['asvel', 'paris_basketball']);
+  assert.deepEqual(widgetTeams(gladys, { teams: ['team:boston_celtics', 'nope'] }, config), [
+    'boston_celtics',
+  ]);
 });
 
 test('the widget handler downloads the games of its teams', async () => {
   const calls = mockSources();
   const content = await getUpcomingMatchesWidget(
-    { settings: { teams: ['boston_celtics'] }, language: 'fr' },
+    createFakeGladys(),
+    { settings: { teams: ['team:boston_celtics'] }, language: 'fr' },
     { ...config, include_night_games: true },
   );
   assert.ok(calls.some((c) => c.url.includes('/teams/2/schedule')));

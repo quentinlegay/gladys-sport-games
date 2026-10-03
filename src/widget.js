@@ -12,6 +12,7 @@
 import { WIDGET_COLORS } from '@gladysassistant/integration-sdk';
 import {
   competitionName,
+  followsFor,
   formatStart,
   formatTeams,
   getMatches,
@@ -19,7 +20,7 @@ import {
   isLive,
   upcomingMatches,
 } from './schedule.js';
-import { findTeam } from './teams.js';
+import { teamOfField } from './devices/index.js';
 import { formatShort } from './time.js';
 
 export const WIDGET_UPCOMING_MATCHES = 'upcoming_matches';
@@ -35,8 +36,8 @@ const TTL_MAX = 3600;
 
 const TEXTS = {
   noTeam: {
-    en: 'No team followed: pick teams in the widget or integration settings.',
-    fr: "Aucune équipe suivie : cochez des équipes dans le widget ou la configuration de l'intégration.",
+    en: 'No team followed: tick teams in the integration settings.',
+    fr: "Aucune équipe suivie : cochez des équipes dans la configuration de l'intégration.",
   },
   noMatch: {
     en: 'No upcoming game in the watching window.',
@@ -51,13 +52,17 @@ const lang = (language) => (language === 'en' ? 'en' : 'fr');
 const truncate = (text, max) => (text.length > max ? `${text.slice(0, max - 1)}…` : text);
 
 /**
- * Teams shown by a widget instance: its own `teams` setting, or the teams of
- * the integration configuration when the setting is empty.
+ * Teams shown by a widget instance: its own `teams` setting (devices of the
+ * integration, `source: "devices"`), or the followed teams when it is empty.
+ * @returns {string[]} team ids
  */
-export function widgetTeams(settings, config) {
+export function widgetTeams(gladys, settings, config) {
   const own = Array.isArray(settings?.teams) ? settings.teams : [];
-  const ids = own.length > 0 ? own : config.teams;
-  return [...new Set(ids)].filter((id) => findTeam(id));
+  const ids =
+    own.length > 0
+      ? own.map((value) => teamOfField(gladys, value)?.id).filter(Boolean)
+      : config.teams;
+  return [...new Set(ids)];
 }
 
 function buildItem(match, language, now) {
@@ -125,8 +130,8 @@ export function buildWidgetContent(matches, { language, config, teams, now = Dat
 /**
  * Handler of `onWidgetGet('upcoming_matches')`.
  */
-export async function getUpcomingMatchesWidget({ settings, language }, config) {
-  const teams = widgetTeams(settings, config);
-  const { matches } = await getMatches({ teams, competitions: config.competitions });
+export async function getUpcomingMatchesWidget(gladys, { settings, language }, config) {
+  const teams = widgetTeams(gladys, settings, config);
+  const { matches } = await getMatches({ follows: followsFor(teams, config) });
   return buildWidgetContent(matches, { language, config, teams });
 }

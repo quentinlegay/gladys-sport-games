@@ -22,16 +22,18 @@ appareil, qui regroupe tous ses matchs.
 ## Configuration
 
 1. Ouvrez l'onglet **Configuration** de l'intégration.
-2. Cochez les **compétitions** à afficher.
-3. Cochez les **équipes** à suivre. La liste contient les 64 clubs de NBA,
-   d'EuroLeague et de Betclic Élite.
-4. Réglez la **plage de visionnage**, de 18:00 à 23:30 par défaut. Le widget et
+2. Cochez les équipes à suivre dans chacune des trois listes : **Betclic
+   Élite**, **EuroLeague** et **NBA**. Chaque liste est triée par ordre
+   alphabétique. Une équipe n'est suivie que dans les compétitions où vous
+   l'avez cochée : cochez l'ASVEL dans Betclic Élite et dans EuroLeague pour
+   avoir tous ses matchs, ou seulement dans une des deux.
+3. Réglez la **plage de visionnage**, de 18:00 à 23:30 par défaut. Le widget et
    le déclencheur de scène ne retiennent que les matchs qui commencent dans
    cette plage. Si la fin est avant le début, la plage passe minuit (par
    exemple de 20:00 à 02:00).
-5. Cochez **Inclure les matchs hors plage** pour voir aussi les matchs NBA de
+4. Cochez **Inclure les matchs hors plage** pour voir aussi les matchs NBA de
    la nuit ou ceux du week-end après-midi.
-6. Enregistrez. Les appareils apparaissent dans l'onglet **Découverte**, prêts
+5. Enregistrez. Les appareils apparaissent dans l'onglet **Découverte**, prêts
    à être ajoutés.
 
 La plage de visionnage ne change rien aux capteurs : ils montrent toujours le
@@ -45,15 +47,19 @@ indique le nombre de matchs trouvés par compétition.
 Ajoutez le widget **Prochains matchs** à un tableau de bord (Gladys 5.1 ou
 plus récent). Il affiche jusqu'à 8 matchs, avec la date ou la mention « En
 direct ». Touchez une ligne pour afficher le détail : noms complets, date et
-diffuseur. Le réglage **Équipes** permet de choisir d'autres équipes que celles
-de la configuration.
+diffuseur. Le réglage **Équipes** permet de n'afficher que certaines de vos
+équipes ; laissez-le vide pour les afficher toutes.
+
+Les listes d'équipes du widget et des scènes ne montrent que les équipes
+dont l'appareil a été ajouté depuis l'onglet **Découverte**.
 
 ## Scènes
 
 **Déclencheur « Un match va commencer »**
 
 - **Quand** : au coup d'envoi, ou 15 min, 30 min ou 1 h avant.
-- **Équipes** et **Compétitions** : laissez vides pour garder tous les matchs.
+- **Équipes** (vos équipes suivies) et **Compétitions** : laissez vides pour
+  garder tous les matchs.
 - Variables disponibles : équipe à domicile, équipe à l'extérieur, heure de
   début, diffuseur et compétition (clé : `nba`, `euroleague` ou
   `betclic_elite`).
@@ -67,7 +73,7 @@ deux fois pour ce match ; filtrez sur une seule équipe pour l'éviter.
 
 **Action « Lire le prochain match d'une équipe »**
 
-Choisissez une équipe, suivie ou non. L'action renvoie le prochain match,
+Choisissez une de vos équipes. L'action renvoie le prochain match,
 son début, l'adversaire, si l'équipe joue à domicile, la compétition, le
 diffuseur et le dernier résultat. Vous pouvez les utiliser dans les actions
 suivantes de la scène.

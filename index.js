@@ -24,7 +24,7 @@ import {
   selectedTeams,
 } from './src/devices/index.js';
 import { teamDevice } from './src/devices/team.js';
-import { competitionName, getFollowedMatches } from './src/schedule.js';
+import { competitionName, followsFor, getFollowedMatches, getMatches } from './src/schedule.js';
 import { ACTION_GET_NEXT_MATCH, createMatchWatcher, getNextMatchAction } from './src/scenes.js';
 import { getUpcomingMatchesWidget, WIDGET_UPCOMING_MATCHES } from './src/widget.js';
 
@@ -67,11 +67,10 @@ gladys.onPoll(async (device) => {
     logger.debug(`onPoll ignored (unknown device) for ${device.external_id}`);
     return;
   }
-  const { matches, errors } = await getFollowedMatches({
-    ...config,
-    teams: [...new Set([...config.teams, team.id])],
-  });
-  await states.publish(teamDevice.buildStates(gladys, team, matches));
+  // A device whose team is not followed any more keeps showing all its games.
+  const follows = { ...followsFor([team.id]), ...config.follows };
+  const { matches, errors } = await getMatches({ follows });
+  await states.publish(teamDevice.buildStates(gladys, team, matches, Date.now(), follows));
   await reportStatus(errors);
 });
 
@@ -82,11 +81,11 @@ for (const [actionKey, handler] of Object.entries(ACTIONS)) {
 
 // --- Dashboard widget: Gladys pulls the content to display -------------------
 gladys.onWidgetGet(WIDGET_UPCOMING_MATCHES, ({ settings, language }) =>
-  getUpcomingMatchesWidget({ settings, language }, config),
+  getUpcomingMatchesWidget(gladys, { settings, language }, config),
 );
 
 // --- Scene action: a scene asks for the next game of a team -----------------
-gladys.onSceneAction(ACTION_GET_NEXT_MATCH, (fields) => getNextMatchAction(fields));
+gladys.onSceneAction(ACTION_GET_NEXT_MATCH, (fields) => getNextMatchAction(gladys, fields, config));
 
 // --- Configuration updated by the user ---------------------------------------
 gladys.onConfigUpdated(async (newConfig) => {
@@ -135,7 +134,10 @@ async function refreshCreatedDevices() {
     created.has(teamDevice.deviceExternalId(gladys, team)),
   );
   const { matches, errors } = await getFollowedMatches(config);
-  await states.publish(teams.flatMap((team) => teamDevice.buildStates(gladys, team, matches)));
+  const now = Date.now();
+  await states.publish(
+    teams.flatMap((team) => teamDevice.buildStates(gladys, team, matches, now, config.follows)),
+  );
   await reportStatus(errors);
 }
 
