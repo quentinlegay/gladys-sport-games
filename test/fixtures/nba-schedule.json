@@ -1,0 +1,272 @@
+{
+  "events": [
+    {
+      "id": "401909088",
+      "date": "2026-10-20T19:00Z",
+      "name": "Boston Celtics at Detroit Pistons",
+      "shortName": "BOS @ DET",
+      "season": {
+        "year": 2027,
+        "displayName": "2026-27"
+      },
+      "seasonType": {
+        "id": "2",
+        "type": 2,
+        "name": "Regular Season",
+        "abbreviation": "reg"
+      },
+      "timeValid": true,
+      "competitions": [
+        {
+          "id": "401909088",
+          "date": "2026-10-20T19:00Z",
+          "attendance": 0,
+          "type": {
+            "id": "1",
+            "text": "Standard",
+            "abbreviation": "STD",
+            "slug": "standard",
+            "type": "standard"
+          },
+          "timeValid": true,
+          "neutralSite": false,
+          "boxscoreAvailable": false,
+          "competitors": [
+            {
+              "id": "8",
+              "type": "team",
+              "order": 0,
+              "homeAway": "home",
+              "team": {
+                "id": "8",
+                "location": "Detroit",
+                "abbreviation": "DET",
+                "displayName": "Detroit Pistons",
+                "shortDisplayName": "Pistons"
+              }
+            },
+            {
+              "id": "2",
+              "type": "team",
+              "order": 1,
+              "homeAway": "away",
+              "team": {
+                "id": "2",
+                "location": "Boston",
+                "abbreviation": "BOS",
+                "displayName": "Boston Celtics",
+                "shortDisplayName": "Celtics"
+              }
+            }
+          ],
+          "notes": [],
+          "broadcasts": [
+            {
+              "type": {
+                "id": "1",
+                "shortName": "TV"
+              },
+              "market": {
+                "id": "1",
+                "type": "National"
+              },
+              "media": {
+                "shortName": "NBC"
+              },
+              "lang": "en",
+              "region": "us",
+              "partnered": false
+            }
+          ],
+          "status": {
+            "clock": 0.0,
+            "displayClock": "0.0",
+            "period": 0,
+            "type": {
+              "id": "1",
+              "name": "STATUS_SCHEDULED",
+              "state": "pre",
+              "completed": false,
+              "description": "Scheduled",
+              "detail": "Tue, October 20th at 3:00 PM EDT",
+              "shortDetail": "10/20 - 3:00 PM EDT"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "401909095",
+      "date": "2026-10-23T23:00Z",
+      "name": "New York Knicks at Boston Celtics",
+      "shortName": "NY @ BOS",
+      "season": {
+        "year": 2027,
+        "displayName": "2026-27"
+      },
+      "seasonType": {
+        "id": "2",
+        "type": 2,
+        "name": "Regular Season",
+        "abbreviation": "reg"
+      },
+      "timeValid": true,
+      "competitions": [
+        {
+          "id": "401909095",
+          "date": "2026-10-23T23:00Z",
+          "attendance": 0,
+          "type": {
+            "id": "1",
+            "text": "Standard",
+            "abbreviation": "STD",
+            "slug": "standard",
+            "type": "standard"
+          },
+          "timeValid": true,
+          "neutralSite": false,
+          "boxscoreAvailable": false,
+          "competitors": [
+            {
+              "id": "2",
+              "type": "team",
+              "order": 0,
+              "homeAway": "home",
+              "team": {
+                "id": "2",
+                "location": "Boston",
+                "abbreviation": "BOS",
+                "displayName": "Boston Celtics",
+                "shortDisplayName": "Celtics"
+              }
+            },
+            {
+              "id": "18",
+              "type": "team",
+              "order": 1,
+              "homeAway": "away",
+              "team": {
+                "id": "18",
+                "location": "New York",
+                "abbreviation": "NY",
+                "displayName": "New York Knicks",
+                "shortDisplayName": "Knicks"
+              }
+            }
+          ],
+          "notes": [],
+          "broadcasts": [
+            {
+              "type": {
+                "id": "4",
+                "shortName": "Streaming"
+              },
+              "market": {
+                "id": "1",
+                "type": "National"
+              },
+              "media": {
+                "shortName": "Prime Video"
+              },
+              "lang": "en",
+              "region": "us",
+              "partnered": false
+            }
+          ],
+          "status": {
+            "clock": 0.0,
+            "displayClock": "0.0",
+            "period": 0,
+            "type": {
+              "id": "1",
+              "name": "STATUS_SCHEDULED",
+              "state": "pre",
+              "completed": false,
+              "description": "Scheduled",
+              "detail": "Fri, October 23rd at 7:00 PM EDT",
+              "shortDetail": "10/23 - 7:00 PM EDT"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "401909870",
+      "date": "2026-10-26T23:30Z",
+      "name": "Chicago Bulls at Boston Celtics",
+      "shortName": "CHI @ BOS",
+      "season": {
+        "year": 2027,
+        "displayName": "2026-27"
+      },
+      "seasonType": {
+        "id": "2",
+        "type": 2,
+        "name": "Regular Season",
+        "abbreviation": "reg"
+      },
+      "timeValid": true,
+      "competitions": [
+        {
+          "id": "401909870",
+          "date": "2026-10-26T23:30Z",
+          "attendance": 0,
+          "type": {
+            "id": "1",
+            "text": "Standard",
+            "abbreviation": "STD",
+            "slug": "standard",
+            "type": "standard"
+          },
+          "timeValid": true,
+          "neutralSite": false,
+          "boxscoreAvailable": false,
+          "competitors": [
+            {
+              "id": "2",
+              "type": "team",
+              "order": 0,
+              "homeAway": "home",
+              "team": {
+                "id": "2",
+                "location": "Boston",
+                "abbreviation": "BOS",
+                "displayName": "Boston Celtics",
+                "shortDisplayName": "Celtics"
+              }
+            },
+            {
+              "id": "4",
+              "type": "team",
+              "order": 1,
+              "homeAway": "away",
+              "team": {
+                "id": "4",
+                "location": "Chicago",
+                "abbreviation": "CHI",
+                "displayName": "Chicago Bulls",
+                "shortDisplayName": "Bulls"
+              }
+            }
+          ],
+          "notes": [],
+          "broadcasts": [],
+          "status": {
+            "clock": 0.0,
+            "displayClock": "0.0",
+            "period": 0,
+            "type": {
+              "id": "1",
+              "name": "STATUS_SCHEDULED",
+              "state": "pre",
+              "completed": false,
+              "description": "Scheduled",
+              "detail": "Mon, October 26th at 7:30 PM EDT",
+              "shortDetail": "10/26 - 7:30 PM EDT"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

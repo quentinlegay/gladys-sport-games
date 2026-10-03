@@ -1,0 +1,2880 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "Sport Games",
+  "description": {
+    "en": "Schedule and results of your teams (NBA, EuroLeague, Betclic Élite), alerts and widget.",
+    "fr": "Calendrier et résultats de vos équipes (NBA, EuroLeague, Betclic Élite), alertes et widget."
+  },
+  "version": "1.0.0",
+  "docker_image": "ghcr.io/quentinlegay/gladys-sport-games:1.0.0",
+  "gladys_version": ">=5.1.0",
+  "cover_image": "https://raw.githubusercontent.com/quentinlegay/gladys-sport-games/main/cover.png",
+  "categories": ["multimedia", "services"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Getting started",
+        "fr": "Pour commencer"
+      },
+      "description": {
+        "en": "Pick the teams to follow: each one becomes a device with 3 sensors (next game, kick-off, last result). Schedules come from the public data of ESPN (NBA), the EuroLeague and the LNB. No account, no API key. Times are in the Paris time zone.",
+        "fr": "Choisissez les équipes à suivre : chacune devient un appareil avec 3 capteurs (prochain match, coup d'envoi, dernier résultat). Les calendriers viennent des données publiques d'ESPN (NBA), de l'EuroLeague et de la LNB. Pas de compte, pas de clé d'API. Les horaires sont à l'heure de Paris."
+      },
+      "links": [
+        {
+          "url": "https://github.com/prohand/gladys-sport-games/blob/main/docs/fr.md",
+          "label": {
+            "en": "Documentation",
+            "fr": "Documentation"
+          }
+        }
+      ]
+    },
+    {
+      "key": "competitions",
+      "type": "multi_select",
+      "label": {
+        "en": "Competitions",
+        "fr": "Compétitions"
+      },
+      "description": {
+        "en": "Only the games of these competitions are shown.",
+        "fr": "Seuls les matchs de ces compétitions sont affichés."
+      },
+      "required": true,
+      "default": ["nba", "euroleague", "betclic_elite"],
+      "options": [
+        {
+          "value": "nba",
+          "label": {
+            "en": "NBA",
+            "fr": "NBA"
+          }
+        },
+        {
+          "value": "euroleague",
+          "label": {
+            "en": "EuroLeague",
+            "fr": "EuroLeague"
+          }
+        },
+        {
+          "value": "betclic_elite",
+          "label": {
+            "en": "Betclic Élite",
+            "fr": "Betclic Élite"
+          }
+        }
+      ]
+    },
+    {
+      "key": "teams",
+      "type": "multi_select",
+      "label": {
+        "en": "Teams",
+        "fr": "Équipes"
+      },
+      "description": {
+        "en": "One Gladys device is created per selected team.",
+        "fr": "Un appareil Gladys est créé par équipe cochée."
+      },
+      "required": true,
+      "default": ["asvel", "paris_basketball"],
+      "options": [
+        {
+          "value": "asvel",
+          "label": {
+            "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
+            "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
+          }
+        },
+        {
+          "value": "paris_basketball",
+          "label": {
+            "en": "Paris Basketball (EuroLeague, Betclic Élite)",
+            "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
+          }
+        },
+        {
+          "value": "boulazac",
+          "label": {
+            "en": "Boulazac Basket Dordogne (Betclic Élite)",
+            "fr": "Boulazac Basket Dordogne (Betclic Élite)"
+          }
+        },
+        {
+          "value": "bourg_en_bresse",
+          "label": {
+            "en": "JL Bourg (Betclic Élite)",
+            "fr": "JL Bourg (Betclic Élite)"
+          }
+        },
+        {
+          "value": "chalon",
+          "label": {
+            "en": "Élan Chalon (Betclic Élite)",
+            "fr": "Élan Chalon (Betclic Élite)"
+          }
+        },
+        {
+          "value": "cholet",
+          "label": {
+            "en": "Cholet Basket (Betclic Élite)",
+            "fr": "Cholet Basket (Betclic Élite)"
+          }
+        },
+        {
+          "value": "dijon",
+          "label": {
+            "en": "JDA Dijon (Betclic Élite)",
+            "fr": "JDA Dijon (Betclic Élite)"
+          }
+        },
+        {
+          "value": "gravelines_dunkerque",
+          "label": {
+            "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
+            "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
+          }
+        },
+        {
+          "value": "le_mans",
+          "label": {
+            "en": "Le Mans Sarthe Basket (Betclic Élite)",
+            "fr": "Le Mans Sarthe Basket (Betclic Élite)"
+          }
+        },
+        {
+          "value": "limoges",
+          "label": {
+            "en": "Limoges CSP (Betclic Élite)",
+            "fr": "Limoges CSP (Betclic Élite)"
+          }
+        },
+        {
+          "value": "nancy",
+          "label": {
+            "en": "SLUC Nancy (Betclic Élite)",
+            "fr": "SLUC Nancy (Betclic Élite)"
+          }
+        },
+        {
+          "value": "nanterre",
+          "label": {
+            "en": "Nanterre 92 (Betclic Élite)",
+            "fr": "Nanterre 92 (Betclic Élite)"
+          }
+        },
+        {
+          "value": "pau",
+          "label": {
+            "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
+            "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
+          }
+        },
+        {
+          "value": "roanne",
+          "label": {
+            "en": "Chorale Roanne (Betclic Élite)",
+            "fr": "Chorale Roanne (Betclic Élite)"
+          }
+        },
+        {
+          "value": "saint_quentin",
+          "label": {
+            "en": "Saint-Quentin Basket (Betclic Élite)",
+            "fr": "Saint-Quentin Basket (Betclic Élite)"
+          }
+        },
+        {
+          "value": "strasbourg",
+          "label": {
+            "en": "SIG Strasbourg (Betclic Élite)",
+            "fr": "SIG Strasbourg (Betclic Élite)"
+          }
+        },
+        {
+          "value": "fc_barcelona",
+          "label": {
+            "en": "FC Barcelona (EuroLeague)",
+            "fr": "FC Barcelona (EuroLeague)"
+          }
+        },
+        {
+          "value": "baskonia",
+          "label": {
+            "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
+            "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
+          }
+        },
+        {
+          "value": "besiktas",
+          "label": {
+            "en": "Besiktas Istanbul (EuroLeague)",
+            "fr": "Besiktas Istanbul (EuroLeague)"
+          }
+        },
+        {
+          "value": "dubai",
+          "label": {
+            "en": "Dubai Basketball (EuroLeague)",
+            "fr": "Dubai Basketball (EuroLeague)"
+          }
+        },
+        {
+          "value": "hapoel_tel_aviv",
+          "label": {
+            "en": "Hapoel Tel Aviv (EuroLeague)",
+            "fr": "Hapoel Tel Aviv (EuroLeague)"
+          }
+        },
+        {
+          "value": "anadolu_efes",
+          "label": {
+            "en": "Anadolu Efes Istanbul (EuroLeague)",
+            "fr": "Anadolu Efes Istanbul (EuroLeague)"
+          }
+        },
+        {
+          "value": "real_madrid",
+          "label": {
+            "en": "Real Madrid (EuroLeague)",
+            "fr": "Real Madrid (EuroLeague)"
+          }
+        },
+        {
+          "value": "olimpia_milano",
+          "label": {
+            "en": "Olimpia Milano (EuroLeague)",
+            "fr": "Olimpia Milano (EuroLeague)"
+          }
+        },
+        {
+          "value": "bayern_munich",
+          "label": {
+            "en": "FC Bayern Munich (EuroLeague)",
+            "fr": "FC Bayern Munich (EuroLeague)"
+          }
+        },
+        {
+          "value": "olympiacos",
+          "label": {
+            "en": "Olympiacos Piraeus (EuroLeague)",
+            "fr": "Olympiacos Piraeus (EuroLeague)"
+          }
+        },
+        {
+          "value": "valencia",
+          "label": {
+            "en": "Valencia Basket (EuroLeague)",
+            "fr": "Valencia Basket (EuroLeague)"
+          }
+        },
+        {
+          "value": "panathinaikos",
+          "label": {
+            "en": "Panathinaikos Athens (EuroLeague)",
+            "fr": "Panathinaikos Athens (EuroLeague)"
+          }
+        },
+        {
+          "value": "partizan",
+          "label": {
+            "en": "Partizan Belgrade (EuroLeague)",
+            "fr": "Partizan Belgrade (EuroLeague)"
+          }
+        },
+        {
+          "value": "crvena_zvezda",
+          "label": {
+            "en": "Crvena Zvezda Belgrade (EuroLeague)",
+            "fr": "Crvena Zvezda Belgrade (EuroLeague)"
+          }
+        },
+        {
+          "value": "maccabi_tel_aviv",
+          "label": {
+            "en": "Maccabi Tel Aviv (EuroLeague)",
+            "fr": "Maccabi Tel Aviv (EuroLeague)"
+          }
+        },
+        {
+          "value": "fenerbahce",
+          "label": {
+            "en": "Fenerbahçe Istanbul (EuroLeague)",
+            "fr": "Fenerbahçe Istanbul (EuroLeague)"
+          }
+        },
+        {
+          "value": "virtus_bologna",
+          "label": {
+            "en": "Virtus Bologna (EuroLeague)",
+            "fr": "Virtus Bologna (EuroLeague)"
+          }
+        },
+        {
+          "value": "zalgiris",
+          "label": {
+            "en": "Zalgiris Kaunas (EuroLeague)",
+            "fr": "Zalgiris Kaunas (EuroLeague)"
+          }
+        },
+        {
+          "value": "atlanta_hawks",
+          "label": {
+            "en": "Atlanta Hawks (NBA)",
+            "fr": "Atlanta Hawks (NBA)"
+          }
+        },
+        {
+          "value": "boston_celtics",
+          "label": {
+            "en": "Boston Celtics (NBA)",
+            "fr": "Boston Celtics (NBA)"
+          }
+        },
+        {
+          "value": "brooklyn_nets",
+          "label": {
+            "en": "Brooklyn Nets (NBA)",
+            "fr": "Brooklyn Nets (NBA)"
+          }
+        },
+        {
+          "value": "charlotte_hornets",
+          "label": {
+            "en": "Charlotte Hornets (NBA)",
+            "fr": "Charlotte Hornets (NBA)"
+          }
+        },
+        {
+          "value": "chicago_bulls",
+          "label": {
+            "en": "Chicago Bulls (NBA)",
+            "fr": "Chicago Bulls (NBA)"
+          }
+        },
+        {
+          "value": "cleveland_cavaliers",
+          "label": {
+            "en": "Cleveland Cavaliers (NBA)",
+            "fr": "Cleveland Cavaliers (NBA)"
+          }
+        },
+        {
+          "value": "dallas_mavericks",
+          "label": {
+            "en": "Dallas Mavericks (NBA)",
+            "fr": "Dallas Mavericks (NBA)"
+          }
+        },
+        {
+          "value": "denver_nuggets",
+          "label": {
+            "en": "Denver Nuggets (NBA)",
+            "fr": "Denver Nuggets (NBA)"
+          }
+        },
+        {
+          "value": "detroit_pistons",
+          "label": {
+            "en": "Detroit Pistons (NBA)",
+            "fr": "Detroit Pistons (NBA)"
+          }
+        },
+        {
+          "value": "golden_state_warriors",
+          "label": {
+            "en": "Golden State Warriors (NBA)",
+            "fr": "Golden State Warriors (NBA)"
+          }
+        },
+        {
+          "value": "houston_rockets",
+          "label": {
+            "en": "Houston Rockets (NBA)",
+            "fr": "Houston Rockets (NBA)"
+          }
+        },
+        {
+          "value": "indiana_pacers",
+          "label": {
+            "en": "Indiana Pacers (NBA)",
+            "fr": "Indiana Pacers (NBA)"
+          }
+        },
+        {
+          "value": "la_clippers",
+          "label": {
+            "en": "LA Clippers (NBA)",
+            "fr": "LA Clippers (NBA)"
+          }
+        },
+        {
+          "value": "los_angeles_lakers",
+          "label": {
+            "en": "Los Angeles Lakers (NBA)",
+            "fr": "Los Angeles Lakers (NBA)"
+          }
+        },
+        {
+          "value": "memphis_grizzlies",
+          "label": {
+            "en": "Memphis Grizzlies (NBA)",
+            "fr": "Memphis Grizzlies (NBA)"
+          }
+        },
+        {
+          "value": "miami_heat",
+          "label": {
+            "en": "Miami Heat (NBA)",
+            "fr": "Miami Heat (NBA)"
+          }
+        },
+        {
+          "value": "milwaukee_bucks",
+          "label": {
+            "en": "Milwaukee Bucks (NBA)",
+            "fr": "Milwaukee Bucks (NBA)"
+          }
+        },
+        {
+          "value": "minnesota_timberwolves",
+          "label": {
+            "en": "Minnesota Timberwolves (NBA)",
+            "fr": "Minnesota Timberwolves (NBA)"
+          }
+        },
+        {
+          "value": "new_orleans_pelicans",
+          "label": {
+            "en": "New Orleans Pelicans (NBA)",
+            "fr": "New Orleans Pelicans (NBA)"
+          }
+        },
+        {
+          "value": "new_york_knicks",
+          "label": {
+            "en": "New York Knicks (NBA)",
+            "fr": "New York Knicks (NBA)"
+          }
+        },
+        {
+          "value": "oklahoma_city_thunder",
+          "label": {
+            "en": "Oklahoma City Thunder (NBA)",
+            "fr": "Oklahoma City Thunder (NBA)"
+          }
+        },
+        {
+          "value": "orlando_magic",
+          "label": {
+            "en": "Orlando Magic (NBA)",
+            "fr": "Orlando Magic (NBA)"
+          }
+        },
+        {
+          "value": "philadelphia_76ers",
+          "label": {
+            "en": "Philadelphia 76ers (NBA)",
+            "fr": "Philadelphia 76ers (NBA)"
+          }
+        },
+        {
+          "value": "phoenix_suns",
+          "label": {
+            "en": "Phoenix Suns (NBA)",
+            "fr": "Phoenix Suns (NBA)"
+          }
+        },
+        {
+          "value": "portland_trail_blazers",
+          "label": {
+            "en": "Portland Trail Blazers (NBA)",
+            "fr": "Portland Trail Blazers (NBA)"
+          }
+        },
+        {
+          "value": "sacramento_kings",
+          "label": {
+            "en": "Sacramento Kings (NBA)",
+            "fr": "Sacramento Kings (NBA)"
+          }
+        },
+        {
+          "value": "san_antonio_spurs",
+          "label": {
+            "en": "San Antonio Spurs (NBA)",
+            "fr": "San Antonio Spurs (NBA)"
+          }
+        },
+        {
+          "value": "toronto_raptors",
+          "label": {
+            "en": "Toronto Raptors (NBA)",
+            "fr": "Toronto Raptors (NBA)"
+          }
+        },
+        {
+          "value": "utah_jazz",
+          "label": {
+            "en": "Utah Jazz (NBA)",
+            "fr": "Utah Jazz (NBA)"
+          }
+        },
+        {
+          "value": "washington_wizards",
+          "label": {
+            "en": "Washington Wizards (NBA)",
+            "fr": "Washington Wizards (NBA)"
+          }
+        }
+      ]
+    },
+    {
+      "key": "watch_window",
+      "type": "section",
+      "label": {
+        "en": "Watching window",
+        "fr": "Plage de visionnage"
+      },
+      "description": {
+        "en": "The widget and the scene trigger only show the games starting in this daily window (Paris time). The device sensors always show the real next game.",
+        "fr": "Le widget et le déclencheur de scène ne gardent que les matchs qui commencent dans cette plage quotidienne (heure de Paris). Les capteurs des appareils montrent toujours le vrai prochain match."
+      }
+    },
+    {
+      "key": "watch_start",
+      "type": "select",
+      "label": {
+        "en": "Window start",
+        "fr": "Début de la plage"
+      },
+      "default": "18:00",
+      "options": [
+        {
+          "value": "00:00",
+          "label": {
+            "en": "00:00",
+            "fr": "00:00"
+          }
+        },
+        {
+          "value": "00:30",
+          "label": {
+            "en": "00:30",
+            "fr": "00:30"
+          }
+        },
+        {
+          "value": "01:00",
+          "label": {
+            "en": "01:00",
+            "fr": "01:00"
+          }
+        },
+        {
+          "value": "01:30",
+          "label": {
+            "en": "01:30",
+            "fr": "01:30"
+          }
+        },
+        {
+          "value": "02:00",
+          "label": {
+            "en": "02:00",
+            "fr": "02:00"
+          }
+        },
+        {
+          "value": "02:30",
+          "label": {
+            "en": "02:30",
+            "fr": "02:30"
+          }
+        },
+        {
+          "value": "03:00",
+          "label": {
+            "en": "03:00",
+            "fr": "03:00"
+          }
+        },
+        {
+          "value": "03:30",
+          "label": {
+            "en": "03:30",
+            "fr": "03:30"
+          }
+        },
+        {
+          "value": "04:00",
+          "label": {
+            "en": "04:00",
+            "fr": "04:00"
+          }
+        },
+        {
+          "value": "04:30",
+          "label": {
+            "en": "04:30",
+            "fr": "04:30"
+          }
+        },
+        {
+          "value": "05:00",
+          "label": {
+            "en": "05:00",
+            "fr": "05:00"
+          }
+        },
+        {
+          "value": "05:30",
+          "label": {
+            "en": "05:30",
+            "fr": "05:30"
+          }
+        },
+        {
+          "value": "06:00",
+          "label": {
+            "en": "06:00",
+            "fr": "06:00"
+          }
+        },
+        {
+          "value": "06:30",
+          "label": {
+            "en": "06:30",
+            "fr": "06:30"
+          }
+        },
+        {
+          "value": "07:00",
+          "label": {
+            "en": "07:00",
+            "fr": "07:00"
+          }
+        },
+        {
+          "value": "07:30",
+          "label": {
+            "en": "07:30",
+            "fr": "07:30"
+          }
+        },
+        {
+          "value": "08:00",
+          "label": {
+            "en": "08:00",
+            "fr": "08:00"
+          }
+        },
+        {
+          "value": "08:30",
+          "label": {
+            "en": "08:30",
+            "fr": "08:30"
+          }
+        },
+        {
+          "value": "09:00",
+          "label": {
+            "en": "09:00",
+            "fr": "09:00"
+          }
+        },
+        {
+          "value": "09:30",
+          "label": {
+            "en": "09:30",
+            "fr": "09:30"
+          }
+        },
+        {
+          "value": "10:00",
+          "label": {
+            "en": "10:00",
+            "fr": "10:00"
+          }
+        },
+        {
+          "value": "10:30",
+          "label": {
+            "en": "10:30",
+            "fr": "10:30"
+          }
+        },
+        {
+          "value": "11:00",
+          "label": {
+            "en": "11:00",
+            "fr": "11:00"
+          }
+        },
+        {
+          "value": "11:30",
+          "label": {
+            "en": "11:30",
+            "fr": "11:30"
+          }
+        },
+        {
+          "value": "12:00",
+          "label": {
+            "en": "12:00",
+            "fr": "12:00"
+          }
+        },
+        {
+          "value": "12:30",
+          "label": {
+            "en": "12:30",
+            "fr": "12:30"
+          }
+        },
+        {
+          "value": "13:00",
+          "label": {
+            "en": "13:00",
+            "fr": "13:00"
+          }
+        },
+        {
+          "value": "13:30",
+          "label": {
+            "en": "13:30",
+            "fr": "13:30"
+          }
+        },
+        {
+          "value": "14:00",
+          "label": {
+            "en": "14:00",
+            "fr": "14:00"
+          }
+        },
+        {
+          "value": "14:30",
+          "label": {
+            "en": "14:30",
+            "fr": "14:30"
+          }
+        },
+        {
+          "value": "15:00",
+          "label": {
+            "en": "15:00",
+            "fr": "15:00"
+          }
+        },
+        {
+          "value": "15:30",
+          "label": {
+            "en": "15:30",
+            "fr": "15:30"
+          }
+        },
+        {
+          "value": "16:00",
+          "label": {
+            "en": "16:00",
+            "fr": "16:00"
+          }
+        },
+        {
+          "value": "16:30",
+          "label": {
+            "en": "16:30",
+            "fr": "16:30"
+          }
+        },
+        {
+          "value": "17:00",
+          "label": {
+            "en": "17:00",
+            "fr": "17:00"
+          }
+        },
+        {
+          "value": "17:30",
+          "label": {
+            "en": "17:30",
+            "fr": "17:30"
+          }
+        },
+        {
+          "value": "18:00",
+          "label": {
+            "en": "18:00",
+            "fr": "18:00"
+          }
+        },
+        {
+          "value": "18:30",
+          "label": {
+            "en": "18:30",
+            "fr": "18:30"
+          }
+        },
+        {
+          "value": "19:00",
+          "label": {
+            "en": "19:00",
+            "fr": "19:00"
+          }
+        },
+        {
+          "value": "19:30",
+          "label": {
+            "en": "19:30",
+            "fr": "19:30"
+          }
+        },
+        {
+          "value": "20:00",
+          "label": {
+            "en": "20:00",
+            "fr": "20:00"
+          }
+        },
+        {
+          "value": "20:30",
+          "label": {
+            "en": "20:30",
+            "fr": "20:30"
+          }
+        },
+        {
+          "value": "21:00",
+          "label": {
+            "en": "21:00",
+            "fr": "21:00"
+          }
+        },
+        {
+          "value": "21:30",
+          "label": {
+            "en": "21:30",
+            "fr": "21:30"
+          }
+        },
+        {
+          "value": "22:00",
+          "label": {
+            "en": "22:00",
+            "fr": "22:00"
+          }
+        },
+        {
+          "value": "22:30",
+          "label": {
+            "en": "22:30",
+            "fr": "22:30"
+          }
+        },
+        {
+          "value": "23:00",
+          "label": {
+            "en": "23:00",
+            "fr": "23:00"
+          }
+        },
+        {
+          "value": "23:30",
+          "label": {
+            "en": "23:30",
+            "fr": "23:30"
+          }
+        }
+      ]
+    },
+    {
+      "key": "watch_end",
+      "type": "select",
+      "label": {
+        "en": "Window end",
+        "fr": "Fin de la plage"
+      },
+      "description": {
+        "en": "Before the start: the window crosses midnight.",
+        "fr": "Avant le début : la plage passe minuit."
+      },
+      "default": "23:30",
+      "options": [
+        {
+          "value": "00:00",
+          "label": {
+            "en": "00:00",
+            "fr": "00:00"
+          }
+        },
+        {
+          "value": "00:30",
+          "label": {
+            "en": "00:30",
+            "fr": "00:30"
+          }
+        },
+        {
+          "value": "01:00",
+          "label": {
+            "en": "01:00",
+            "fr": "01:00"
+          }
+        },
+        {
+          "value": "01:30",
+          "label": {
+            "en": "01:30",
+            "fr": "01:30"
+          }
+        },
+        {
+          "value": "02:00",
+          "label": {
+            "en": "02:00",
+            "fr": "02:00"
+          }
+        },
+        {
+          "value": "02:30",
+          "label": {
+            "en": "02:30",
+            "fr": "02:30"
+          }
+        },
+        {
+          "value": "03:00",
+          "label": {
+            "en": "03:00",
+            "fr": "03:00"
+          }
+        },
+        {
+          "value": "03:30",
+          "label": {
+            "en": "03:30",
+            "fr": "03:30"
+          }
+        },
+        {
+          "value": "04:00",
+          "label": {
+            "en": "04:00",
+            "fr": "04:00"
+          }
+        },
+        {
+          "value": "04:30",
+          "label": {
+            "en": "04:30",
+            "fr": "04:30"
+          }
+        },
+        {
+          "value": "05:00",
+          "label": {
+            "en": "05:00",
+            "fr": "05:00"
+          }
+        },
+        {
+          "value": "05:30",
+          "label": {
+            "en": "05:30",
+            "fr": "05:30"
+          }
+        },
+        {
+          "value": "06:00",
+          "label": {
+            "en": "06:00",
+            "fr": "06:00"
+          }
+        },
+        {
+          "value": "06:30",
+          "label": {
+            "en": "06:30",
+            "fr": "06:30"
+          }
+        },
+        {
+          "value": "07:00",
+          "label": {
+            "en": "07:00",
+            "fr": "07:00"
+          }
+        },
+        {
+          "value": "07:30",
+          "label": {
+            "en": "07:30",
+            "fr": "07:30"
+          }
+        },
+        {
+          "value": "08:00",
+          "label": {
+            "en": "08:00",
+            "fr": "08:00"
+          }
+        },
+        {
+          "value": "08:30",
+          "label": {
+            "en": "08:30",
+            "fr": "08:30"
+          }
+        },
+        {
+          "value": "09:00",
+          "label": {
+            "en": "09:00",
+            "fr": "09:00"
+          }
+        },
+        {
+          "value": "09:30",
+          "label": {
+            "en": "09:30",
+            "fr": "09:30"
+          }
+        },
+        {
+          "value": "10:00",
+          "label": {
+            "en": "10:00",
+            "fr": "10:00"
+          }
+        },
+        {
+          "value": "10:30",
+          "label": {
+            "en": "10:30",
+            "fr": "10:30"
+          }
+        },
+        {
+          "value": "11:00",
+          "label": {
+            "en": "11:00",
+            "fr": "11:00"
+          }
+        },
+        {
+          "value": "11:30",
+          "label": {
+            "en": "11:30",
+            "fr": "11:30"
+          }
+        },
+        {
+          "value": "12:00",
+          "label": {
+            "en": "12:00",
+            "fr": "12:00"
+          }
+        },
+        {
+          "value": "12:30",
+          "label": {
+            "en": "12:30",
+            "fr": "12:30"
+          }
+        },
+        {
+          "value": "13:00",
+          "label": {
+            "en": "13:00",
+            "fr": "13:00"
+          }
+        },
+        {
+          "value": "13:30",
+          "label": {
+            "en": "13:30",
+            "fr": "13:30"
+          }
+        },
+        {
+          "value": "14:00",
+          "label": {
+            "en": "14:00",
+            "fr": "14:00"
+          }
+        },
+        {
+          "value": "14:30",
+          "label": {
+            "en": "14:30",
+            "fr": "14:30"
+          }
+        },
+        {
+          "value": "15:00",
+          "label": {
+            "en": "15:00",
+            "fr": "15:00"
+          }
+        },
+        {
+          "value": "15:30",
+          "label": {
+            "en": "15:30",
+            "fr": "15:30"
+          }
+        },
+        {
+          "value": "16:00",
+          "label": {
+            "en": "16:00",
+            "fr": "16:00"
+          }
+        },
+        {
+          "value": "16:30",
+          "label": {
+            "en": "16:30",
+            "fr": "16:30"
+          }
+        },
+        {
+          "value": "17:00",
+          "label": {
+            "en": "17:00",
+            "fr": "17:00"
+          }
+        },
+        {
+          "value": "17:30",
+          "label": {
+            "en": "17:30",
+            "fr": "17:30"
+          }
+        },
+        {
+          "value": "18:00",
+          "label": {
+            "en": "18:00",
+            "fr": "18:00"
+          }
+        },
+        {
+          "value": "18:30",
+          "label": {
+            "en": "18:30",
+            "fr": "18:30"
+          }
+        },
+        {
+          "value": "19:00",
+          "label": {
+            "en": "19:00",
+            "fr": "19:00"
+          }
+        },
+        {
+          "value": "19:30",
+          "label": {
+            "en": "19:30",
+            "fr": "19:30"
+          }
+        },
+        {
+          "value": "20:00",
+          "label": {
+            "en": "20:00",
+            "fr": "20:00"
+          }
+        },
+        {
+          "value": "20:30",
+          "label": {
+            "en": "20:30",
+            "fr": "20:30"
+          }
+        },
+        {
+          "value": "21:00",
+          "label": {
+            "en": "21:00",
+            "fr": "21:00"
+          }
+        },
+        {
+          "value": "21:30",
+          "label": {
+            "en": "21:30",
+            "fr": "21:30"
+          }
+        },
+        {
+          "value": "22:00",
+          "label": {
+            "en": "22:00",
+            "fr": "22:00"
+          }
+        },
+        {
+          "value": "22:30",
+          "label": {
+            "en": "22:30",
+            "fr": "22:30"
+          }
+        },
+        {
+          "value": "23:00",
+          "label": {
+            "en": "23:00",
+            "fr": "23:00"
+          }
+        },
+        {
+          "value": "23:30",
+          "label": {
+            "en": "23:30",
+            "fr": "23:30"
+          }
+        }
+      ]
+    },
+    {
+      "key": "include_night_games",
+      "type": "boolean",
+      "label": {
+        "en": "Include games outside the window",
+        "fr": "Inclure les matchs hors plage"
+      },
+      "description": {
+        "en": "E.g. the NBA games of the night, or the weekend afternoon games.",
+        "fr": "Par exemple les matchs NBA de la nuit, ou ceux du week-end après-midi."
+      },
+      "default": false
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_sources",
+      "label": {
+        "en": "Test the sources",
+        "fr": "Tester les sources"
+      },
+      "timeout_seconds": 120
+    }
+  ],
+  "widgets": [
+    {
+      "key": "upcoming_matches",
+      "label": {
+        "en": "Upcoming games",
+        "fr": "Prochains matchs"
+      },
+      "description": {
+        "en": "The next games of your teams, in the watching window.",
+        "fr": "Les prochains matchs de vos équipes, dans la plage de visionnage."
+      },
+      "icon": "calendar",
+      "settings": [
+        {
+          "key": "teams",
+          "type": "multi_select",
+          "label": {
+            "en": "Teams",
+            "fr": "Équipes"
+          },
+          "description": {
+            "en": "Empty: the teams of the integration configuration.",
+            "fr": "Vide : les équipes de la configuration de l'intégration."
+          },
+          "options": [
+            {
+              "value": "asvel",
+              "label": {
+                "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
+                "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
+              }
+            },
+            {
+              "value": "paris_basketball",
+              "label": {
+                "en": "Paris Basketball (EuroLeague, Betclic Élite)",
+                "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
+              }
+            },
+            {
+              "value": "boulazac",
+              "label": {
+                "en": "Boulazac Basket Dordogne (Betclic Élite)",
+                "fr": "Boulazac Basket Dordogne (Betclic Élite)"
+              }
+            },
+            {
+              "value": "bourg_en_bresse",
+              "label": {
+                "en": "JL Bourg (Betclic Élite)",
+                "fr": "JL Bourg (Betclic Élite)"
+              }
+            },
+            {
+              "value": "chalon",
+              "label": {
+                "en": "Élan Chalon (Betclic Élite)",
+                "fr": "Élan Chalon (Betclic Élite)"
+              }
+            },
+            {
+              "value": "cholet",
+              "label": {
+                "en": "Cholet Basket (Betclic Élite)",
+                "fr": "Cholet Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "dijon",
+              "label": {
+                "en": "JDA Dijon (Betclic Élite)",
+                "fr": "JDA Dijon (Betclic Élite)"
+              }
+            },
+            {
+              "value": "gravelines_dunkerque",
+              "label": {
+                "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
+                "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
+              }
+            },
+            {
+              "value": "le_mans",
+              "label": {
+                "en": "Le Mans Sarthe Basket (Betclic Élite)",
+                "fr": "Le Mans Sarthe Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "limoges",
+              "label": {
+                "en": "Limoges CSP (Betclic Élite)",
+                "fr": "Limoges CSP (Betclic Élite)"
+              }
+            },
+            {
+              "value": "nancy",
+              "label": {
+                "en": "SLUC Nancy (Betclic Élite)",
+                "fr": "SLUC Nancy (Betclic Élite)"
+              }
+            },
+            {
+              "value": "nanterre",
+              "label": {
+                "en": "Nanterre 92 (Betclic Élite)",
+                "fr": "Nanterre 92 (Betclic Élite)"
+              }
+            },
+            {
+              "value": "pau",
+              "label": {
+                "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
+                "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
+              }
+            },
+            {
+              "value": "roanne",
+              "label": {
+                "en": "Chorale Roanne (Betclic Élite)",
+                "fr": "Chorale Roanne (Betclic Élite)"
+              }
+            },
+            {
+              "value": "saint_quentin",
+              "label": {
+                "en": "Saint-Quentin Basket (Betclic Élite)",
+                "fr": "Saint-Quentin Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "strasbourg",
+              "label": {
+                "en": "SIG Strasbourg (Betclic Élite)",
+                "fr": "SIG Strasbourg (Betclic Élite)"
+              }
+            },
+            {
+              "value": "fc_barcelona",
+              "label": {
+                "en": "FC Barcelona (EuroLeague)",
+                "fr": "FC Barcelona (EuroLeague)"
+              }
+            },
+            {
+              "value": "baskonia",
+              "label": {
+                "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
+                "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
+              }
+            },
+            {
+              "value": "besiktas",
+              "label": {
+                "en": "Besiktas Istanbul (EuroLeague)",
+                "fr": "Besiktas Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "dubai",
+              "label": {
+                "en": "Dubai Basketball (EuroLeague)",
+                "fr": "Dubai Basketball (EuroLeague)"
+              }
+            },
+            {
+              "value": "hapoel_tel_aviv",
+              "label": {
+                "en": "Hapoel Tel Aviv (EuroLeague)",
+                "fr": "Hapoel Tel Aviv (EuroLeague)"
+              }
+            },
+            {
+              "value": "anadolu_efes",
+              "label": {
+                "en": "Anadolu Efes Istanbul (EuroLeague)",
+                "fr": "Anadolu Efes Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "real_madrid",
+              "label": {
+                "en": "Real Madrid (EuroLeague)",
+                "fr": "Real Madrid (EuroLeague)"
+              }
+            },
+            {
+              "value": "olimpia_milano",
+              "label": {
+                "en": "Olimpia Milano (EuroLeague)",
+                "fr": "Olimpia Milano (EuroLeague)"
+              }
+            },
+            {
+              "value": "bayern_munich",
+              "label": {
+                "en": "FC Bayern Munich (EuroLeague)",
+                "fr": "FC Bayern Munich (EuroLeague)"
+              }
+            },
+            {
+              "value": "olympiacos",
+              "label": {
+                "en": "Olympiacos Piraeus (EuroLeague)",
+                "fr": "Olympiacos Piraeus (EuroLeague)"
+              }
+            },
+            {
+              "value": "valencia",
+              "label": {
+                "en": "Valencia Basket (EuroLeague)",
+                "fr": "Valencia Basket (EuroLeague)"
+              }
+            },
+            {
+              "value": "panathinaikos",
+              "label": {
+                "en": "Panathinaikos Athens (EuroLeague)",
+                "fr": "Panathinaikos Athens (EuroLeague)"
+              }
+            },
+            {
+              "value": "partizan",
+              "label": {
+                "en": "Partizan Belgrade (EuroLeague)",
+                "fr": "Partizan Belgrade (EuroLeague)"
+              }
+            },
+            {
+              "value": "crvena_zvezda",
+              "label": {
+                "en": "Crvena Zvezda Belgrade (EuroLeague)",
+                "fr": "Crvena Zvezda Belgrade (EuroLeague)"
+              }
+            },
+            {
+              "value": "maccabi_tel_aviv",
+              "label": {
+                "en": "Maccabi Tel Aviv (EuroLeague)",
+                "fr": "Maccabi Tel Aviv (EuroLeague)"
+              }
+            },
+            {
+              "value": "fenerbahce",
+              "label": {
+                "en": "Fenerbahçe Istanbul (EuroLeague)",
+                "fr": "Fenerbahçe Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "virtus_bologna",
+              "label": {
+                "en": "Virtus Bologna (EuroLeague)",
+                "fr": "Virtus Bologna (EuroLeague)"
+              }
+            },
+            {
+              "value": "zalgiris",
+              "label": {
+                "en": "Zalgiris Kaunas (EuroLeague)",
+                "fr": "Zalgiris Kaunas (EuroLeague)"
+              }
+            },
+            {
+              "value": "atlanta_hawks",
+              "label": {
+                "en": "Atlanta Hawks (NBA)",
+                "fr": "Atlanta Hawks (NBA)"
+              }
+            },
+            {
+              "value": "boston_celtics",
+              "label": {
+                "en": "Boston Celtics (NBA)",
+                "fr": "Boston Celtics (NBA)"
+              }
+            },
+            {
+              "value": "brooklyn_nets",
+              "label": {
+                "en": "Brooklyn Nets (NBA)",
+                "fr": "Brooklyn Nets (NBA)"
+              }
+            },
+            {
+              "value": "charlotte_hornets",
+              "label": {
+                "en": "Charlotte Hornets (NBA)",
+                "fr": "Charlotte Hornets (NBA)"
+              }
+            },
+            {
+              "value": "chicago_bulls",
+              "label": {
+                "en": "Chicago Bulls (NBA)",
+                "fr": "Chicago Bulls (NBA)"
+              }
+            },
+            {
+              "value": "cleveland_cavaliers",
+              "label": {
+                "en": "Cleveland Cavaliers (NBA)",
+                "fr": "Cleveland Cavaliers (NBA)"
+              }
+            },
+            {
+              "value": "dallas_mavericks",
+              "label": {
+                "en": "Dallas Mavericks (NBA)",
+                "fr": "Dallas Mavericks (NBA)"
+              }
+            },
+            {
+              "value": "denver_nuggets",
+              "label": {
+                "en": "Denver Nuggets (NBA)",
+                "fr": "Denver Nuggets (NBA)"
+              }
+            },
+            {
+              "value": "detroit_pistons",
+              "label": {
+                "en": "Detroit Pistons (NBA)",
+                "fr": "Detroit Pistons (NBA)"
+              }
+            },
+            {
+              "value": "golden_state_warriors",
+              "label": {
+                "en": "Golden State Warriors (NBA)",
+                "fr": "Golden State Warriors (NBA)"
+              }
+            },
+            {
+              "value": "houston_rockets",
+              "label": {
+                "en": "Houston Rockets (NBA)",
+                "fr": "Houston Rockets (NBA)"
+              }
+            },
+            {
+              "value": "indiana_pacers",
+              "label": {
+                "en": "Indiana Pacers (NBA)",
+                "fr": "Indiana Pacers (NBA)"
+              }
+            },
+            {
+              "value": "la_clippers",
+              "label": {
+                "en": "LA Clippers (NBA)",
+                "fr": "LA Clippers (NBA)"
+              }
+            },
+            {
+              "value": "los_angeles_lakers",
+              "label": {
+                "en": "Los Angeles Lakers (NBA)",
+                "fr": "Los Angeles Lakers (NBA)"
+              }
+            },
+            {
+              "value": "memphis_grizzlies",
+              "label": {
+                "en": "Memphis Grizzlies (NBA)",
+                "fr": "Memphis Grizzlies (NBA)"
+              }
+            },
+            {
+              "value": "miami_heat",
+              "label": {
+                "en": "Miami Heat (NBA)",
+                "fr": "Miami Heat (NBA)"
+              }
+            },
+            {
+              "value": "milwaukee_bucks",
+              "label": {
+                "en": "Milwaukee Bucks (NBA)",
+                "fr": "Milwaukee Bucks (NBA)"
+              }
+            },
+            {
+              "value": "minnesota_timberwolves",
+              "label": {
+                "en": "Minnesota Timberwolves (NBA)",
+                "fr": "Minnesota Timberwolves (NBA)"
+              }
+            },
+            {
+              "value": "new_orleans_pelicans",
+              "label": {
+                "en": "New Orleans Pelicans (NBA)",
+                "fr": "New Orleans Pelicans (NBA)"
+              }
+            },
+            {
+              "value": "new_york_knicks",
+              "label": {
+                "en": "New York Knicks (NBA)",
+                "fr": "New York Knicks (NBA)"
+              }
+            },
+            {
+              "value": "oklahoma_city_thunder",
+              "label": {
+                "en": "Oklahoma City Thunder (NBA)",
+                "fr": "Oklahoma City Thunder (NBA)"
+              }
+            },
+            {
+              "value": "orlando_magic",
+              "label": {
+                "en": "Orlando Magic (NBA)",
+                "fr": "Orlando Magic (NBA)"
+              }
+            },
+            {
+              "value": "philadelphia_76ers",
+              "label": {
+                "en": "Philadelphia 76ers (NBA)",
+                "fr": "Philadelphia 76ers (NBA)"
+              }
+            },
+            {
+              "value": "phoenix_suns",
+              "label": {
+                "en": "Phoenix Suns (NBA)",
+                "fr": "Phoenix Suns (NBA)"
+              }
+            },
+            {
+              "value": "portland_trail_blazers",
+              "label": {
+                "en": "Portland Trail Blazers (NBA)",
+                "fr": "Portland Trail Blazers (NBA)"
+              }
+            },
+            {
+              "value": "sacramento_kings",
+              "label": {
+                "en": "Sacramento Kings (NBA)",
+                "fr": "Sacramento Kings (NBA)"
+              }
+            },
+            {
+              "value": "san_antonio_spurs",
+              "label": {
+                "en": "San Antonio Spurs (NBA)",
+                "fr": "San Antonio Spurs (NBA)"
+              }
+            },
+            {
+              "value": "toronto_raptors",
+              "label": {
+                "en": "Toronto Raptors (NBA)",
+                "fr": "Toronto Raptors (NBA)"
+              }
+            },
+            {
+              "value": "utah_jazz",
+              "label": {
+                "en": "Utah Jazz (NBA)",
+                "fr": "Utah Jazz (NBA)"
+              }
+            },
+            {
+              "value": "washington_wizards",
+              "label": {
+                "en": "Washington Wizards (NBA)",
+                "fr": "Washington Wizards (NBA)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "match_starting",
+      "label": {
+        "en": "A game is about to start",
+        "fr": "Un match va commencer"
+      },
+      "description": {
+        "en": "Fired before the start of a game of a followed team, in the watching window.",
+        "fr": "Déclenché avant le début d'un match d'une équipe suivie, dans la plage de visionnage."
+      },
+      "fields": [
+        {
+          "key": "team",
+          "type": "multi_select",
+          "label": {
+            "en": "Teams",
+            "fr": "Équipes"
+          },
+          "description": {
+            "en": "Followed teams only. Empty: any followed team.",
+            "fr": "Équipes suivies uniquement. Vide : n'importe quelle équipe suivie."
+          },
+          "options": [
+            {
+              "value": "asvel",
+              "label": {
+                "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
+                "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
+              }
+            },
+            {
+              "value": "paris_basketball",
+              "label": {
+                "en": "Paris Basketball (EuroLeague, Betclic Élite)",
+                "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
+              }
+            },
+            {
+              "value": "boulazac",
+              "label": {
+                "en": "Boulazac Basket Dordogne (Betclic Élite)",
+                "fr": "Boulazac Basket Dordogne (Betclic Élite)"
+              }
+            },
+            {
+              "value": "bourg_en_bresse",
+              "label": {
+                "en": "JL Bourg (Betclic Élite)",
+                "fr": "JL Bourg (Betclic Élite)"
+              }
+            },
+            {
+              "value": "chalon",
+              "label": {
+                "en": "Élan Chalon (Betclic Élite)",
+                "fr": "Élan Chalon (Betclic Élite)"
+              }
+            },
+            {
+              "value": "cholet",
+              "label": {
+                "en": "Cholet Basket (Betclic Élite)",
+                "fr": "Cholet Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "dijon",
+              "label": {
+                "en": "JDA Dijon (Betclic Élite)",
+                "fr": "JDA Dijon (Betclic Élite)"
+              }
+            },
+            {
+              "value": "gravelines_dunkerque",
+              "label": {
+                "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
+                "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
+              }
+            },
+            {
+              "value": "le_mans",
+              "label": {
+                "en": "Le Mans Sarthe Basket (Betclic Élite)",
+                "fr": "Le Mans Sarthe Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "limoges",
+              "label": {
+                "en": "Limoges CSP (Betclic Élite)",
+                "fr": "Limoges CSP (Betclic Élite)"
+              }
+            },
+            {
+              "value": "nancy",
+              "label": {
+                "en": "SLUC Nancy (Betclic Élite)",
+                "fr": "SLUC Nancy (Betclic Élite)"
+              }
+            },
+            {
+              "value": "nanterre",
+              "label": {
+                "en": "Nanterre 92 (Betclic Élite)",
+                "fr": "Nanterre 92 (Betclic Élite)"
+              }
+            },
+            {
+              "value": "pau",
+              "label": {
+                "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
+                "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
+              }
+            },
+            {
+              "value": "roanne",
+              "label": {
+                "en": "Chorale Roanne (Betclic Élite)",
+                "fr": "Chorale Roanne (Betclic Élite)"
+              }
+            },
+            {
+              "value": "saint_quentin",
+              "label": {
+                "en": "Saint-Quentin Basket (Betclic Élite)",
+                "fr": "Saint-Quentin Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "strasbourg",
+              "label": {
+                "en": "SIG Strasbourg (Betclic Élite)",
+                "fr": "SIG Strasbourg (Betclic Élite)"
+              }
+            },
+            {
+              "value": "fc_barcelona",
+              "label": {
+                "en": "FC Barcelona (EuroLeague)",
+                "fr": "FC Barcelona (EuroLeague)"
+              }
+            },
+            {
+              "value": "baskonia",
+              "label": {
+                "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
+                "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
+              }
+            },
+            {
+              "value": "besiktas",
+              "label": {
+                "en": "Besiktas Istanbul (EuroLeague)",
+                "fr": "Besiktas Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "dubai",
+              "label": {
+                "en": "Dubai Basketball (EuroLeague)",
+                "fr": "Dubai Basketball (EuroLeague)"
+              }
+            },
+            {
+              "value": "hapoel_tel_aviv",
+              "label": {
+                "en": "Hapoel Tel Aviv (EuroLeague)",
+                "fr": "Hapoel Tel Aviv (EuroLeague)"
+              }
+            },
+            {
+              "value": "anadolu_efes",
+              "label": {
+                "en": "Anadolu Efes Istanbul (EuroLeague)",
+                "fr": "Anadolu Efes Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "real_madrid",
+              "label": {
+                "en": "Real Madrid (EuroLeague)",
+                "fr": "Real Madrid (EuroLeague)"
+              }
+            },
+            {
+              "value": "olimpia_milano",
+              "label": {
+                "en": "Olimpia Milano (EuroLeague)",
+                "fr": "Olimpia Milano (EuroLeague)"
+              }
+            },
+            {
+              "value": "bayern_munich",
+              "label": {
+                "en": "FC Bayern Munich (EuroLeague)",
+                "fr": "FC Bayern Munich (EuroLeague)"
+              }
+            },
+            {
+              "value": "olympiacos",
+              "label": {
+                "en": "Olympiacos Piraeus (EuroLeague)",
+                "fr": "Olympiacos Piraeus (EuroLeague)"
+              }
+            },
+            {
+              "value": "valencia",
+              "label": {
+                "en": "Valencia Basket (EuroLeague)",
+                "fr": "Valencia Basket (EuroLeague)"
+              }
+            },
+            {
+              "value": "panathinaikos",
+              "label": {
+                "en": "Panathinaikos Athens (EuroLeague)",
+                "fr": "Panathinaikos Athens (EuroLeague)"
+              }
+            },
+            {
+              "value": "partizan",
+              "label": {
+                "en": "Partizan Belgrade (EuroLeague)",
+                "fr": "Partizan Belgrade (EuroLeague)"
+              }
+            },
+            {
+              "value": "crvena_zvezda",
+              "label": {
+                "en": "Crvena Zvezda Belgrade (EuroLeague)",
+                "fr": "Crvena Zvezda Belgrade (EuroLeague)"
+              }
+            },
+            {
+              "value": "maccabi_tel_aviv",
+              "label": {
+                "en": "Maccabi Tel Aviv (EuroLeague)",
+                "fr": "Maccabi Tel Aviv (EuroLeague)"
+              }
+            },
+            {
+              "value": "fenerbahce",
+              "label": {
+                "en": "Fenerbahçe Istanbul (EuroLeague)",
+                "fr": "Fenerbahçe Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "virtus_bologna",
+              "label": {
+                "en": "Virtus Bologna (EuroLeague)",
+                "fr": "Virtus Bologna (EuroLeague)"
+              }
+            },
+            {
+              "value": "zalgiris",
+              "label": {
+                "en": "Zalgiris Kaunas (EuroLeague)",
+                "fr": "Zalgiris Kaunas (EuroLeague)"
+              }
+            },
+            {
+              "value": "atlanta_hawks",
+              "label": {
+                "en": "Atlanta Hawks (NBA)",
+                "fr": "Atlanta Hawks (NBA)"
+              }
+            },
+            {
+              "value": "boston_celtics",
+              "label": {
+                "en": "Boston Celtics (NBA)",
+                "fr": "Boston Celtics (NBA)"
+              }
+            },
+            {
+              "value": "brooklyn_nets",
+              "label": {
+                "en": "Brooklyn Nets (NBA)",
+                "fr": "Brooklyn Nets (NBA)"
+              }
+            },
+            {
+              "value": "charlotte_hornets",
+              "label": {
+                "en": "Charlotte Hornets (NBA)",
+                "fr": "Charlotte Hornets (NBA)"
+              }
+            },
+            {
+              "value": "chicago_bulls",
+              "label": {
+                "en": "Chicago Bulls (NBA)",
+                "fr": "Chicago Bulls (NBA)"
+              }
+            },
+            {
+              "value": "cleveland_cavaliers",
+              "label": {
+                "en": "Cleveland Cavaliers (NBA)",
+                "fr": "Cleveland Cavaliers (NBA)"
+              }
+            },
+            {
+              "value": "dallas_mavericks",
+              "label": {
+                "en": "Dallas Mavericks (NBA)",
+                "fr": "Dallas Mavericks (NBA)"
+              }
+            },
+            {
+              "value": "denver_nuggets",
+              "label": {
+                "en": "Denver Nuggets (NBA)",
+                "fr": "Denver Nuggets (NBA)"
+              }
+            },
+            {
+              "value": "detroit_pistons",
+              "label": {
+                "en": "Detroit Pistons (NBA)",
+                "fr": "Detroit Pistons (NBA)"
+              }
+            },
+            {
+              "value": "golden_state_warriors",
+              "label": {
+                "en": "Golden State Warriors (NBA)",
+                "fr": "Golden State Warriors (NBA)"
+              }
+            },
+            {
+              "value": "houston_rockets",
+              "label": {
+                "en": "Houston Rockets (NBA)",
+                "fr": "Houston Rockets (NBA)"
+              }
+            },
+            {
+              "value": "indiana_pacers",
+              "label": {
+                "en": "Indiana Pacers (NBA)",
+                "fr": "Indiana Pacers (NBA)"
+              }
+            },
+            {
+              "value": "la_clippers",
+              "label": {
+                "en": "LA Clippers (NBA)",
+                "fr": "LA Clippers (NBA)"
+              }
+            },
+            {
+              "value": "los_angeles_lakers",
+              "label": {
+                "en": "Los Angeles Lakers (NBA)",
+                "fr": "Los Angeles Lakers (NBA)"
+              }
+            },
+            {
+              "value": "memphis_grizzlies",
+              "label": {
+                "en": "Memphis Grizzlies (NBA)",
+                "fr": "Memphis Grizzlies (NBA)"
+              }
+            },
+            {
+              "value": "miami_heat",
+              "label": {
+                "en": "Miami Heat (NBA)",
+                "fr": "Miami Heat (NBA)"
+              }
+            },
+            {
+              "value": "milwaukee_bucks",
+              "label": {
+                "en": "Milwaukee Bucks (NBA)",
+                "fr": "Milwaukee Bucks (NBA)"
+              }
+            },
+            {
+              "value": "minnesota_timberwolves",
+              "label": {
+                "en": "Minnesota Timberwolves (NBA)",
+                "fr": "Minnesota Timberwolves (NBA)"
+              }
+            },
+            {
+              "value": "new_orleans_pelicans",
+              "label": {
+                "en": "New Orleans Pelicans (NBA)",
+                "fr": "New Orleans Pelicans (NBA)"
+              }
+            },
+            {
+              "value": "new_york_knicks",
+              "label": {
+                "en": "New York Knicks (NBA)",
+                "fr": "New York Knicks (NBA)"
+              }
+            },
+            {
+              "value": "oklahoma_city_thunder",
+              "label": {
+                "en": "Oklahoma City Thunder (NBA)",
+                "fr": "Oklahoma City Thunder (NBA)"
+              }
+            },
+            {
+              "value": "orlando_magic",
+              "label": {
+                "en": "Orlando Magic (NBA)",
+                "fr": "Orlando Magic (NBA)"
+              }
+            },
+            {
+              "value": "philadelphia_76ers",
+              "label": {
+                "en": "Philadelphia 76ers (NBA)",
+                "fr": "Philadelphia 76ers (NBA)"
+              }
+            },
+            {
+              "value": "phoenix_suns",
+              "label": {
+                "en": "Phoenix Suns (NBA)",
+                "fr": "Phoenix Suns (NBA)"
+              }
+            },
+            {
+              "value": "portland_trail_blazers",
+              "label": {
+                "en": "Portland Trail Blazers (NBA)",
+                "fr": "Portland Trail Blazers (NBA)"
+              }
+            },
+            {
+              "value": "sacramento_kings",
+              "label": {
+                "en": "Sacramento Kings (NBA)",
+                "fr": "Sacramento Kings (NBA)"
+              }
+            },
+            {
+              "value": "san_antonio_spurs",
+              "label": {
+                "en": "San Antonio Spurs (NBA)",
+                "fr": "San Antonio Spurs (NBA)"
+              }
+            },
+            {
+              "value": "toronto_raptors",
+              "label": {
+                "en": "Toronto Raptors (NBA)",
+                "fr": "Toronto Raptors (NBA)"
+              }
+            },
+            {
+              "value": "utah_jazz",
+              "label": {
+                "en": "Utah Jazz (NBA)",
+                "fr": "Utah Jazz (NBA)"
+              }
+            },
+            {
+              "value": "washington_wizards",
+              "label": {
+                "en": "Washington Wizards (NBA)",
+                "fr": "Washington Wizards (NBA)"
+              }
+            }
+          ]
+        },
+        {
+          "key": "competition",
+          "type": "multi_select",
+          "label": {
+            "en": "Competitions",
+            "fr": "Compétitions"
+          },
+          "description": {
+            "en": "Empty: any competition.",
+            "fr": "Vide : n'importe quelle compétition."
+          },
+          "options": [
+            {
+              "value": "nba",
+              "label": {
+                "en": "NBA",
+                "fr": "NBA"
+              }
+            },
+            {
+              "value": "euroleague",
+              "label": {
+                "en": "EuroLeague",
+                "fr": "EuroLeague"
+              }
+            },
+            {
+              "value": "betclic_elite",
+              "label": {
+                "en": "Betclic Élite",
+                "fr": "Betclic Élite"
+              }
+            }
+          ]
+        },
+        {
+          "key": "minutes_before",
+          "type": "select",
+          "label": {
+            "en": "When",
+            "fr": "Quand"
+          },
+          "required": true,
+          "default": "0",
+          "options": [
+            {
+              "value": "0",
+              "label": {
+                "en": "At kick-off",
+                "fr": "Au coup d'envoi"
+              }
+            },
+            {
+              "value": "15",
+              "label": {
+                "en": "15 min before",
+                "fr": "15 min avant"
+              }
+            },
+            {
+              "value": "30",
+              "label": {
+                "en": "30 min before",
+                "fr": "30 min avant"
+              }
+            },
+            {
+              "value": "60",
+              "label": {
+                "en": "1 hour before",
+                "fr": "1 heure avant"
+              }
+            }
+          ]
+        }
+      ],
+      "variables": [
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition (key)",
+            "fr": "Compétition (clé)"
+          },
+          "description": {
+            "en": "nba, euroleague or betclic_elite",
+            "fr": "nba, euroleague ou betclic_elite"
+          }
+        },
+        {
+          "key": "home_team",
+          "type": "string",
+          "label": {
+            "en": "Home team",
+            "fr": "Équipe à domicile"
+          }
+        },
+        {
+          "key": "away_team",
+          "type": "string",
+          "label": {
+            "en": "Away team",
+            "fr": "Équipe à l'extérieur"
+          }
+        },
+        {
+          "key": "start",
+          "type": "string",
+          "label": {
+            "en": "Start time (Paris)",
+            "fr": "Heure de début (Paris)"
+          }
+        },
+        {
+          "key": "broadcaster",
+          "type": "string",
+          "label": {
+            "en": "Broadcaster",
+            "fr": "Diffuseur"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "get_next_match",
+      "label": {
+        "en": "Get the next game of a team",
+        "fr": "Lire le prochain match d'une équipe"
+      },
+      "description": {
+        "en": "Returns the next game and the last result of a team.",
+        "fr": "Renvoie le prochain match et le dernier résultat d'une équipe."
+      },
+      "timeout_seconds": 90,
+      "fields": [
+        {
+          "key": "team",
+          "type": "select",
+          "label": {
+            "en": "Team",
+            "fr": "Équipe"
+          },
+          "required": true,
+          "options": [
+            {
+              "value": "asvel",
+              "label": {
+                "en": "LDLC ASVEL (EuroLeague, Betclic Élite)",
+                "fr": "LDLC ASVEL (EuroLeague, Betclic Élite)"
+              }
+            },
+            {
+              "value": "paris_basketball",
+              "label": {
+                "en": "Paris Basketball (EuroLeague, Betclic Élite)",
+                "fr": "Paris Basketball (EuroLeague, Betclic Élite)"
+              }
+            },
+            {
+              "value": "boulazac",
+              "label": {
+                "en": "Boulazac Basket Dordogne (Betclic Élite)",
+                "fr": "Boulazac Basket Dordogne (Betclic Élite)"
+              }
+            },
+            {
+              "value": "bourg_en_bresse",
+              "label": {
+                "en": "JL Bourg (Betclic Élite)",
+                "fr": "JL Bourg (Betclic Élite)"
+              }
+            },
+            {
+              "value": "chalon",
+              "label": {
+                "en": "Élan Chalon (Betclic Élite)",
+                "fr": "Élan Chalon (Betclic Élite)"
+              }
+            },
+            {
+              "value": "cholet",
+              "label": {
+                "en": "Cholet Basket (Betclic Élite)",
+                "fr": "Cholet Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "dijon",
+              "label": {
+                "en": "JDA Dijon (Betclic Élite)",
+                "fr": "JDA Dijon (Betclic Élite)"
+              }
+            },
+            {
+              "value": "gravelines_dunkerque",
+              "label": {
+                "en": "BCM Gravelines-Dunkerque (Betclic Élite)",
+                "fr": "BCM Gravelines-Dunkerque (Betclic Élite)"
+              }
+            },
+            {
+              "value": "le_mans",
+              "label": {
+                "en": "Le Mans Sarthe Basket (Betclic Élite)",
+                "fr": "Le Mans Sarthe Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "limoges",
+              "label": {
+                "en": "Limoges CSP (Betclic Élite)",
+                "fr": "Limoges CSP (Betclic Élite)"
+              }
+            },
+            {
+              "value": "nancy",
+              "label": {
+                "en": "SLUC Nancy (Betclic Élite)",
+                "fr": "SLUC Nancy (Betclic Élite)"
+              }
+            },
+            {
+              "value": "nanterre",
+              "label": {
+                "en": "Nanterre 92 (Betclic Élite)",
+                "fr": "Nanterre 92 (Betclic Élite)"
+              }
+            },
+            {
+              "value": "pau",
+              "label": {
+                "en": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)",
+                "fr": "Élan Béarnais Pau-Lacq-Orthez (Betclic Élite)"
+              }
+            },
+            {
+              "value": "roanne",
+              "label": {
+                "en": "Chorale Roanne (Betclic Élite)",
+                "fr": "Chorale Roanne (Betclic Élite)"
+              }
+            },
+            {
+              "value": "saint_quentin",
+              "label": {
+                "en": "Saint-Quentin Basket (Betclic Élite)",
+                "fr": "Saint-Quentin Basket (Betclic Élite)"
+              }
+            },
+            {
+              "value": "strasbourg",
+              "label": {
+                "en": "SIG Strasbourg (Betclic Élite)",
+                "fr": "SIG Strasbourg (Betclic Élite)"
+              }
+            },
+            {
+              "value": "fc_barcelona",
+              "label": {
+                "en": "FC Barcelona (EuroLeague)",
+                "fr": "FC Barcelona (EuroLeague)"
+              }
+            },
+            {
+              "value": "baskonia",
+              "label": {
+                "en": "Baskonia Vitoria-Gasteiz (EuroLeague)",
+                "fr": "Baskonia Vitoria-Gasteiz (EuroLeague)"
+              }
+            },
+            {
+              "value": "besiktas",
+              "label": {
+                "en": "Besiktas Istanbul (EuroLeague)",
+                "fr": "Besiktas Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "dubai",
+              "label": {
+                "en": "Dubai Basketball (EuroLeague)",
+                "fr": "Dubai Basketball (EuroLeague)"
+              }
+            },
+            {
+              "value": "hapoel_tel_aviv",
+              "label": {
+                "en": "Hapoel Tel Aviv (EuroLeague)",
+                "fr": "Hapoel Tel Aviv (EuroLeague)"
+              }
+            },
+            {
+              "value": "anadolu_efes",
+              "label": {
+                "en": "Anadolu Efes Istanbul (EuroLeague)",
+                "fr": "Anadolu Efes Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "real_madrid",
+              "label": {
+                "en": "Real Madrid (EuroLeague)",
+                "fr": "Real Madrid (EuroLeague)"
+              }
+            },
+            {
+              "value": "olimpia_milano",
+              "label": {
+                "en": "Olimpia Milano (EuroLeague)",
+                "fr": "Olimpia Milano (EuroLeague)"
+              }
+            },
+            {
+              "value": "bayern_munich",
+              "label": {
+                "en": "FC Bayern Munich (EuroLeague)",
+                "fr": "FC Bayern Munich (EuroLeague)"
+              }
+            },
+            {
+              "value": "olympiacos",
+              "label": {
+                "en": "Olympiacos Piraeus (EuroLeague)",
+                "fr": "Olympiacos Piraeus (EuroLeague)"
+              }
+            },
+            {
+              "value": "valencia",
+              "label": {
+                "en": "Valencia Basket (EuroLeague)",
+                "fr": "Valencia Basket (EuroLeague)"
+              }
+            },
+            {
+              "value": "panathinaikos",
+              "label": {
+                "en": "Panathinaikos Athens (EuroLeague)",
+                "fr": "Panathinaikos Athens (EuroLeague)"
+              }
+            },
+            {
+              "value": "partizan",
+              "label": {
+                "en": "Partizan Belgrade (EuroLeague)",
+                "fr": "Partizan Belgrade (EuroLeague)"
+              }
+            },
+            {
+              "value": "crvena_zvezda",
+              "label": {
+                "en": "Crvena Zvezda Belgrade (EuroLeague)",
+                "fr": "Crvena Zvezda Belgrade (EuroLeague)"
+              }
+            },
+            {
+              "value": "maccabi_tel_aviv",
+              "label": {
+                "en": "Maccabi Tel Aviv (EuroLeague)",
+                "fr": "Maccabi Tel Aviv (EuroLeague)"
+              }
+            },
+            {
+              "value": "fenerbahce",
+              "label": {
+                "en": "Fenerbahçe Istanbul (EuroLeague)",
+                "fr": "Fenerbahçe Istanbul (EuroLeague)"
+              }
+            },
+            {
+              "value": "virtus_bologna",
+              "label": {
+                "en": "Virtus Bologna (EuroLeague)",
+                "fr": "Virtus Bologna (EuroLeague)"
+              }
+            },
+            {
+              "value": "zalgiris",
+              "label": {
+                "en": "Zalgiris Kaunas (EuroLeague)",
+                "fr": "Zalgiris Kaunas (EuroLeague)"
+              }
+            },
+            {
+              "value": "atlanta_hawks",
+              "label": {
+                "en": "Atlanta Hawks (NBA)",
+                "fr": "Atlanta Hawks (NBA)"
+              }
+            },
+            {
+              "value": "boston_celtics",
+              "label": {
+                "en": "Boston Celtics (NBA)",
+                "fr": "Boston Celtics (NBA)"
+              }
+            },
+            {
+              "value": "brooklyn_nets",
+              "label": {
+                "en": "Brooklyn Nets (NBA)",
+                "fr": "Brooklyn Nets (NBA)"
+              }
+            },
+            {
+              "value": "charlotte_hornets",
+              "label": {
+                "en": "Charlotte Hornets (NBA)",
+                "fr": "Charlotte Hornets (NBA)"
+              }
+            },
+            {
+              "value": "chicago_bulls",
+              "label": {
+                "en": "Chicago Bulls (NBA)",
+                "fr": "Chicago Bulls (NBA)"
+              }
+            },
+            {
+              "value": "cleveland_cavaliers",
+              "label": {
+                "en": "Cleveland Cavaliers (NBA)",
+                "fr": "Cleveland Cavaliers (NBA)"
+              }
+            },
+            {
+              "value": "dallas_mavericks",
+              "label": {
+                "en": "Dallas Mavericks (NBA)",
+                "fr": "Dallas Mavericks (NBA)"
+              }
+            },
+            {
+              "value": "denver_nuggets",
+              "label": {
+                "en": "Denver Nuggets (NBA)",
+                "fr": "Denver Nuggets (NBA)"
+              }
+            },
+            {
+              "value": "detroit_pistons",
+              "label": {
+                "en": "Detroit Pistons (NBA)",
+                "fr": "Detroit Pistons (NBA)"
+              }
+            },
+            {
+              "value": "golden_state_warriors",
+              "label": {
+                "en": "Golden State Warriors (NBA)",
+                "fr": "Golden State Warriors (NBA)"
+              }
+            },
+            {
+              "value": "houston_rockets",
+              "label": {
+                "en": "Houston Rockets (NBA)",
+                "fr": "Houston Rockets (NBA)"
+              }
+            },
+            {
+              "value": "indiana_pacers",
+              "label": {
+                "en": "Indiana Pacers (NBA)",
+                "fr": "Indiana Pacers (NBA)"
+              }
+            },
+            {
+              "value": "la_clippers",
+              "label": {
+                "en": "LA Clippers (NBA)",
+                "fr": "LA Clippers (NBA)"
+              }
+            },
+            {
+              "value": "los_angeles_lakers",
+              "label": {
+                "en": "Los Angeles Lakers (NBA)",
+                "fr": "Los Angeles Lakers (NBA)"
+              }
+            },
+            {
+              "value": "memphis_grizzlies",
+              "label": {
+                "en": "Memphis Grizzlies (NBA)",
+                "fr": "Memphis Grizzlies (NBA)"
+              }
+            },
+            {
+              "value": "miami_heat",
+              "label": {
+                "en": "Miami Heat (NBA)",
+                "fr": "Miami Heat (NBA)"
+              }
+            },
+            {
+              "value": "milwaukee_bucks",
+              "label": {
+                "en": "Milwaukee Bucks (NBA)",
+                "fr": "Milwaukee Bucks (NBA)"
+              }
+            },
+            {
+              "value": "minnesota_timberwolves",
+              "label": {
+                "en": "Minnesota Timberwolves (NBA)",
+                "fr": "Minnesota Timberwolves (NBA)"
+              }
+            },
+            {
+              "value": "new_orleans_pelicans",
+              "label": {
+                "en": "New Orleans Pelicans (NBA)",
+                "fr": "New Orleans Pelicans (NBA)"
+              }
+            },
+            {
+              "value": "new_york_knicks",
+              "label": {
+                "en": "New York Knicks (NBA)",
+                "fr": "New York Knicks (NBA)"
+              }
+            },
+            {
+              "value": "oklahoma_city_thunder",
+              "label": {
+                "en": "Oklahoma City Thunder (NBA)",
+                "fr": "Oklahoma City Thunder (NBA)"
+              }
+            },
+            {
+              "value": "orlando_magic",
+              "label": {
+                "en": "Orlando Magic (NBA)",
+                "fr": "Orlando Magic (NBA)"
+              }
+            },
+            {
+              "value": "philadelphia_76ers",
+              "label": {
+                "en": "Philadelphia 76ers (NBA)",
+                "fr": "Philadelphia 76ers (NBA)"
+              }
+            },
+            {
+              "value": "phoenix_suns",
+              "label": {
+                "en": "Phoenix Suns (NBA)",
+                "fr": "Phoenix Suns (NBA)"
+              }
+            },
+            {
+              "value": "portland_trail_blazers",
+              "label": {
+                "en": "Portland Trail Blazers (NBA)",
+                "fr": "Portland Trail Blazers (NBA)"
+              }
+            },
+            {
+              "value": "sacramento_kings",
+              "label": {
+                "en": "Sacramento Kings (NBA)",
+                "fr": "Sacramento Kings (NBA)"
+              }
+            },
+            {
+              "value": "san_antonio_spurs",
+              "label": {
+                "en": "San Antonio Spurs (NBA)",
+                "fr": "San Antonio Spurs (NBA)"
+              }
+            },
+            {
+              "value": "toronto_raptors",
+              "label": {
+                "en": "Toronto Raptors (NBA)",
+                "fr": "Toronto Raptors (NBA)"
+              }
+            },
+            {
+              "value": "utah_jazz",
+              "label": {
+                "en": "Utah Jazz (NBA)",
+                "fr": "Utah Jazz (NBA)"
+              }
+            },
+            {
+              "value": "washington_wizards",
+              "label": {
+                "en": "Washington Wizards (NBA)",
+                "fr": "Washington Wizards (NBA)"
+              }
+            }
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "key": "next_match",
+          "type": "string",
+          "label": {
+            "en": "Next game",
+            "fr": "Prochain match"
+          }
+        },
+        {
+          "key": "next_start",
+          "type": "string",
+          "label": {
+            "en": "Next game: start (Paris)",
+            "fr": "Prochain match : début (Paris)"
+          }
+        },
+        {
+          "key": "opponent",
+          "type": "string",
+          "label": {
+            "en": "Opponent",
+            "fr": "Adversaire"
+          }
+        },
+        {
+          "key": "is_home",
+          "type": "boolean",
+          "label": {
+            "en": "At home",
+            "fr": "À domicile"
+          }
+        },
+        {
+          "key": "competition",
+          "type": "string",
+          "label": {
+            "en": "Competition",
+            "fr": "Compétition"
+          }
+        },
+        {
+          "key": "broadcaster",
+          "type": "string",
+          "label": {
+            "en": "Broadcaster",
+            "fr": "Diffuseur"
+          }
+        },
+        {
+          "key": "last_result",
+          "type": "string",
+          "label": {
+            "en": "Last result",
+            "fr": "Dernier résultat"
+          }
+        }
+      ]
+    }
+  ]
+}

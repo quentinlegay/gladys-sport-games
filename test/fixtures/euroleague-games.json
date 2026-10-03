@@ -1,0 +1,460 @@
+{
+  "data": [
+    {
+      "id": "a0d05fe9-e4ef-48fa-b6a9-cf41db102252",
+      "identifier": "E2026_3",
+      "gameCode": 3,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 1,
+      "roundAlias": "Round 1",
+      "roundName": "Round 1",
+      "played": true,
+      "date": "2026-09-24T18:00:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 3,
+      "localDate": "2026-09-24T19:00:00",
+      "utcDate": "2026-09-24T16:00:00Z",
+      "local": {
+        "club": {
+          "code": "HTA",
+          "name": "Hapoel IBI Tel Aviv",
+          "abbreviatedName": "Hapoel TLV",
+          "editorialName": "Hapoel",
+          "tvCode": "HTA",
+          "isVirtual": false
+        },
+        "score": 84,
+        "standingsScore": 84
+      },
+      "road": {
+        "club": {
+          "code": "MUN",
+          "name": "FC Bayern Munich",
+          "abbreviatedName": "Bayern Munich",
+          "editorialName": "Bayern",
+          "tvCode": "BAY",
+          "isVirtual": false
+        },
+        "score": 86,
+        "standingsScore": 86
+      },
+      "audience": 0,
+      "audienceConfirmed": true,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    },
+    {
+      "id": "cb93add5-6430-449a-9322-dd670ff055ae",
+      "identifier": "E2026_2",
+      "gameCode": 2,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 1,
+      "roundAlias": "Round 1",
+      "roundName": "Round 1",
+      "played": true,
+      "date": "2026-09-24T18:00:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 4,
+      "localDate": "2026-09-24T20:00:00",
+      "utcDate": "2026-09-24T16:00:00Z",
+      "local": {
+        "club": {
+          "code": "DUB",
+          "name": "Dubai Basketball",
+          "abbreviatedName": "Dubai",
+          "editorialName": "Dubai",
+          "tvCode": "DUB",
+          "isVirtual": false
+        },
+        "score": 78,
+        "standingsScore": 78
+      },
+      "road": {
+        "club": {
+          "code": "MAD",
+          "name": "Real Madrid",
+          "abbreviatedName": "Real Madrid",
+          "editorialName": "Real",
+          "tvCode": "RMB",
+          "isVirtual": false
+        },
+        "score": 77,
+        "standingsScore": 77
+      },
+      "audience": 7269,
+      "audienceConfirmed": true,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    },
+    {
+      "id": "3240915c-63cf-4f1e-9e75-450d9903527a",
+      "identifier": "E2026_1",
+      "gameCode": 1,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 1,
+      "roundAlias": "Round 1",
+      "roundName": "Round 1",
+      "played": true,
+      "date": "2026-09-24T20:00:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 2,
+      "localDate": "2026-09-24T20:00:00",
+      "utcDate": "2026-09-24T18:00:00Z",
+      "local": {
+        "club": {
+          "code": "RED",
+          "name": "Crvena Zvezda Meridianbet Belgrade",
+          "abbreviatedName": "Crvena Zvezda",
+          "editorialName": "Crvena",
+          "tvCode": "CZV",
+          "isVirtual": false
+        },
+        "score": 77,
+        "standingsScore": 77
+      },
+      "road": {
+        "club": {
+          "code": "ZAL",
+          "name": "Zalgiris Kaunas",
+          "abbreviatedName": "Zalgiris",
+          "editorialName": "Zalgiris",
+          "tvCode": "ZAL",
+          "isVirtual": false
+        },
+        "score": 83,
+        "standingsScore": 83
+      },
+      "audience": 16420,
+      "audienceConfirmed": true,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    },
+    {
+      "id": "17b46ddd-0884-406c-97a0-13f60cae97cc",
+      "identifier": "E2026_31",
+      "gameCode": 31,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 4,
+      "roundAlias": "Round 4",
+      "roundName": "Round 4",
+      "played": false,
+      "date": "2026-10-07T20:45:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 2,
+      "localDate": "2026-10-07T20:45:00",
+      "utcDate": "2026-10-07T18:45:00Z",
+      "local": {
+        "club": {
+          "code": "PRS",
+          "name": "Paris Basketball",
+          "abbreviatedName": "Paris",
+          "editorialName": "Paris",
+          "tvCode": "PBB",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "road": {
+        "club": {
+          "code": "ASV",
+          "name": "LDLC ASVEL Villeurbanne",
+          "abbreviatedName": "LDLC ASVEL",
+          "editorialName": "ASVEL",
+          "tvCode": "ASV",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "audience": 0,
+      "audienceConfirmed": false,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    },
+    {
+      "id": "bb4c0bb0-bd1c-48ae-9da3-a8e7568babf6",
+      "identifier": "E2026_41",
+      "gameCode": 41,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 5,
+      "roundAlias": "Round 5",
+      "roundName": "Round 5",
+      "played": false,
+      "date": "2026-10-13T20:00:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 2,
+      "localDate": "2026-10-13T20:00:00",
+      "utcDate": "2026-10-13T18:00:00Z",
+      "local": {
+        "club": {
+          "code": "ASV",
+          "name": "LDLC ASVEL Villeurbanne",
+          "abbreviatedName": "LDLC ASVEL",
+          "editorialName": "ASVEL",
+          "tvCode": "ASV",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "road": {
+        "club": {
+          "code": "RED",
+          "name": "Crvena Zvezda Meridianbet Belgrade",
+          "abbreviatedName": "Crvena Zvezda",
+          "editorialName": "Crvena",
+          "tvCode": "CZV",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "audience": 0,
+      "audienceConfirmed": false,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    },
+    {
+      "id": "53c02414-9f29-45ed-967c-a71372698d6d",
+      "identifier": "E2026_50",
+      "gameCode": 50,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 5,
+      "roundAlias": "Round 5",
+      "roundName": "Round 5",
+      "played": false,
+      "date": "2026-10-14T20:45:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 2,
+      "localDate": "2026-10-14T20:45:00",
+      "utcDate": "2026-10-14T18:45:00Z",
+      "local": {
+        "club": {
+          "code": "PRS",
+          "name": "Paris Basketball",
+          "abbreviatedName": "Paris",
+          "editorialName": "Paris",
+          "tvCode": "PBB",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "road": {
+        "club": {
+          "code": "VIR",
+          "name": "Virtus Bologna",
+          "abbreviatedName": "Virtus Bologna",
+          "editorialName": "Virtus",
+          "tvCode": "VIR",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "audience": 0,
+      "audienceConfirmed": false,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    },
+    {
+      "id": "4a1f7835-9f11-4fa0-88ca-91597f6918a5",
+      "identifier": "E2026_53",
+      "gameCode": 53,
+      "season": {
+        "name": "EuroLeague 2026-27",
+        "code": "E2026",
+        "alias": "2026-27",
+        "competitionCode": "E",
+        "year": 2026,
+        "startDate": "2026-07-01T00:00:00"
+      },
+      "group": {
+        "id": "c3243224-039c-4e93-9e16-12a7f4b2d383",
+        "order": 1,
+        "name": "Group Regular Season",
+        "rawName": "Regular Season"
+      },
+      "phaseType": {
+        "code": "RS",
+        "alias": "REGULAR SEASON",
+        "name": "Regular Season",
+        "isGroupPhase": true
+      },
+      "round": 6,
+      "roundAlias": "Round 6",
+      "roundName": "Round 6",
+      "played": false,
+      "date": "2026-10-15T21:00:00",
+      "confirmedDate": true,
+      "confirmedHour": true,
+      "localTimeZone": 2,
+      "localDate": "2026-10-15T21:00:00",
+      "utcDate": "2026-10-15T19:00:00Z",
+      "local": {
+        "club": {
+          "code": "MAD",
+          "name": "Real Madrid",
+          "abbreviatedName": "Real Madrid",
+          "editorialName": "Real",
+          "tvCode": "RMB",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "road": {
+        "club": {
+          "code": "ASV",
+          "name": "LDLC ASVEL Villeurbanne",
+          "abbreviatedName": "LDLC ASVEL",
+          "editorialName": "ASVEL",
+          "tvCode": "ASV",
+          "isVirtual": false
+        },
+        "score": 0,
+        "standingsScore": 0
+      },
+      "audience": 0,
+      "audienceConfirmed": false,
+      "operationsCode": null,
+      "isNeutralVenue": false,
+      "gameStatus": "Confirmed",
+      "winner": null
+    }
+  ],
+  "total": 7
+}

@@ -1,0 +1,411 @@
+{
+  "status": true,
+  "message": "Calendar get successfully",
+  "data": [
+    {
+      "date": "2026-09-27",
+      "data": [
+        {
+          "id": 19608000,
+          "match_time_utc": "2026-09-27T17:00:00.000Z",
+          "match_id": "390be9fd-a542-11f1-8a78-5392b5a73941",
+          "tournament_number": 0,
+          "match_date": "2026-09-27",
+          "match_status": "COMPLETE",
+          "external_id": 30067,
+          "is_pinned": false,
+          "competition_external_id": 317,
+          "division_external_id": 1,
+          "competition_abbrev": "PROA",
+          "colour_primary": "0c0b86",
+          "colour_secondary": "e10014",
+          "round_number": 1,
+          "round_description": "1ère journée",
+          "phase_name": "",
+          "phase_id": 1,
+          "display_round": "J1",
+          "broadcast": [
+            {
+              "id": 13584071,
+              "broadcast_id": null,
+              "external_id": 5428,
+              "match_external_id": 30067,
+              "broadcast_provider_external_id": 34,
+              "broadcast_type": "VIDEO_STREAM",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-09-27 18:55:00",
+              "broadcast_provider": {
+                "id": 1,
+                "external_id": 34,
+                "broadcast_provider": "DAZN",
+                "broadcast_provider_url": "https://www.dazn.com/fr-fr/p/basketball?utm_medium=display&utm_source=solus&utm_campaign=lnb&utm_content=static&utm_term=website"
+              }
+            },
+            {
+              "id": 13803835,
+              "broadcast_id": null,
+              "external_id": 6049,
+              "match_external_id": 30067,
+              "broadcast_provider_external_id": 27,
+              "broadcast_type": "VIDEO_STREAM",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-09-27 18:55:00",
+              "broadcast_provider": {
+                "id": 2590,
+                "external_id": 27,
+                "broadcast_provider": "L'Équipe Live",
+                "broadcast_provider_url": "https://www.lequipe.fr/tv/"
+              }
+            }
+          ],
+          "teams": [
+            {
+              "id": 7845,
+              "team_id": "83c1445d-7098-11f1-a9c6-4dad8c526642",
+              "external_id": 1861,
+              "club_external_id": 20,
+              "team_name": "Cholet",
+              "team_code": "CHO",
+              "is_favourite": "no",
+              "score_string": "85",
+              "rank": 0
+            },
+            {
+              "id": 7850,
+              "team_id": "8e2e7e72-7098-11f1-9b41-f9c599214b85",
+              "external_id": 1866,
+              "club_external_id": 91,
+              "team_name": "Lyon-Villeurbanne",
+              "team_code": "VIL",
+              "is_favourite": "no",
+              "score_string": "97",
+              "rank": 0
+            }
+          ],
+          "is_previous": true,
+          "is_next": true
+        }
+      ]
+    },
+    {
+      "date": "2026-10-04",
+      "data": [
+        {
+          "id": 19608007,
+          "match_time_utc": "2026-10-04T14:30:00.000Z",
+          "match_id": "9d0c328d-a543-11f1-9ab8-b9515c5be892",
+          "tournament_number": 0,
+          "match_date": "2026-10-04",
+          "match_status": "SCHEDULED",
+          "external_id": 30074,
+          "is_pinned": false,
+          "competition_external_id": 317,
+          "division_external_id": 1,
+          "competition_abbrev": "PROA",
+          "colour_primary": "0c0b86",
+          "colour_secondary": "e10014",
+          "round_number": 2,
+          "round_description": "2ème journée",
+          "phase_name": "",
+          "phase_id": 1,
+          "display_round": "J2",
+          "broadcast": [
+            {
+              "id": 13591748,
+              "broadcast_id": null,
+              "external_id": 5438,
+              "match_external_id": 30074,
+              "broadcast_provider_external_id": 34,
+              "broadcast_type": "VIDEO_STREAM",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-10-04 16:25:00",
+              "broadcast_provider": {
+                "id": 1,
+                "external_id": 34,
+                "broadcast_provider": "DAZN",
+                "broadcast_provider_url": "https://www.dazn.com/fr-fr/p/basketball?utm_medium=display&utm_source=solus&utm_campaign=lnb&utm_content=static&utm_term=website"
+              }
+            }
+          ],
+          "teams": [
+            {
+              "id": 7847,
+              "team_id": "87ed43f8-7098-11f1-aa8f-23ae2d7880e4",
+              "external_id": 1863,
+              "club_external_id": 33,
+              "team_name": "Gravelines-Dunkerque",
+              "team_code": "GRA",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            },
+            {
+              "id": 7850,
+              "team_id": "8e2e7e72-7098-11f1-9b41-f9c599214b85",
+              "external_id": 1866,
+              "club_external_id": 91,
+              "team_name": "Lyon-Villeurbanne",
+              "team_code": "VIL",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            }
+          ],
+          "is_previous": true,
+          "is_next": true
+        }
+      ]
+    },
+    {
+      "date": "2026-10-11",
+      "data": [
+        {
+          "id": 19608021,
+          "match_time_utc": "2026-10-11T17:00:00.000Z",
+          "match_id": "9dd24eb5-a543-11f1-8369-b9515c5be892",
+          "tournament_number": 0,
+          "match_date": "2026-10-11",
+          "match_status": "SCHEDULED",
+          "external_id": 30088,
+          "is_pinned": false,
+          "competition_external_id": 317,
+          "division_external_id": 1,
+          "competition_abbrev": "PROA",
+          "colour_primary": "0c0b86",
+          "colour_secondary": "e10014",
+          "round_number": 3,
+          "round_description": "3ème journée",
+          "phase_name": "",
+          "phase_id": 1,
+          "display_round": "J3",
+          "broadcast": [
+            {
+              "id": 13591763,
+              "broadcast_id": null,
+              "external_id": 5448,
+              "match_external_id": 30088,
+              "broadcast_provider_external_id": 8,
+              "broadcast_type": "VIDEO_STREAM",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-10-11 18:55:00",
+              "broadcast_provider": {
+                "id": 3327,
+                "external_id": 8,
+                "broadcast_provider": "La Chaine L'Équipe",
+                "broadcast_provider_url": "https://www.lequipe.fr/tv/"
+              }
+            },
+            {
+              "id": 13591764,
+              "broadcast_id": null,
+              "external_id": 5449,
+              "match_external_id": 30088,
+              "broadcast_provider_external_id": 34,
+              "broadcast_type": "VIDEO_STREAM",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-10-11 18:55:00",
+              "broadcast_provider": {
+                "id": 1,
+                "external_id": 34,
+                "broadcast_provider": "DAZN",
+                "broadcast_provider_url": "https://www.dazn.com/fr-fr/p/basketball?utm_medium=display&utm_source=solus&utm_campaign=lnb&utm_content=static&utm_term=website"
+              }
+            }
+          ],
+          "teams": [
+            {
+              "id": 7850,
+              "team_id": "8e2e7e72-7098-11f1-9b41-f9c599214b85",
+              "external_id": 1866,
+              "club_external_id": 91,
+              "team_name": "Lyon-Villeurbanne",
+              "team_code": "VIL",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            },
+            {
+              "id": 7855,
+              "team_id": "9acd8233-7098-11f1-a90b-9f22aa5591b1",
+              "external_id": 1872,
+              "club_external_id": 65,
+              "team_name": "Roanne",
+              "team_code": "ROA",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            }
+          ],
+          "is_previous": true,
+          "is_next": true
+        }
+      ]
+    },
+    {
+      "date": "2026-10-17",
+      "data": [
+        {
+          "id": 19608025,
+          "match_time_utc": "2026-10-17T17:00:00.000Z",
+          "match_id": "9e0bae68-a543-11f1-b9c0-b9515c5be892",
+          "tournament_number": 0,
+          "match_date": "2026-10-17",
+          "match_status": "SCHEDULED",
+          "external_id": 30092,
+          "is_pinned": false,
+          "competition_external_id": 317,
+          "division_external_id": 1,
+          "competition_abbrev": "PROA",
+          "colour_primary": "0c0b86",
+          "colour_secondary": "e10014",
+          "round_number": 4,
+          "round_description": "4ème journée",
+          "phase_name": "",
+          "phase_id": 1,
+          "display_round": "J4",
+          "broadcast": [
+            {
+              "id": 13591769,
+              "broadcast_id": null,
+              "external_id": 5463,
+              "match_external_id": 30092,
+              "broadcast_provider_external_id": 34,
+              "broadcast_type": "VIDEO_STREAM",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-10-17 18:55:00",
+              "broadcast_provider": {
+                "id": 1,
+                "external_id": 34,
+                "broadcast_provider": "DAZN",
+                "broadcast_provider_url": "https://www.dazn.com/fr-fr/p/basketball?utm_medium=display&utm_source=solus&utm_campaign=lnb&utm_content=static&utm_term=website"
+              }
+            }
+          ],
+          "teams": [
+            {
+              "id": 7849,
+              "team_id": "8c12ba7e-7098-11f1-825d-f9c599214b85",
+              "external_id": 1865,
+              "club_external_id": 43,
+              "team_name": "Limoges",
+              "team_code": "LIM",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            },
+            {
+              "id": 7850,
+              "team_id": "8e2e7e72-7098-11f1-9b41-f9c599214b85",
+              "external_id": 1866,
+              "club_external_id": 91,
+              "team_name": "Lyon-Villeurbanne",
+              "team_code": "VIL",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            }
+          ],
+          "is_previous": true,
+          "is_next": true
+        }
+      ]
+    },
+    {
+      "date": "2026-10-25",
+      "data": [
+        {
+          "id": 19608037,
+          "match_time_utc": "2026-10-25T15:30:00.000Z",
+          "match_id": "9ec3d972-a543-11f1-8822-b9515c5be892",
+          "tournament_number": 0,
+          "match_date": "2026-10-25",
+          "match_status": "SCHEDULED",
+          "external_id": 30104,
+          "is_pinned": false,
+          "competition_external_id": 317,
+          "division_external_id": 1,
+          "competition_abbrev": "PROA",
+          "colour_primary": "0c0b86",
+          "colour_secondary": "e10014",
+          "round_number": 5,
+          "round_description": "5ème journée",
+          "phase_name": "",
+          "phase_id": 1,
+          "display_round": "J5",
+          "broadcast": [
+            {
+              "id": 13591782,
+              "broadcast_id": null,
+              "external_id": 5456,
+              "match_external_id": 30104,
+              "broadcast_provider_external_id": 34,
+              "broadcast_type": "TV",
+              "content_id": null,
+              "content_url": null,
+              "replay_id": null,
+              "replay_url": null,
+              "broadcast_time_zone": "Europe/Paris",
+              "broadcast_time": "2026-10-25 16:25:00",
+              "broadcast_provider": {
+                "id": 1,
+                "external_id": 34,
+                "broadcast_provider": "DAZN",
+                "broadcast_provider_url": "https://www.dazn.com/fr-fr/p/basketball?utm_medium=display&utm_source=solus&utm_campaign=lnb&utm_content=static&utm_term=website"
+              }
+            }
+          ],
+          "teams": [
+            {
+              "id": 7850,
+              "team_id": "8e2e7e72-7098-11f1-9b41-f9c599214b85",
+              "external_id": 1866,
+              "club_external_id": 91,
+              "team_name": "Lyon-Villeurbanne",
+              "team_code": "VIL",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            },
+            {
+              "id": 7851,
+              "team_id": "9294b489-7098-11f1-9672-a9f4be345157",
+              "external_id": 1868,
+              "club_external_id": 51,
+              "team_name": "Nancy",
+              "team_code": "NAN",
+              "is_favourite": "no",
+              "score_string": "0",
+              "rank": 0
+            }
+          ],
+          "is_previous": true,
+          "is_next": true
+        }
+      ]
+    }
+  ]
+}
